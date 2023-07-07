@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import Button from "./Button";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import Link from "next/link";
 const Nav = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
+  const [menu, setMenu] = useState(false);
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -36,19 +37,17 @@ const Nav = () => {
           />
         </Link>
       </div>
-      {session?.user ? <p>{session?.user.name}</p> : <p>Dev Commerce</p>}
+      <p>Dev Commerce</p>
       <div className="p-3">
         {session?.user ? (
-          <div>
-            <Link href="/profile">
-              <Image
-                src={session?.user.image}
-                width={30}
-                height={30}
-                className="rounded-full"
-                alt="profile"
-              />
-            </Link>
+          <div onClick={() => setMenu((prev) => !prev)}>
+            <Image
+              src={session?.user.image}
+              width={30}
+              height={30}
+              className="rounded-full"
+              alt="profile"
+            />
           </div>
         ) : (
           <div>
@@ -65,6 +64,36 @@ const Nav = () => {
           </div>
         )}
       </div>
+      <AnimatePresence>
+        {menu && (
+          <motion.div
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ x: 50, opacity: 0 }}
+            className="fixed top-[110%] right-2 p-2 rounded-md shadow-md"
+          >
+            <ul>
+              <li>
+                <Button text="Profile" click={null} params={null} classes="" />
+              </li>
+              <li>
+                <Button
+                  text="Purchases"
+                  click={null}
+                  params={null}
+                  classes=""
+                />
+              </li>
+              <li>
+                <Button text="Services" click={null} params={null} classes="" />
+              </li>
+              <li>
+                <Button text="Booking" click={null} params={null} classes="" />
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };
