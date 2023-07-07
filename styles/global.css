@@ -1,6 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  /* font-family: "Pathway Gothic One", sans-serif;
+   */
+  font-family: "Abril Fatface", cursive;
+}
 
 .main {
   width: 100vw;
@@ -24,7 +33,7 @@
 
 .main:after {
   content: "";
-  background-image: url("../public/assets/bg.jpg");
+  background-image: url("/assets/bg.jpg");
   z-index: 1;
   position: absolute;
   width: 100%;

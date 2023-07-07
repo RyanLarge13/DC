@@ -1,8 +1,12 @@
 "use client";
 
-const Button = ({ text, key, click, classes }) => {
+const Button = ({ text, click, params, classes }) => {
   return (
-    <button type="button" key={key} onClick={click} className={`px-3 py-1 rounded-full shadow-md bg-gradient-to-r from-black to-sky-600 ${classes}`}>
+    <button
+      type="button"
+      onClick={() => click(params)}
+      className={`px-3 py-1 rounded-full shadow-md bg-gradient-to-r from-orange-300 to-pink-400 text-white font-semibold ${classes}`}
+    >
       {text}
     </button>
   );
