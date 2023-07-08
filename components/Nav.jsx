@@ -25,7 +25,7 @@ const Nav = () => {
     <motion.nav
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="fixed flex justify-between items-center top-0 right-0 left-0 shadow-md backdrop-blur-sm z-[999]"
+      className="fixed flex justify-between items-center top-0 right-0 left-0 shadow-md bg-white bg-opacity-10 backdrop-blur-sm z-[999]"
     >
       <div className="p-1 ml-2">
         <Link href="/">
@@ -39,7 +39,7 @@ const Nav = () => {
         </Link>
       </div>
       <div className="p-3 flex justify-center items-center">
-        <div className="mr-10">
+        <div className="mr-10 hidden md:block">
           <ul className="flex justify-start item-center text-xs gap-x-5 whitespace-nowrap">
             <li>Home</li>
             <li>Services</li>
@@ -68,7 +68,7 @@ const Nav = () => {
                   key={provider.name}
                   click={signIn}
                   params={provider.id}
-                  classes=""
+                  classes="text-sm"
                 />
               ))}
           </div>
@@ -80,7 +80,7 @@ const Nav = () => {
             initial={{ y: -50, opacity: 0 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ x: 50, opacity: 0 }}
-            className="fixed top-[110%] right-2 p-2 rounded-md shadow-md bg-white backdrop-blur-sm bg-opacity-50"
+            className="fixed top-[110%] right-2 p-2 rounded-md shadow-md bg-white"
           >
             <div className="flex justify-between items-center">
               <Link href="/">
@@ -135,6 +135,20 @@ const Nav = () => {
                   classes=""
                 />
               </Link>
+            </div>
+            <div className="flex p-2 justify-between items-center text-xs md:hidden">
+              <ul className="whitespace-nowrap">
+                <li>Home</li>
+                <li className="my-2">Services</li>
+                <li>About DC</li>
+              </ul>
+              <ul className="whitespace-nowrap">
+                <li>Contect</li>
+                <li className="my-2">Careers</li>
+                {session?.user && (
+                  <button onClick={() => signOut()}>Logout</button>
+                )}
+              </ul>
             </div>
           </motion.div>
         )}
