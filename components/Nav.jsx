@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import {useRouter} from "next/navigation"
 import { MdCircleNotifications } from "react-icons/md";
 import Button from "./Button";
 import Image from "next/image";
@@ -10,6 +11,7 @@ import Link from "next/link";
 
 const Nav = () => {
   const { data: session } = useSession();
+  const router = useRouter()
   const [providers, setProviders] = useState(null);
   const [menu, setMenu] = useState(false);
 
@@ -56,7 +58,7 @@ const Nav = () => {
               width={30}
               height={30}
               alt="profile"
-              className="rounded-full cursor-pointer"
+              className="rounded-full cursor-pointer my-2"
             />
           </div>
         ) : (
@@ -96,14 +98,14 @@ const Nav = () => {
             </div>
             <div>
               <Link href="/profile">
-                <Button text="profile" click={null} params={null} classes="" />
+                <Button text="Profile" click={null} params={null} classes="" />
               </Link>
               <Link href="/bookings">
-                <Button text="orders" click={null} params={null} classes="" />
+                <Button text="Orders" click={null} params={null} classes="" />
               </Link>
               <Link href="/dashboard">
                 <Button
-                  text="dashboard"
+                  text="Dashboard"
                   click={null}
                   params={null}
                   classes=""
@@ -138,15 +140,24 @@ const Nav = () => {
             </div>
             <div className="flex p-2 justify-between items-center text-xs md:hidden">
               <ul className="whitespace-nowrap">
-                <li>Home</li>
-                <li className="my-2">Services</li>
-                <li>About DC</li>
+                <li>
+                  <Link href="/">Home</Link>
+                </li>
+                <li className="my-2">
+                  <Link href="services">Services</Link>
+                </li>
+                <li>
+                  <Link href="/about">About DC</Link>
+                </li>
               </ul>
               <ul className="whitespace-nowrap">
-                <li>Contect</li>
+                <li>
+                  <Link href="/contact">Contact</Link>
+                </li>
                 <li className="my-2">Careers</li>
                 {session?.user && (
-                  <button onClick={() => signOut()}>Logout</button>
+                  <button onClick={() => {signOut() 
+                  router.push("/")}}>Logout</button>
                 )}
               </ul>
             </div>

@@ -3,6 +3,7 @@ import services from "@/constants/services";
 import Image from "next/image";
 import Button from "@/components/Button";
 import AdCard from "@/components/AdCard";
+import Service from "@/components/Service";
 
 export default function Home() {
   return (
@@ -45,23 +46,7 @@ export default function Home() {
         </div>
         <div className="mt-10 flex flex-col items-center justify-center py-3">
           {services.map((service) => (
-            <div
-              key={service.title}
-              className="w-[95%] rounded-md shadow-md p-2 my-5"
-            >
-              <Image
-                src={service.img}
-                // width={350}
-                // height={350}
-                alt={service.title}
-                className="rounded-md shadow-md w-[350px] h-[350px] object-cover"
-              />
-              <h3 className="mt-2 mb-1 border-b-2 border-b-black">
-                {service.title}
-              </h3>
-              <p className="text-xs">{service.desc}</p>
-              <Button text="read more" click={null} params={null} classes="" />
-            </div>
+            <Service key={service.title} service={service} />
           ))}
         </div>
       </div>
@@ -74,13 +59,96 @@ export default function Home() {
           Commerce the most financially stable & beneficial way to achieve your
           dreams in the world of tech
         </p>
-        {/*<Image
-          src={"/assets/me.jpg"}
-          width={275}
-          height={275}
-          alt="me"
-          className="rounded-md shadow-md"
-        />*/}
+        <div className="relative w-full h-[50vh] mt-5">
+          <Image
+            src={"/assets/me.jpg"}
+            width={275}
+            height={275}
+            alt="me"
+            className="rounded-md absolute top-0 right-0 shadow-md"
+          />
+          <Image
+            src={"/assets/logo.svg"}
+            width={275}
+            height={275}
+            alt="me"
+            className="rounded-md absolute bottom-0 left-0 shadow-md"
+          />
+        </div>
+        <h3 className="font-semibold text-2xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+          Background
+        </h3>
+        <p>
+          Specializing in Javascript and respective frameworks for creating
+          customized, unique & envious cross platform fullstack web
+          applications, Dev Commerce came to life two years ago as my journey
+          into the world of web development began
+        </p>
+        <p className="mt-2">
+          Completing the year long Fullstack web development program at Career
+          Foundry and extensive self education, dedication and diligence have
+          brought my to a comfortable place in the tech community.
+        </p>
+        <p className="mt-2">
+          Check out some of the great projects I have collaborated on and built
+          for clients such as you!
+        </p>
+        <div>links</div>
+        <h3 className="font-semibold text-2xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+          Stats
+        </h3>
+        <div className="w-full rounded-md shadow-md bg-opacity-30 p-3 bg-white backdrop-blur-sm">
+          <h4 className="bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent border-b-2 border-b-purple-300 mb-2">
+            50+ projects
+          </h4>
+          <p className="text-xs">
+            Paid, probono, or just for fun. DC brings to you experience
+            knowledge & efficiency
+          </p>
+        </div>
+        <div className="w-full rounded-md shadow-md bg-opacity-30 p-3 bg-white backdrop-blur-sm my-3">
+          <h4 className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent border-b-2 border-b-purple-300 mb-2">
+            23+ clients
+          </h4>
+          <p className="text-xs">
+            Paid, probono, or just for fun. DC brings to you experience
+            knowledge & efficiency
+          </p>
+        </div>
+        <div className="w-full rounded-md shadow-md bg-opacity-30 p-3 bg-white backdrop-blur-sm">
+          <h4 className="bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent border-b-2 border-b-purple-300 mb-2">
+            100% Reliability
+          </h4>
+          <p className="text-xs">
+            Paid, probono, or just for fun. DC brings to you experience
+            knowledge & efficiency
+          </p>
+        </div>
+      </div>
+      <div className="p-5 ml-3 mt-40">
+        <h2 className="font-semibold text-4xl mb-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+          Connect With Me
+        </h2>
+        <p className="mr-2 text-sm">
+          My name is Ryan Large, creator and digital entrepreneur of Dev
+          Commerce the most financially stable & beneficial way to achieve your
+          dreams in the world of tech
+        </p>
+        <form className="mt-5">
+          <input
+            className="border-none outline-none rounded-md shadow-md bg-white bg-opacity-10 backdrop-blur-sm p-3 w-full"
+            placeholder="Name"
+          />
+          <input
+            className="border-none outline-none rounded-md shadow-md bg-white bg-opacity-10 backdrop-blur-sm p-3 w-full my-3"
+            placeholder="Email"
+          />
+          <input
+            className="border-none outline-none rounded-md shadow-md bg-white bg-opacity-10 backdrop-blur-sm p-3 w-full"
+            placeholder="Message"
+          />
+          <Button text="Send" click={null} params={null} classes="" />
+        </form>
       </div>
     </section>
   );
