@@ -41,11 +41,18 @@ const Nav = () => {
       <div className="p-3 flex justify-center items-center">
         <div className="mr-10 hidden md:block">
           <ul className="flex justify-start item-center text-xs gap-x-5 whitespace-nowrap">
-            <li>Home</li>
-            <li>Services</li>
-            <li>About DC</li>
-            <li>Contect</li>
-            <li>Careers</li>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/services">Services</Link>
+            </li>
+            <li>
+              <Link href="/about">About DC</Link>
+            </li>
+            <li>
+              <Link href="/contact">Connect</Link>
+            </li>
             {session?.user && <button onClick={() => signOut()}>Logout</button>}
           </ul>
         </div>
@@ -74,7 +81,7 @@ const Nav = () => {
           </div>
         )}
       </div>
-      <AnimatePresence>{menu && <Menu />}</AnimatePresence>
+      <AnimatePresence>{menu && <Menu setMenu={setMenu} />}</AnimatePresence>
     </motion.nav>
   );
 };

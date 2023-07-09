@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
 
-const Menu = () => {
+const Menu = ({ setMenu }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -33,34 +33,39 @@ const Menu = () => {
       </div>
       <div>
         <Link href="/profile">
-          <Button text="Profile" click={null} params={null} classes="" />
+          <Button text="Profile" click={setMenu} params={false} classes="" />
         </Link>
         <Link href="/orders">
-          <Button text="Orders" click={null} params={null} classes="" />
+          <Button text="Orders" click={setMenu} params={false} classes="" />
         </Link>
         <Link href="/dashboard">
-          <Button text="Dashboard" click={null} params={null} classes="" />
+          <Button text="Dashboard" click={setMenu} params={false} classes="" />
         </Link>
         <div className="flex justify-between items-center">
           <Link href="/book">
             <Button
               text="New Service"
-              click={null}
-              params={null}
+              click={setMenu}
+              params={false}
               classes="text-xs"
             />
           </Link>
           <Link href="/something">
             <Button
               text="New Product"
-              click={null}
-              params={null}
+              click={setMenu}
+              params={false}
               classes="text-xs"
             />
           </Link>
         </div>
         <Link href="/cart">
-          <Button text="View Your Cart" click={null} params={null} classes="" />
+          <Button
+            text="View Your Cart"
+            click={setMenu}
+            params={false}
+            classes=""
+          />
         </Link>
       </div>
       <div className="flex p-2 justify-between items-center text-xs md:hidden">

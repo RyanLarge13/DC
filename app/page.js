@@ -77,7 +77,7 @@ export default function Home() {
               className="rounded-md absolute bottom-0 left-0 shadow-md"
             />
           </div>
-          <div className="md:p-5">
+          <div className="md:p-5 lg:flex lg:justify-center lg:items-center lg:flex-col">
             <h3 className="font-semibold text-2xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
               Background
             </h3>
