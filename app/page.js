@@ -81,19 +81,19 @@ export default function Home() {
             <h3 className="font-semibold text-2xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
               Background
             </h3>
-            <p className="lg:w-[40%]">
+            <p className="lg:w-[40%] text-sm">
               Specializing in Javascript and respective frameworks for creating
               customized, unique & envious cross platform fullstack web
               applications, Dev Commerce came to life two years ago as my
               journey into the world of web development began
             </p>
-            <p className="mt-2 lg:w-[40%]">
+            <p className="mt-2 lg:w-[40%] text-sm">
               Completing the year long Fullstack web development program at
               Career Foundry and extensive self education, dedication and
               diligence have brought my to a comfortable place in the tech
               community.
             </p>
-            <p className="mt-2 lg:w-[40%]">
+            <p className="mt-2 lg:w-[40%] text-sm">
               Check out some of the great projects I have collaborated on and
               built for clients such as you!
             </p>

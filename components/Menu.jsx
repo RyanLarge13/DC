@@ -35,7 +35,7 @@ const Menu = () => {
         <Link href="/profile">
           <Button text="Profile" click={null} params={null} classes="" />
         </Link>
-        <Link href="/bookings">
+        <Link href="/orders">
           <Button text="Orders" click={null} params={null} classes="" />
         </Link>
         <Link href="/dashboard">
