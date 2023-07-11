@@ -1,10 +1,12 @@
 import adCards from "@/constants/adCards";
 import services from "@/constants/services";
+import projects from "@/constants/projects";
 import Image from "next/image";
 import Button from "@/components/Button";
 import AdCard from "@/components/AdCard";
 import Service from "@/components/Service";
 import ContactForm from "@/components/ContactForm";
+import Project from "@/components/Project"
 
 export default function Home() {
   return (
@@ -32,7 +34,12 @@ export default function Home() {
         ))}
       </div>
       <div className="mx-3 mt-3">
-        <Button text="view all" click={null} params={null} classes="" />
+        <Button
+          text="view all"
+          click={"route"}
+          params={"/products"}
+          classes=""
+        />
       </div>
       <div>
         <div className="p-5 ml-3 mt-40">
@@ -97,7 +104,14 @@ export default function Home() {
               Check out some of the great projects I have collaborated on and
               built for clients such as you!
             </p>
-            <div>links</div>
+            <h3 className="font-semibold text-2xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+              Project Success
+            </h3>
+            <div>
+              {projects.map((proj) => (
+                <Project proj={proj} />
+              ))}
+            </div>
           </div>
         </div>
         <h3 className="font-semibold text-2xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
@@ -136,9 +150,8 @@ export default function Home() {
           Connect With Me
         </h2>
         <p className="mr-2 text-sm">
-          My name is Ryan Large, creator and digital entrepreneur of Dev
-          Commerce the most financially stable & beneficial way to achieve your
-          dreams in the world of tech
+          Personally message me here and ask me about anything you have
+          questions for and I will reply to you timely.. Immediately. Thank you!
         </p>
         <ContactForm />
       </div>
