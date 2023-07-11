@@ -10,7 +10,7 @@ const Service = ({ service }) => {
       initial={{ x: -10, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
       key={service.title}
-      className="w-min rounded-md shadow-md p-2 my-5"
+      className="w-min rounded-md shadow-md p-2 my-5 flex-1"
     >
       <Image
         src={service.img}

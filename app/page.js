@@ -6,7 +6,7 @@ import Button from "@/components/Button";
 import AdCard from "@/components/AdCard";
 import Service from "@/components/Service";
 import ContactForm from "@/components/ContactForm";
-import Project from "@/components/Project"
+import Project from "@/components/Project";
 
 export default function Home() {
   return (
@@ -52,7 +52,7 @@ export default function Home() {
             upgraded and given some TLC every now and then
           </p>
         </div>
-        <div className="mt-10 flex flex-wrap items-center justify-center py-3 lg:gap-x-20">
+        <div className="mt-10 flex flex-wrap items-center justify-center p-3 lg:gap-x-20">
           {services.map((service) => (
             <Service key={service.title} service={service} />
           ))}
@@ -84,7 +84,7 @@ export default function Home() {
               className="rounded-md absolute bottom-0 left-0 shadow-md"
             />
           </div>
-          <div className="md:p-5 lg:flex lg:justify-center lg:items-center lg:flex-col">
+          <div className="md:p-5 lg:flex lg:justify-end lg:items-center lg:text-right lg:text-lg lg:flex-col">
             <h3 className="font-semibold text-2xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
               Background
             </h3>
@@ -104,6 +104,10 @@ export default function Home() {
               Check out some of the great projects I have collaborated on and
               built for clients such as you!
             </p>
+          </div>
+        </div>
+        <div className="lg:flex lg:justify-between lg:items-start lg:p-3">
+          <div className="lg:flex-1 lg:pr-10">
             <h3 className="font-semibold text-2xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
               Project Success
             </h3>
@@ -113,36 +117,38 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </div>
-        <h3 className="font-semibold text-2xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
-          Stats
-        </h3>
-        <div className="w-full rounded-md shadow-md bg-opacity-30 p-3 bg-white backdrop-blur-sm">
-          <h4 className="bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent border-b-2 border-b-purple-300 mb-2">
-            50+ projects
-          </h4>
-          <p className="text-xs">
-            Paid, probono, or just for fun. DC brings to you experience
-            knowledge & efficiency
-          </p>
-        </div>
-        <div className="w-full rounded-md shadow-md bg-opacity-30 p-3 bg-white backdrop-blur-sm my-3">
-          <h4 className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent border-b-2 border-b-purple-300 mb-2">
-            23+ clients
-          </h4>
-          <p className="text-xs">
-            Paid, probono, or just for fun. DC brings to you experience
-            knowledge & efficiency
-          </p>
-        </div>
-        <div className="w-full rounded-md shadow-md bg-opacity-30 p-3 bg-white backdrop-blur-sm">
-          <h4 className="bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent border-b-2 border-b-purple-300 mb-2">
-            100% Reliability
-          </h4>
-          <p className="text-xs">
-            Paid, probono, or just for fun. DC brings to you experience
-            knowledge & efficiency
-          </p>
+          <div className="lg:flex-1">
+            <h3 className="font-semibold text-2xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+              Stats
+            </h3>
+            <div className="w-full rounded-md shadow-md bg-opacity-30 p-3 bg-white backdrop-blur-sm">
+              <h4 className="bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent border-b-2 border-b-purple-300 mb-2">
+                50+ projects
+              </h4>
+              <p className="text-xs">
+                Paid, probono, or just for fun. DC brings to you experience
+                knowledge & efficiency
+              </p>
+            </div>
+            <div className="w-full rounded-md shadow-md bg-opacity-30 p-3 bg-white backdrop-blur-sm my-3">
+              <h4 className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent border-b-2 border-b-purple-300 mb-2">
+                23+ clients
+              </h4>
+              <p className="text-xs">
+                Paid, probono, or just for fun. DC brings to you experience
+                knowledge & efficiency
+              </p>
+            </div>
+            <div className="w-full rounded-md shadow-md bg-opacity-30 p-3 bg-white backdrop-blur-sm">
+              <h4 className="bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent border-b-2 border-b-purple-300 mb-2">
+                100% Reliability
+              </h4>
+              <p className="text-xs">
+                Paid, probono, or just for fun. DC brings to you experience
+                knowledge & efficiency
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div className="p-5 ml-3 mt-40">
