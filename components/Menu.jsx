@@ -20,7 +20,7 @@ const Menu = ({ setMenu }) => {
       className="fixed top-[110%] right-2 p-2 rounded-md shadow-md bg-white"
     >
       <div className="flex justify-between items-center">
-        <Link href="/">
+        <Link href="/" onClick={() => setMenu(false)}>
           <Image
             src="/assets/logo.svg"
             alt="logo"

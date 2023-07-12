@@ -8,10 +8,10 @@ const ContactForm = () => {
   const { data: session } = useSession();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
 
   return (
-    <form className="mt-5">
+    <form className="mt-5 lg:w-[50%]">
       <input
         className="border-none outline-none rounded-md shadow-md bg-white bg-opacity-10 backdrop-blur-sm p-3 w-full"
         placeholder="Name"
@@ -27,8 +27,8 @@ const ContactForm = () => {
       <textarea
         className="border-none outline-none rounded-md shadow-md bg-white bg-opacity-10 backdrop-blur-sm p-3 w-full h-[200px]"
         placeholder="Message"
-        value={message} 
-        onChange={(e) => setMessage(e.target.value)} 
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
       ></textarea>
       <Button text="Send" click={null} params={null} classes="" />
     </form>

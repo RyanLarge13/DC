@@ -6,16 +6,13 @@ import Image from "next/image";
 
 const AdCard = ({ card }) => {
   return (
-    <motion.div
-      whileHover={{ scale: 1.01, y: -25 }}
-      className="relative rounded-md shaodw-md bg-white bg-opacity-10 backdrop-blur-sm cursor-pointer"
-    >
+    <motion.div className="relative rounded-md shadow-md bg-white bg-opacity-10 backdrop-blur-sm cursor-pointer">
       <Image
         src={card.img}
         alt={card.title}
-        className="w-[175px] h-[175px] object-cover rounded-md"
+        className="w-[175px] h-[175px] lg:w-[300px] lg:h-[300px] object-cover rounded-t-md shadow-md"
       />
-      <div className="p-2 bg-white rounded-md">
+      <div className="p-2 bg-white rounded-b-md">
         <p>{card.title}</p>
       </div>
     </motion.div>
