@@ -11,7 +11,7 @@ export default [
     title: "DB maintenance",
     img: Dbmaint,
     desc: "Managing a database or backend system can be time consuming and taxing on an already hard working person or business. Allow me to take on your burden so you can focus on the more important things.",
-    link: "",
+    link: "/services/dbmaint",
   },
   {
     title: "Upgrades",
