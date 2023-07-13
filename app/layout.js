@@ -7,7 +7,7 @@ export const metadata = {
   description: "Dev Commerce, bring your ideas to the digital world of web",
   charset: "utf-8",
   icons: {
-    icon: "./logo.ico",
+    icon: "./logo.svg",
   },
   viewport:
     "width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui",

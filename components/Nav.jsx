@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Button from "@/components/Button";
 import Menu from "@/components/Menu";
@@ -12,6 +13,8 @@ const Nav = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [menu, setMenu] = useState(false);
+
+  const pathName = usePathname();
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -42,16 +45,48 @@ const Nav = () => {
         <div className="mr-10 hidden md:block">
           <ul className="flex justify-start item-center text-xs gap-x-5 whitespace-nowrap">
             <li>
-              <Link href="/">Home</Link>
+              <Link
+                href="/"
+                className={`${
+                  pathName.startsWith("/") ? "text-pink-300" : "text-black"
+                }`}
+              >
+                Home
+              </Link>
             </li>
             <li>
-              <Link href="/services">Services</Link>
+              <Link
+                href="/services"
+                className={`${
+                  pathName.startsWith("/services")
+                    ? "text-pink-300"
+                    : "text-black"
+                }`}
+              >
+                Services
+              </Link>
             </li>
             <li>
-              <Link href="/about">About DC</Link>
+              <Link
+                href="/about"
+                className={`${
+                  pathName.startsWith("/about") ? "text-pink-300" : "text-black"
+                }`}
+              >
+                About DC
+              </Link>
             </li>
             <li>
-              <Link href="/contact">Connect</Link>
+              <Link
+                href="/contact"
+                className={`${
+                  pathName.startsWith("/contact")
+                    ? "text-pink-300"
+                    : "text-black"
+                }`}
+              >
+                Connect
+              </Link>
             </li>
             {session?.user && <button onClick={() => signOut()}>Logout</button>}
           </ul>

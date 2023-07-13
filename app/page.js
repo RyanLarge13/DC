@@ -50,7 +50,7 @@ export default function Home() {
             upgraded and given some TLC every now and then
           </p>
         </div>
-        <div className="grid gap-10 grid-cols-1 mg:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-10 grid-cols-1 mg:grid-cols-2 lg:grid-cols-3 px-5">
           {services.map((service) => (
             <Service key={service.title} service={service} />
           ))}
