@@ -26,7 +26,9 @@ const page = () => {
             className="rounded-md shadow-md"
           />
         </div>
-        <quote className="ml-5">"Let's build your dreams" - Ryan Large</quote>
+        <blockquote className="ml-5">
+          "Let's build your dreams" - Ryan Large
+        </blockquote>
       </div>
       <p></p>
     </section>

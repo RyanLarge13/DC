@@ -14,7 +14,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const res = await fetch(`/api/user/${session.user.id}/data`);
-      const data = res.json();
+      const data = await res.json();
       setOrders(data.orders);
       setProducts(data.products);
       setServices(data.services);
@@ -37,7 +37,7 @@ const Profile = () => {
         <p className="text-sm mt-5">Your outgoing orders will appear here...</p>
         <div className="mt-10">
           {orders && orders.length > 0 ? (
-            orders.map((order) => <div></div>)
+            orders.map((order) => <div key={order._id}>Order</div>)
           ) : (
             <Button
               text="Shop your new website!"

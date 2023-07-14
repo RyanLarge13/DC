@@ -11,8 +11,8 @@ const page = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       const res = await fetch(`/api/user/${session?.user.id}/cart`);
-      const data = res.json();
-      setItems([data]);
+      const data = await res.json();
+      setItems(data);
     };
     if (session?.user.id) fetchCartItems();
   }, [session?.user.id]);
@@ -27,7 +27,10 @@ const page = () => {
           <p>Here are all the items in your cart..</p>
           <div className="bg-white bg-opacity-20 backdrop-blur-sm p-3 mt-20 rounded-md shadow-md">
             {items.map((item) => (
-              <div className="my-5 p-2 rounded-md shadow-md bg-white">
+              <div
+                key={item._id}
+                className="my-5 p-2 rounded-md shadow-md bg-white"
+              >
                 <p>{item.title}</p>
                 <p>{item.desc}</p>
               </div>
