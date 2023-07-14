@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-export const ServiceSchema = new Schema(
+const ServiceSchema = new Schema(
   {
     kind: {
       type: String,

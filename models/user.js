@@ -1,8 +1,4 @@
 import { Schema, model, models } from "mongoose";
-import { MessageSchema } from "@/models/message";
-import {OrderSchema} from "@/models/order";
-import {ProductSchema} from "@/models/product";
-import {ServiceSchema} from "@/models/service";
 
 const UserSchema = new Schema({
   email: {
@@ -24,22 +20,7 @@ const UserSchema = new Schema({
       /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
       "Please enter a valid phone number",
     ],
-  },
-  messages: {
-    type: [MessageSchema],
-    default: undefined,
-  },
-  orders: {
-    type: [OrderSchema],
-    default: undefined,
-  },
-  products: {
-    type: [ProductSchema],
-    default: undefined,
-  },
-  services: {
-    type: [ServiceSchema],
-    default: undefined,
+    unique: [true, "This phone number is already registered with an account"]
   },
   image: {
     type: String,

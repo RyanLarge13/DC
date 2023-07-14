@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-export const MessageSchema = new Schema({
+const MessageSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",

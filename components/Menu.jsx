@@ -68,10 +68,13 @@ const Menu = ({ setMenu }) => {
           />
         </Link>
       </div>
-      <div className="flex p-2 justify-between items-center text-xs md:hidden">
+      <div className="flex p-2 justify-between items-start text-xs md:hidden">
         <ul className="whitespace-nowrap">
           <li>
             <Link href="/">Home</Link>
+          </li>
+          <li className="my-2">
+            <Link href="products">Products</Link>
           </li>
           <li className="my-2">
             <Link href="services">Services</Link>
@@ -79,12 +82,18 @@ const Menu = ({ setMenu }) => {
           <li>
             <Link href="/about">About DC</Link>
           </li>
+          <li className="my-2">
+            <Link href="/termsofservice">Terms of Service</Link>
+          </li>
         </ul>
         <ul className="whitespace-nowrap">
           <li>
             <Link href="/contact">Contact</Link>
           </li>
           <li className="my-2">Careers</li>
+          <li className="my-2">
+            <Link href="/privacypolicy">Privacy Policy</Link>
+          </li>
           {session?.user && (
             <button
               onClick={() => {

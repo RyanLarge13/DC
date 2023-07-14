@@ -39,8 +39,8 @@ export default function Home() {
           classes=""
         />
       </div>
-      <div>
-        <div className="p-5 ml-3 mt-40">
+      <div className="p-5">
+        <div className="ml-3 mt-40">
           <h2 className="font-semibold text-4xl mb-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
             Services & Maintenence
           </h2>
@@ -50,12 +50,17 @@ export default function Home() {
             upgraded and given some TLC every now and then
           </p>
         </div>
-        <div className="grid gap-10 grid-cols-1 mg:grid-cols-2 lg:grid-cols-3 px-5">
+        <div className="grid gap-10 grid-cols-1 mg:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <Service key={service.title} service={service} />
           ))}
         </div>
-        <Button text="View All" click={null} params={null} classes="" />
+        <Button
+          text="View All"
+          click={"route"}
+          params={"/services"}
+          classes=""
+        />
       </div>
       <div className="p-5 ml-3 mt-40">
         <h2 className="font-semibold text-4xl mb-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
@@ -98,7 +103,7 @@ export default function Home() {
             brought my to a comfortable place in the tech community.
           </p>
         </div>
-        <Button text="Learn More" click={null} params={null} classes="" />
+        <Button text="Learn More" click={"route"} params={"/about"} classes="" />
       </div>
       <div className="p-5 ml-3 mt-40">
         <h2 className="font-semibold text-4xl mb-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">

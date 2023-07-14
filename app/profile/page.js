@@ -13,7 +13,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const res = await fetch(`/user/${session.user.id}/data`);
+      const res = await fetch(`/api/user/${session.user.id}/data`);
       const data = res.json();
       setOrders(data.orders);
       setProducts(data.products);

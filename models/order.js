@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-export const OrderSchema = new Schema(
+const OrderSchema = new Schema(
   {
   	user: {
   		type: Schema.Types.ObjectId, 
