@@ -5,7 +5,6 @@ export const GET = async (req, { params }) => {
   try {
     await connectDB();
     const cart = await Cart.find({ user: params.id }).populate("user");
-    console.log(cart[0].items);
     return new Response(JSON.stringify(cart[0].items), { status: 200 });
   } catch (err) {
     console.log(err);
