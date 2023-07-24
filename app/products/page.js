@@ -38,7 +38,12 @@ const page = () => {
                 params={null}
                 classes=""
               />
-              <Button text="Expand" click={null} params={null} classes="" />
+              <Button
+                text="Expand"
+                click={"route"}
+                params={`/products/${card.id}`}
+                classes=""
+              />
             </div>
           </div>
         ))}

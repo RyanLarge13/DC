@@ -35,14 +35,14 @@ const Menu = ({ setMenu }) => {
         <Link href="/profile">
           <Button text="Profile" click={setMenu} params={false} classes="" />
         </Link>
-        <Link href="/orders">
-          <Button text="Orders" click={setMenu} params={false} classes="" />
+        <Link href="/portfolio">
+          <Button text="Portfolio" click={setMenu} params={false} classes="" />
         </Link>
         <Link href="/dashboard">
           <Button text="Dashboard" click={setMenu} params={false} classes="" />
         </Link>
         <div className="flex justify-between items-center">
-          <Link href="/book">
+          <Link href="/services">
             <Button
               text="New Service"
               click={setMenu}
@@ -50,7 +50,7 @@ const Menu = ({ setMenu }) => {
               classes="text-xs"
             />
           </Link>
-          <Link href="/something">
+          <Link href="/products">
             <Button
               text="New Product"
               click={setMenu}

@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import AdCard from "@/components/AdCard";
 import Service from "@/components/Service";
 import ContactForm from "@/components/ContactForm";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -39,7 +40,7 @@ export default function Home() {
           classes=""
         />
       </div>
-      <div className="p-5">
+      <div className="p-5 my-40">
         <div className="ml-3 mt-40">
           <h2 className="font-semibold text-4xl mb-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
             Services & Maintenence
@@ -59,10 +60,10 @@ export default function Home() {
           text="View All"
           click={"route"}
           params={"/services"}
-          classes=""
+          classes="mb-40"
         />
       </div>
-      <div className="p-5 ml-3 mt-40">
+      <div className="p-5 ml-3 my-40">
         <h2 className="font-semibold text-4xl mb-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
           About DC & The Creator
         </h2>
@@ -103,7 +104,12 @@ export default function Home() {
             brought my to a comfortable place in the tech community.
           </p>
         </div>
-        <Button text="Learn More" click={"route"} params={"/about"} classes="" />
+        <Button
+          text="Learn More"
+          click={"route"}
+          params={"/about"}
+          classes="mb-40"
+        />
       </div>
       <div className="p-5 ml-3 mt-40">
         <h2 className="font-semibold text-4xl mb-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
@@ -115,6 +121,7 @@ export default function Home() {
         </p>
         <ContactForm />
       </div>
+      <Footer />
     </section>
   );
 }
