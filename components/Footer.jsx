@@ -30,7 +30,13 @@ const Footer = () => {
         </Link>
       </div>
       <div className="flex justify-center items-center mt-10">
-        <Image src="./assets/logo.svg" width={50} height={50} className="rounded-md" />
+        <Image
+          src="./assets/logo.svg"
+          alt="logo"
+          width={50}
+          height={50}
+          className="rounded-md"
+        />
       </div>
     </div>
   );

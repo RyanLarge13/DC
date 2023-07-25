@@ -10,7 +10,7 @@ const page = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const theProduct = adCards.filter((card) => card.id === id);
+    const theProduct = adCards.filter((card) => card.id === parseInt(id, 10));
     setProduct(theProduct[0]);
   }, []);
 
@@ -19,7 +19,13 @@ const page = () => {
       {product && (
         <div>
           <p>{product.title}</p>
-          <Image src={product.img} alt="product" width={400} height={400} />
+          <Image
+            src={product.img}
+            alt="product"
+            width={400}
+            height={400}
+            className="rounded-md mt-10 ml-10 shadow-md"
+          />
         </div>
       )}
     </section>
