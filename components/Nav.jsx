@@ -28,15 +28,15 @@ const Nav = () => {
     <motion.nav
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="fixed flex justify-between items-center top-0 right-0 left-0 shadow-md bg-white bg-opacity-10 backdrop-blur-sm z-[999]"
+      className="fixed flex justify-between items-center top-0 right-0 left-0 bg-white bg-opacity-10 backdrop-blur-sm z-[999]"
     >
       <div className="p-1 ml-2">
         <Link href="/">
           <Image
             src="/assets/logo.svg"
             alt="logo"
-            width={40}
-            height={40}
+            width={50}
+            height={50}
             className="object-contain my-2"
           />
         </Link>

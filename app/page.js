@@ -9,36 +9,60 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <section className="pt-20">
-      <div className="p-5 ml-3">
-        <h1 className="font-semibold text-4xl mb-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
-          Welcome to Dev Commerce
+    <section className="px-8">
+      <div className="mb-5 mt-10">
+        <p className="uppercase mb-10">It's time to create</p>
+        <h1 className="font-semibold text-7xl leading-[1.25em] mb-2">
+          Welcome to{" "}
+          <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+            Dev
+          </span>{" "}
+          <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+            C
+          </span>
+          ommerce
         </h1>
-        <p className="mr-2 text-sm lg:text-lg lg:w-[30%]">
-          What would you like to see come to life today? A new{" "}
-          <span className="uppercase font-semibold">portfolio</span>?{" "}
-          <span className="uppercase font-semibold">A Blog</span>,
-          <span className="uppercase font-semibold"> ecommerce</span> webpage,
-          mobile or desktop{" "}
-          <span className="uppercase font-semibold">application</span>?
+        <p className="mr-2 mt-10">
+          What would you like to see come to life today? A new portfolio ? A
+          Blog , ecommerce webpage, mobile or desktop application ?
         </p>
-        <p className="my-5 text-lg">
-          You name it,{" "}
-          <span className="uppercase font-semibold">I build it</span>
-        </p>
+        <p className="mt-5 mb-10 text-lg">You name it, I build it</p>
+        <Button
+          text="Shop Products"
+          click={"route"}
+          params={"/products"}
+          classes="w-min px-10 py-3 whitespace-nowrap"
+        />
+        <div className="grid grid-cols-2 place-items-start gap-20 mt-20">
+          <div>
+            <p className="text-6xl">100+</p>
+            <p className="text-xs mt-2 text-slate-500">HAPPY CLIENTS</p>
+          </div>
+          <div>
+            <p className="text-6xl">10%</p>
+            <p className="text-xs mt-2 text-slate-500">TO CHARETY</p>
+          </div>
+          <div>
+            <p className="text-6xl">250</p>
+            <p className="text-xs mt-2 text-slate-500">TOP DEVELOPERS</p>
+          </div>
+        </div>
       </div>
-      <div className="flex justify-center items-center flex-wrap gap-3 lg:gap-20 px-1 mt-20 mb-5">
+      <div className="mt-40">
+        <h2 className="font-semibold text-5xl">
+          Most Popular{" "}
+          <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+            Products
+          </span>
+        </h2>
+        <p className="mt-10">
+          There is more to the story of a developer than building really cool
+          stuff. Just like any other creation they must be maintained, upgraded
+          and given some TLC every now and then
+        </p>
         {adCards.map((card) => (
           <AdCard key={card.title} card={card} />
         ))}
-      </div>
-      <div className="mx-3 mt-3">
-        <Button
-          text="view all"
-          click={"route"}
-          params={"/products"}
-          classes=""
-        />
       </div>
       <div className="p-5 my-40">
         <div className="ml-3 mt-40">

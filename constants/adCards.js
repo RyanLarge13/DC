@@ -85,7 +85,7 @@ export default [
         title: "Step 2",
         instruction:
           "Once in your cart, go to checkout your new product! I will get in contact with you immediately!! We will go over all the things in an organized way to make sure your dream is realized. This conversation is completely free of charge",
-        btns: [{text: "Add & View Cart", link: ""}],
+        btns: [{ text: "Add & View Cart", link: "" }],
       },
       {
         title: "Step 3",
@@ -101,16 +101,116 @@ export default [
       },
     ],
     examples: [
-      { title: "Tech Portfolio for Ryan Large", img: "", quote: "", link: "" },
+      {
+        title: "Tech Portfolio for Ryan Large",
+        img: "",
+        quote:
+          "I just want to say thank you for the timely and professional manner you took towards creating a portfolio for me that truly pushes my career forward & helps me stay one step ahead of the game",
+        link: "https://ryanlarge.com",
+        date: "5/2023",
+      },
     ],
   },
+  //next
   {
     id: 2,
     title: "Mobile App",
     img: Mobile,
     desc: "Why are there no apps out there that give you exactly what you need? Because you have yet to find me",
     priceRange: "$ - $$$",
+    about:
+      "Mobile apps are a necessity in this day and age. If you have an existing web application or a desire to monatize your life building a native cross platform app is a must. Read what is included in this package and be sure to add it to your cart when you are interested in learning more and customizing your dream.",
+    details: [
+      {
+        title: "Pricing",
+        desc: {
+          text: "Depending on the complexity of the mobile application will determine the price. Please add this item to your cart so we can have a personal discussion and give you a free quote. For a general idea prices for these types of applications are typical",
+          items: [
+            "Social: $1k - 20k",
+            "Utility: $1k - 60k",
+            "Games: 5k - 120k",
+          ],
+          text2:
+            "Pricing varies greatly & an exact price will be determined upon discussion",
+        },
+      },
+      {
+        title: "App Stores",
+        desc: {
+          text: "When it comes time to deploy your new application your options will include a few different app stores. The top two trusted app stores will be ",
+          items: ["Google Play", "Apple Store"],
+          text2: "Both of these options are safe and most likely already on your desired list! If both options are desired that can be done at no additional charge"
+        },
+      },
+      {
+        title: "Customization",
+        desc: {
+          text: "Here at DC I have the need and strong desire to connect with all of my clients first hand. In order to deliver a product that meets their needs we have much to go over. Good conversation is key to a good product. When you purchase a portfolio website we will go over everything that is needed for you to achieve your desired outcome or if you are most for thought leave it up to me and I will deliver you something extraordinary. We will go over things such as ",
+          items: [
+            "color themes",
+            "logo ideas",
+            "pages/layouts",
+            "functionality & integrations",
+            "animations & design",
+            "ccontent",
+            "& more",
+          ],
+        },
+      },
+    ],
+    features: [
+      {
+        title: "What's Included?",
+        list: [
+          {
+            title: "Email & Contact Forms",
+            desc: "Do you want a personal email people can connect with you on? Let's link you up and give you a means to connect with people!",
+          },
+          {
+            title: "5 pages",
+            desc: "Up to 5 pages of awesome! They can be the default page types or completely customized.",
+          },
+        ],
+      },
+    ],
+    instructions: [
+      {
+        title: "Step 1",
+        instruction:
+          "Add this product to your cart if you are interested in learning more, and building an amazing portfolio for yourself!",
+        btns: [{ text: "Add to Cart", link: "" }],
+      },
+      {
+        title: "Step 2",
+        instruction:
+          "Once in your cart, go to checkout your new product! I will get in contact with you immediately!! We will go over all the things in an organized way to make sure your dream is realized. This conversation is completely free of charge",
+        btns: [{ text: "Add & View Cart", link: "" }],
+      },
+      {
+        title: "Step 3",
+        instruction:
+          "If you have decided to go through with your new portfolio creation a new order will immediately appear in your portfolio to complete the checkout process",
+        btns: [],
+      },
+      {
+        title: "Step 4",
+        instruction:
+          "That is it! Sit back and relax until your portfolio is complete. A time frame will be avaliable throughout the process to check up on your application and you can view, edit, comment & adjust while I create it!!",
+        btns: [],
+      },
+    ],
+    examples: [
+      {
+        title: "Tech Portfolio for Ryan Large",
+        img: "",
+        quote:
+          "I just want to say thank you for the timely and professional manner you took towards creating a portfolio for me that truly pushes my career forward & helps me stay one step ahead of the game",
+        link: "https://ryanlarge.com",
+        date: "5/2023",
+      },
+    ],
   },
+  //next
   {
     id: 3,
     title: "Desktop App",

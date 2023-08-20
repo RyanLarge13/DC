@@ -69,6 +69,7 @@ const page = () => {
                       ))}
                     </ul>
                   )}
+                  <p>{detail.desc?.text2}</p>
                 </div>
               ))}
             </div>
@@ -116,6 +117,23 @@ const page = () => {
                       />
                     ))}
                   </div>
+                </div>
+              ))}
+            </div>
+            <div>
+              <h2 className="mt-20 text-3xl bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent mb-3">
+                Examples
+              </h2>
+              {product.examples.map((example) => (
+                <div className="my-5 rounded-md shadow-md p-3">
+                  <p>{example.title}</p>
+                  <img src={example.img} alt="projevt" />
+                  <p>
+                    <span className="text-4xl">"</span>
+                    {example.quote}
+                    <span className="text-4xl">"</span>
+                  </p>
+                  <p>{example.date}</p>
                 </div>
               ))}
             </div>

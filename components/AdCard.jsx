@@ -3,18 +3,27 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Button from "@/components/Button";
 
 const AdCard = ({ card }) => {
   return (
-    <motion.div className="relative rounded-md shadow-md bg-white bg-opacity-10 backdrop-blur-sm cursor-pointer">
+    <motion.div className="my-40">
       <Image
         src={card.img}
         alt={card.title}
-        className="w-[175px] h-[175px] lg:w-[300px] lg:h-[300px] object-cover rounded-t-md shadow-md"
+        className="h-[300px] w-[300px] object-cover rounded-lg shadow-2xl"
       />
-      <div className="p-2 bg-white rounded-b-md">
-        <p>{card.title}</p>
+      <div className="mt-10">
+        <p className="text-lg font-semibold">{card.title}</p>
+        <p className="text-slate-700">{card.priceRange}</p>
+        <p>{card.desc}</p>
       </div>
+      <Button
+        text={`View ${card.title}`}
+        click={"route"}
+        params={`/products/${card.id}`}
+        classes=""
+      />
     </motion.div>
   );
 };

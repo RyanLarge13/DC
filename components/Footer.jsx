@@ -36,6 +36,7 @@ const Footer = () => {
           width={50}
           height={50}
           className="rounded-md"
+          onClick={() => window.scrollTo(0,0)}
         />
       </div>
     </div>
