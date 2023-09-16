@@ -15,7 +15,7 @@ const Footer = () => {
           </Link>
         ))}
       </ul>
-      <div className="flex justify-between items-center mt-10 mx-10">
+      <div className="flex justify-between items-center mt-10 mx-10 text-lg">
         <Link href="https://github.com/RyanLarge13/">
           <BsGithub />
         </Link>

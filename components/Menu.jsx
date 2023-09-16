@@ -2,13 +2,13 @@
 
 import { MdCircleNotifications } from "react-icons/md";
 import { motion } from "framer-motion";
-import { signOut, useSession } from "next-auth/react";
+import { signOut, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
 
-const Menu = ({ setMenu }) => {
+const Menu = ({ setMenu, providers }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -17,7 +17,7 @@ const Menu = ({ setMenu }) => {
       initial={{ y: -50, opacity: 0 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ x: 50, opacity: 0 }}
-      className="fixed top-[110%] right-2 p-2 rounded-md shadow-md bg-white"
+      className="fixed top-[110%] right-2 p-2 rounded-md shadow-lg bg-white"
     >
       <div className="flex justify-between items-center">
         <Link href="/" onClick={() => setMenu(false)}>
@@ -29,46 +29,73 @@ const Menu = ({ setMenu }) => {
             className="object-contain"
           />
         </Link>
-        <MdCircleNotifications className="text-2xl cursor-pointer text-purple-500" />
+        {session?.user && (
+          <MdCircleNotifications className="text-2xl cursor-pointer text-purple-500" />
+        )}
       </div>
-      <div>
-        <Link href="/profile">
-          <Button text="Profile" click={setMenu} params={false} classes="" />
-        </Link>
-        <Link href="/portfolio">
-          <Button text="Portfolio" click={setMenu} params={false} classes="" />
-        </Link>
-        <Link href="/dashboard">
-          <Button text="Dashboard" click={setMenu} params={false} classes="" />
-        </Link>
-        <div className="flex justify-between items-center">
-          <Link href="/services">
+      {session?.user ? (
+        <div>
+          <Link href="/profile">
+            <Button text="Profile" click={setMenu} params={false} classes="" />
+          </Link>
+          <Link href="/portfolio">
             <Button
-              text="New Service"
+              text="Portfolio"
               click={setMenu}
               params={false}
-              classes="text-xs"
+              classes=""
             />
           </Link>
-          <Link href="/products">
+          <Link href="/dashboard">
             <Button
-              text="New Product"
+              text="Dashboard"
               click={setMenu}
               params={false}
-              classes="text-xs"
+              classes=""
+            />
+          </Link>
+          <div className="flex justify-between items-center">
+            <Link href="/services">
+              <Button
+                text="New Service"
+                click={setMenu}
+                params={false}
+                classes="text-xs"
+              />
+            </Link>
+            <Link href="/products">
+              <Button
+                text="New Product"
+                click={setMenu}
+                params={false}
+                classes="text-xs"
+              />
+            </Link>
+          </div>
+          <Link href="/cart">
+            <Button
+              text="View Your Cart"
+              click={setMenu}
+              params={false}
+              classes=""
             />
           </Link>
         </div>
-        <Link href="/cart">
-          <Button
-            text="View Your Cart"
-            click={setMenu}
-            params={false}
-            classes=""
-          />
-        </Link>
-      </div>
-      <div className="flex p-2 justify-between items-start text-xs md:hidden">
+      ) : (
+        <div className="w-[275px]">
+          {providers &&
+            Object.values(providers).map((provider) => (
+              <Button
+                text={`Sign In with ${provider.name}`}
+                key={provider.name}
+                click={signIn}
+                params={provider.id}
+                classes=""
+              />
+            ))}
+        </div>
+      )}
+      <div className="flex p-2 justify-between items-start">
         <ul className="whitespace-nowrap">
           <li>
             <Link href="/">Home</Link>
@@ -94,18 +121,25 @@ const Menu = ({ setMenu }) => {
           <li className="my-2">
             <Link href="/privacypolicy">Privacy Policy</Link>
           </li>
-          {session?.user && (
-            <button
-              onClick={() => {
-                signOut();
-                router.push("/");
-              }}
-            >
-              Logout
-            </button>
-          )}
+          <li className="my-2">
+            <Link href="/reviews">Reviews</Link>
+          </li>
+          <li className="my-2">
+            <Link href="/testimonials">Testimonials</Link>
+          </li>
         </ul>
       </div>
+      {session?.user && (
+        <Button
+          text="Logout"
+          click={() => {
+            signOut();
+            router.push("/");
+          }}
+          params={null}
+          classes=""
+        />
+      )}
     </motion.div>
   );
 };

@@ -8,6 +8,9 @@ import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
 export default function Home() {
+  const topProducts = adCards.filter((card) => card.rank < 2);
+  const topServices = services.filter((srv) => srv.rank < 2);
+
   return (
     <section className="px-8">
       <div className="mb-5 mt-10">
@@ -23,8 +26,8 @@ export default function Home() {
           ommerce
         </h1>
         <p className="mr-2 mt-10">
-          What would you like to see come to life today? A new portfolio ? A
-          Blog , ecommerce webpage, mobile or desktop application ?
+          What would you like to see come to life today? A new portfolio, blog,
+          ecommerce page, mobile or desktop application?
         </p>
         <p className="mt-5 mb-10 text-lg">You name it, I build it</p>
         <Button
@@ -55,43 +58,65 @@ export default function Home() {
             Products
           </span>
         </h2>
-        <p className="mt-10">
+        <p className="mt-10 mb-[-2em]">
+          Whether you are trying to monetize your life, build a stance on the
+          web for an employer or deploy the next big app to Google play, DC has
+          you covered
+        </p>
+        {topProducts.map((prod) => (
+          <AdCard key={prod.title} card={prod} />
+        ))}
+        <p>
+          Did you find what you are looking for? Explore more products here..
+        </p>
+        <Button
+          text="Shop all products"
+          click={"route"}
+          params={"/products"}
+          classes="from-blue-500 to-cyan-500"
+        />
+      </div>
+      <div className="my-40">
+        <h2 className="font-semibold text-5xl mb-2">
+          Popular{" "}
+          <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+            Services
+          </span>{" "}
+          &{" "}
+          <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+            Maintenence
+          </span>
+        </h2>
+        <p className="mb-[-2em]">
           There is more to the story of a developer than building really cool
           stuff. Just like any other creation they must be maintained, upgraded
           and given some TLC every now and then
         </p>
-        {adCards.map((card) => (
-          <AdCard key={card.title} card={card} />
+        {topServices.map((service) => (
+          <Service key={service.title} service={service} />
         ))}
-      </div>
-      <div className="p-5 my-40">
-        <div className="ml-3 mt-40">
-          <h2 className="font-semibold text-4xl mb-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
-            Services & Maintenence
-          </h2>
-          <p className="mr-2 text-sm md:text-md lg:text-lg lg:w-[30%]">
-            There is more to the story of a developer than building really cool
-            stuff. Just like any other creation they must be maintained,
-            upgraded and given some TLC every now and then
-          </p>
-        </div>
-        <div className="grid gap-10 grid-cols-1 mg:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <Service key={service.title} service={service} />
-          ))}
-        </div>
+        <p>
+          Did you find what you are looking for? Explore more services here..
+        </p>
         <Button
-          text="View All"
+          text="Shop all services"
           click={"route"}
           params={"/services"}
-          classes="mb-40"
+          classes="from-blue-500 to-cyan-500"
         />
       </div>
-      <div className="p-5 ml-3 my-40">
-        <h2 className="font-semibold text-4xl mb-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
-          About DC & The Creator
+      <div className="my-40">
+        <h2 className="font-semibold text-5xl mb-2">
+          About{" "}
+          <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+            DC
+          </span>{" "}
+          & The{" "}
+          <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+            Creator
+          </span>
         </h2>
-        <p className="mr-2 text-sm md:text-md lg:text-lg lg:w-[40%]">
+        <p>
           My name is Ryan Large, creator and digital entrepreneur of Dev
           Commerce the most financially stable & beneficial way to achieve your
           dreams in the world of tech
@@ -103,45 +128,48 @@ export default function Home() {
               width={275}
               height={275}
               alt="me"
-              className="rounded-md absolute top-0 right-0 shadow-md md:right-[55%]"
+              className="rounded-md absolute top-0 right-0 shadow-lg md:right-[55%]"
             />
             <Image
               src={"/assets/logo.svg"}
               width={275}
               height={275}
               alt="me"
-              className="rounded-md absolute bottom-0 left-0 shadow-md"
+              className="rounded-md absolute bottom-0 left-0 shadow-lg"
             />
           </div>
-          <h3 className="font-semibold text-2xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+          <h3 className="font-semibold text-3xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
             Background
           </h3>
-          <p className="lg:w-[40%] text-sm">
+          <p>
             Specializing in Javascript and respective frameworks for creating
             customized, unique & envious cross platform fullstack web
             applications, Dev Commerce came to life two years ago as my journey
             into the world of web development began
           </p>
-          <p className="mt-2 lg:w-[40%] text-sm">
+          <p className="mt-3">
             Completing the year long Fullstack web development program at Career
             Foundry and extensive self education, dedication and diligence have
-            brought my to a comfortable place in the tech community.
+            brought me to a comfortable place in the tech community.
           </p>
         </div>
         <Button
           text="Learn More"
           click={"route"}
           params={"/about"}
-          classes="mb-40"
+          classes=""
         />
       </div>
-      <div className="p-5 ml-3 mt-40">
-        <h2 className="font-semibold text-4xl mb-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
-          Connect With Me
+      <div>
+        <h2 className="font-semibold text-5xl mb-2">
+          <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+            Connect
+          </span>{" "}
+          With Me
         </h2>
-        <p className="mr-2 text-sm lg:text-lg lg:w-[30%]">
+        <p>
           Personally message me here and ask me about anything you have
-          questions for and I will reply to you timely.. Immediately. Thank you!
+          questions about and I will reply to you immediately.
         </p>
         <ContactForm />
       </div>

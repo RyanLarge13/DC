@@ -47,12 +47,12 @@ const page = () => {
               className={`rounded-md`}
             />
           </div>
-          <h1 className="text-4xl m-10 ml-0 bg-gradient-to-r from-purple-500 to-fuchsia-500 bg-clip-text text-transparent border-b border-b-slate-300">
+          <h1 className="text-7xl m-10 ml-0 bg-gradient-to-r from-purple-500 to-fuchsia-500 bg-clip-text text-transparent border-b border-b-slate-300">
             {product.title}
           </h1>
           <div className="px-3">
             <p>{product.about}</p>
-            <h2 className="mt-20 text-3xl bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent">
+            <h2 className="mt-20 text-4xl bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent">
               Details
             </h2>
             <div className="ml-2">
@@ -61,7 +61,7 @@ const page = () => {
                   <h3 className="text-2xl bg-gradient-to-r from-purple-500 to-fuchsia-500 bg-clip-text text-transparent mt-5">
                     {detail.title}
                   </h3>
-                  <p className="text-sm">{detail.desc.text}</p>
+                  <p className="">{detail.desc.text}</p>
                   {detail.desc.items && (
                     <ul className="ml-10">
                       {detail.desc.items.map((item) => (
@@ -73,7 +73,7 @@ const page = () => {
                 </div>
               ))}
             </div>
-            <h2 className="mt-20 text-3xl bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent">
+            <h2 className="mt-20 text-4xl bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent">
               Features
             </h2>
             <div>
@@ -85,17 +85,17 @@ const page = () => {
                   <div>
                     {feature.list.map((subject) => (
                       <div>
-                        <p className="ml-2 mt-2 bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
+                        <p className="ml-2 mt-2 bg-gradient-to-r from-blue-500 to-sky-500 bg-clip-text text-transparent">
                           {subject.title}
                         </p>
-                        <p className="ml-3 text-sm">{subject.desc}</p>
+                        <p className="ml-3">{subject.desc}</p>
                       </div>
                     ))}
                   </div>
                 </div>
               ))}
             </div>
-            <h2 className="mt-20 text-3xl bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent">
+            <h2 className="mt-20 text-4xl bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent">
               Instructions
             </h2>
             <div>
@@ -104,7 +104,7 @@ const page = () => {
                   <h3 className="text-2xl bg-gradient-to-r from-purple-500 to-fuchsia-500 bg-clip-text text-transparent mt-5 border-b mb-2">
                     {instruction.title}
                   </h3>
-                  <p className="text-sm bg-white bg-opacity-30 backdrop-blur-sm shadow-sm rounded-md p-2">
+                  <p className="bg-white bg-opacity-30 backdrop-blur-sm shadow-sm rounded-md p-2">
                     {instruction.instruction}
                   </p>
                   <div className="p-3 flex justify-between items-center">
@@ -121,7 +121,7 @@ const page = () => {
               ))}
             </div>
             <div>
-              <h2 className="mt-20 text-3xl bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent mb-3">
+              <h2 className="mt-20 text-4xl bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent mb-3">
                 Examples
               </h2>
               {product.examples.map((example) => (

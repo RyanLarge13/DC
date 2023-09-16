@@ -1,5 +1,9 @@
+import Footer from "@/components/Footer";
+
 const page = () => {
-	return <section></section>
+	return <section>
+	<Footer />
+	</section>
 }
 
 export default page

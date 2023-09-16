@@ -7,22 +7,20 @@ import Button from "@/components/Button";
 
 const AdCard = ({ card }) => {
   return (
-    <motion.div className="my-40">
+    <motion.div className="my-20">
       <Image
         src={card.img}
         alt={card.title}
         className="h-[300px] w-[300px] object-cover rounded-lg shadow-2xl"
       />
-      <div className="mt-10">
-        <p className="text-lg font-semibold">{card.title}</p>
-        <p className="text-slate-700">{card.priceRange}</p>
-        <p>{card.desc}</p>
-      </div>
+      <h3 className="mt-2 mb-1 text-lg font-semibold">{card.title}</h3>
+      <p className="text-slate-700">{card.priceRange}</p>
+      <p>{card.desc}</p>
       <Button
         text={`View ${card.title}`}
         click={"route"}
         params={`/products/${card.id}`}
-        classes=""
+        classes="mt-3"
       />
     </motion.div>
   );

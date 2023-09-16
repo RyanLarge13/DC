@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { useSession, getProviders } from "next-auth/react";
 import Image from "next/image";
+import { MdMenu } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Button from "@/components/Button";
@@ -28,9 +29,9 @@ const Nav = () => {
     <motion.nav
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="fixed flex justify-between items-center top-0 right-0 left-0 bg-white bg-opacity-10 backdrop-blur-sm z-[999]"
+      className="pr-3 fixed flex justify-between items-center top-0 right-0 left-0 bg-white bg-opacity-10 backdrop-blur-sm z-[999]"
     >
-      <div className="p-1 ml-2">
+      <div className="p-1">
         <Link href="/">
           <Image
             src="/assets/logo.svg"
@@ -41,56 +42,7 @@ const Nav = () => {
           />
         </Link>
       </div>
-      <div className="p-3 flex justify-center items-center">
-        <div className="mr-10 hidden md:block">
-          <ul className="flex justify-start item-center text-xs gap-x-5 whitespace-nowrap">
-            <li>
-              <Link
-                href="/"
-                className={`${
-                  pathName.startsWith("/") ? "text-pink-300" : "text-black"
-                }`}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/services"
-                className={`${
-                  pathName.startsWith("/services")
-                    ? "text-pink-300"
-                    : "text-black"
-                }`}
-              >
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                className={`${
-                  pathName.startsWith("/about") ? "text-pink-300" : "text-black"
-                }`}
-              >
-                About DC
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className={`${
-                  pathName.startsWith("/contact")
-                    ? "text-pink-300"
-                    : "text-black"
-                }`}
-              >
-                Connect
-              </Link>
-            </li>
-            {session?.user && <button onClick={() => signOut()}>Logout</button>}
-          </ul>
-        </div>
+      <div>
         {session?.user ? (
           <div onClick={() => setMenu((prev) => !prev)}>
             <Image
@@ -102,21 +54,20 @@ const Nav = () => {
             />
           </div>
         ) : (
-          <div className="flex">
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <Button
-                  text="Sign in"
-                  key={provider.name}
-                  click={signIn}
-                  params={provider.id}
-                  classes="text-sm"
-                />
-              ))}
+          <div className="flex justify-center items-center gap-x-5">
+            <div onClick={() => setMenu((prev) => !prev)}>
+              <Button
+                text="Menu"
+                key={1}
+                click={null}
+                params={null}
+                classes="text-sm"
+              />
+            </div>
           </div>
         )}
       </div>
-      <AnimatePresence>{menu && <Menu setMenu={setMenu} />}</AnimatePresence>
+      <AnimatePresence>{menu && <Menu setMenu={setMenu} providers={providers} />}</AnimatePresence>
     </motion.nav>
   );
 };
