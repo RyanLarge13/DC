@@ -8,6 +8,7 @@ import {
 
 export default [
   {
+  	id: 1,
     title: "DB maintenance",
     rank: 2,
     priceRange: "$-$$$",
@@ -16,6 +17,7 @@ export default [
     link: "/services/dbmaint",
   },
   {
+  	id: 2,
     title: "Upgrades",
     rank: 1,
 priceRange: "$-$$",
@@ -24,6 +26,7 @@ priceRange: "$-$$",
     link: "",
   },
   {
+  	id: 3,
     title: "Designing",
     rank: 1,
 priceRange: "$-$$",
@@ -32,6 +35,7 @@ priceRange: "$-$$",
     link: "",
   },
   {
+  	id: 4, 
     title: "Debugging",
     rank: 1,
 priceRange: "$-$$$",
@@ -40,6 +44,7 @@ priceRange: "$-$$$",
     link: "",
   },
   {
+  	id: 5,
     title: "Prettifying",
     rank: 2,
 priceRange: "$",

@@ -3,8 +3,9 @@ import Nav from "../components/Nav";
 import Provider from "../components/Provider";
 
 export const metadata = {
-  title: "DC",
-  description: "Dev Commerce, bring your ideas to the digital world of web",
+  title: "DC - Dev Commerce, Build Your Tech Empire",
+  description:
+    "Dev Commerce, bring your ideas & dreams to the digital world. Expand your empire with a desktop, mobile or web application, deploy the next big trend in technology. You name it, I build it",
   charset: "utf-8",
   icons: {
     icon: "/favicon.ico",

@@ -35,32 +35,30 @@ const page = () => {
       </div>
       <div className="mt-40">
         {adCards.map((card) => (
-          <div className="p-3 h-screen">
-            <div className="sticky top-20">
-              <Image
-                src={card.img}
-                alt={card.title}
-                className="w-full h-[300px] rounded-md shadow-lg mb-5"
+          <div className="my-40 px-3 rounded-b-md shadow-[1em_1.5em_1.5em_0_#DDD] pb-3">
+            <Image
+              src={card.img}
+              alt={card.title}
+              className="w-full h-[300px] rounded-md shadow-lg mb-5"
+            />
+            <div className="flex justify-between items-center border-b border-b-purple-300 mb-2">
+              <p className="text-2xl font-semibold">{card.title}</p>
+              <p>{card.priceRange}</p>
+            </div>
+            <p>{card.desc}</p>
+            <div className="mt-5 flex justify-between items-center gap-x-4">
+              <Button
+                text="Add to cart"
+                click={null}
+                params={null}
+                classes=""
               />
-              <div className="flex justify-between items-center border-b border-b-purple-300 mb-2">
-                <p className="text-2xl font-semibold">{card.title}</p>
-                <p>{card.priceRange}</p>
-              </div>
-              <p>{card.desc}</p>
-              <div className="mt-5 flex justify-between items-center gap-x-4">
-                <Button
-                  text="Add to cart"
-                  click={null}
-                  params={null}
-                  classes=""
-                />
-                <Button
-                  text="Expand"
-                  click={"route"}
-                  params={`/products/${card.id}`}
-                  classes=""
-                />
-              </div>
+              <Button
+                text="Expand"
+                click={"route"}
+                params={`/products/${card.id}`}
+                classes=""
+              />
             </div>
           </div>
         ))}

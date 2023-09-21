@@ -2,7 +2,7 @@ import Image from "next/image";
 import services from "@/constants/services";
 import FilterMenu from "@/components/FilterMenu";
 import Button from "@/components/Button";
-import FilterOptions from "@/components/FilterOptions"
+import FilterOptions from "@/components/FilterOptions";
 import Footer from "@/components/Footer";
 
 const page = () => {
@@ -27,8 +27,7 @@ const page = () => {
       <FilterOptions />
       <div className="mt-40">
         {services.map((card) => (
-          <div className="p-3 h-screen">
-            <div className="sticky top-20">
+          <div className="my-40 px-3 rounded-b-md shadow-[1em_1.5em_1.5em_0_#DDD] pb-3">
             <Image
               src={card.img}
               alt={card.title}
@@ -47,7 +46,6 @@ const page = () => {
                 classes=""
               />
               <Button text="Expand" click={null} params={null} classes="" />
-            </div>
             </div>
           </div>
         ))}

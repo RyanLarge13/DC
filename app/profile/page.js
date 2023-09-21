@@ -52,9 +52,17 @@ const Profile = () => {
                 className="p-3 rounded-md shadow-lg bg-white bg-opacity-20 backdrop-blur-sm mb-5"
               >
                 <div className="flex justify-between items-center border-b">
-                  <h3 className="text-2xl bg-gradient-to-r bg-clip-text text-transparent from-blue-500 to-cyan-500">
-                    {order.title}
-                  </h3>
+                  <button
+                    type="text"
+                    onClick={() =>
+                      order.productType === "Product" &&
+                      router.push(`/products/${order.id}`)
+                    }
+                  >
+                    <h3 className="text-2xl bg-gradient-to-r bg-clip-text text-transparent from-blue-500 to-cyan-500">
+                      {order.title}
+                    </h3>
+                  </button>
                   <p>{new Date(order?.createdAt).toLocaleDateString()}</p>
                 </div>
                 <div className="my-3">
