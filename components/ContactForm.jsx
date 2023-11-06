@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 import Button from "@/components/Button";
 
 const ContactForm = () => {
-  const { data: session } = useSession();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -15,13 +13,13 @@ const ContactForm = () => {
       <input
         className="border-none outline-none rounded-md shadow-md bg-white bg-opacity-10 backdrop-blur-sm p-3 w-full"
         placeholder="Name"
-        value={session?.user ? session.user.name : name}
+        value={name}
         onChange={(e) => setName(e.target.value)}
       />
       <input
         className="border-none outline-none rounded-md shadow-md bg-white bg-opacity-10 backdrop-blur-sm p-3 w-full my-3"
         placeholder="Email"
-        value={session?.user ? session.user.email : email}
+        value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <textarea

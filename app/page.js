@@ -2,8 +2,6 @@ import adCards from "@/constants/adCards";
 import services from "@/constants/services";
 import Image from "next/image";
 import Button from "@/components/Button";
-import AdCard from "@/components/AdCard";
-import Service from "@/components/Service";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
@@ -63,12 +61,7 @@ export default function Home() {
           web for an employer or deploy the next big app to Google play, DC has
           you covered
         </p>
-        {topProducts.map((prod) => (
-          <AdCard key={prod.title} card={prod} />
-        ))}
-        <p>
-          Did you find what you are looking for? Explore more products here..
-        </p>
+        <p>Explore more products here..</p>
         <Button
           text="Shop all products"
           click={"route"}
@@ -92,12 +85,7 @@ export default function Home() {
           stuff. Just like any other creation they must be maintained, upgraded
           and given some TLC every now and then
         </p>
-        {topServices.map((service) => (
-          <Service key={service.title} service={service} />
-        ))}
-        <p>
-          Did you find what you are looking for? Explore more services here..
-        </p>
+        <p>Explore more services here..</p>
         <Button
           text="Shop all services"
           click={"route"}

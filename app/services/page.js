@@ -1,8 +1,6 @@
 import Image from "next/image";
 import services from "@/constants/services";
-import FilterMenu from "@/components/FilterMenu";
 import Button from "@/components/Button";
-import FilterOptions from "@/components/FilterOptions";
 import Footer from "@/components/Footer";
 
 const page = () => {
@@ -24,7 +22,6 @@ const page = () => {
           className="p-3 rounded-md shadow-md outline-none border-none bg-white bg-opacity-20 backdrop-blur-sm w-full"
         />
       </form>
-      <FilterOptions />
       <div className="mt-40">
         {services.map((card) => (
           <div className="my-40 px-3 rounded-b-md shadow-[1em_1.5em_1.5em_0_#DDD] pb-3">

@@ -1,6 +1,6 @@
 import "../styles/global.css";
-import Nav from "../components/Nav";
-import Provider from "../components/Provider";
+import { ClerkProvider } from "@clerk/nextjs";
+import Header from "@/components/Header";
 
 export const metadata = {
   title: "DC - Dev Commerce, Build Your Tech Empire",
@@ -10,24 +10,20 @@ export const metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  viewport:
-    "width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
-        <Provider>
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          <Header />
           <div className="main">
             <div className="gradient" />
           </div>
-          <main className="app pt-20">
-            <Nav />
-            {children}
-          </main>
-        </Provider>
-      </body>
-    </html>
+          <main className="app pt-20">{children}</main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
