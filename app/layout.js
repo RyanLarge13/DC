@@ -17,11 +17,13 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body>
-          <Header />
           <div className="main">
             <div className="gradient" />
           </div>
-          <main className="app pt-20">{children}</main>
+          <main className="app pt-20">
+            <Header />
+            {children}
+          </main>
         </body>
       </html>
     </ClerkProvider>
