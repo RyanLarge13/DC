@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
           <div className="main">
             <div className="gradient" />
           </div>
-          <main className="app pt-20">
+          <main className="app pt-20 lg:px-40 px-5">
             <Header />
             {children}
           </main>

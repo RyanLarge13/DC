@@ -1,21 +1,14 @@
 import { UserButton } from "@clerk/nextjs";
-import DCLogo from "/public/assets/logo.svg";
-import Image from "next/image";
+import Logo from "./Logo";
+import Nav from "./Nav";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 right-0 left-0 flex justify-between items-center p-3">
-      <a href="/">
-        <Image src={DCLogo} alt="logo" height={35} width={35} />
-      </a>
-      <div>
-        <a
-          href="/signup"
-          className="px-3 py-1 rounded-full bg-gradient-to-r from-orange-300 to-pink-400 text-white"
-        >
-          Sign In
-        </a>
+    <header className="fixed top-0 right-0 left-0 flex justify-between items-center p-5 z-20 bg-white bg-opacity-20 backdrop-blur-sm">
+      <Logo w={35} h={35} />
+      <div className="flex justify-center items-center gap-x-5">
         <UserButton afterSignOutUrl="/" />
+        <Nav />
       </div>
     </header>
   );
