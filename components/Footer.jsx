@@ -1,6 +1,3 @@
-"use client";
-
-import Link from "next/link";
 import Image from "next/image";
 import { BsGithub, BsFacebook, BsTwitter, BsLinkedin } from "react-icons/bs";
 import footerLinks from "@/constants/footerLinks";
@@ -8,26 +5,26 @@ import footerLinks from "@/constants/footerLinks";
 const Footer = () => {
   return (
     <div className="mt-20 mb-5 p-5">
-      <ul className="grid grid-cols-2 place-items-center">
+      <ul className="grid grid-cols-2 place-items-center lg:mx-60">
         {footerLinks.map((link) => (
-          <Link key={link.text} href={link.href} className="my-2">
+          <a key={link.text} href={link.href} className="my-2">
             {link.text}
-          </Link>
+          </a>
         ))}
       </ul>
-      <div className="flex justify-between items-center mt-10 mx-10 text-lg">
-        <Link href="https://github.com/RyanLarge13/">
+      <div className="flex justify-between items-center mt-10 mx-10 text-lg lg:my-20 lg:justify-center lg:gap-x-10">
+        <a href="https://github.com/RyanLarge13/">
           <BsGithub />
-        </Link>
-        <Link href="https://github.com/RyanLarge13/">
+        </a>
+        <a href="https://github.com/RyanLarge13/">
           <BsFacebook />
-        </Link>
-        <Link href="https://github.com/RyanLarge13/">
+        </a>
+        <a href="https://github.com/RyanLarge13/">
           <BsTwitter />
-        </Link>
-        <Link href="https://github.com/RyanLarge13/">
+        </a>
+        <a href="https://github.com/RyanLarge13/">
           <BsLinkedin />
-        </Link>
+        </a>
       </div>
       <div className="flex justify-center items-center mt-10">
         <Image
@@ -36,7 +33,6 @@ const Footer = () => {
           width={50}
           height={50}
           className="rounded-md"
-          onClick={() => window.scrollTo(0,0)}
         />
       </div>
     </div>

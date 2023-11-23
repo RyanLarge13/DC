@@ -25,7 +25,7 @@ export default function Home() {
             What would you like to see come to life today? A new portfolio,
             blog, ecommerce page, mobile or desktop application?
           </p>
-          <p className="mb-10 text-lg">You name it, I build it</p>
+          <p className="mb-10 text-lg mt-5">You name it, I build it</p>
         </div>
         <Button
           text="Shop Products"
@@ -90,69 +90,69 @@ export default function Home() {
           classes="from-blue-500 to-cyan-500"
         />
       </div>
-      <div className="my-40">
-        <div className="flex justify-center items-center">
-          <div>
-            <h2 className="font-semibold text-5xl mb-2">
-              About{" "}
-              <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
-                DC
-              </span>{" "}
-              & The{" "}
-              <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
-                Creator
-              </span>
-            </h2>
-            <p className="max-w-[600px]">
-              My name is Ryan Large, creator and digital entrepreneur of Dev
-              Commerce the most financially stable & beneficial way to achieve
-              your dreams in the world of tech
-            </p>
-            <div className="mb-5">
-              <div className="relative w-full h-[50vh] mt-5 md:min-w-[50%]">
-                <Image
-                  src={"/assets/me.jpg"}
-                  width={275}
-                  height={275}
-                  alt="me"
-                  className="rounded-md absolute top-0 right-0 shadow-lg md:right-[55%]"
-                />
-                <Image
-                  src={"/assets/logo.svg"}
-                  width={275}
-                  height={275}
-                  alt="me"
-                  className="rounded-md absolute bottom-0 left-0 shadow-lg"
-                />
-              </div>
+      <div className="my-40 lg:flex justify-evenly items-start">
+        <div>
+          <h2 className="font-semibold text-5xl mb-2">
+            About{" "}
+            <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+              DC
+            </span>{" "}
+            & The{" "}
+            <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+              Creator
+            </span>
+          </h2>
+          <p className="max-w-[600px]">
+            My name is Ryan Large, creator and digital entrepreneur of Dev
+            Commerce the most financially stable & beneficial way to achieve
+            your dreams in the world of tech
+          </p>
+          <div className="mb-5">
+            <div className="relative w-full h-[50vh] mt-5 md:min-w-[50%]">
+              <Image
+                src={"/assets/me.jpg"}
+                width={275}
+                height={275}
+                alt="me"
+                className="rounded-md absolute top-0 right-0 shadow-lg md:right-[55%]"
+              />
+              <Image
+                src={"/assets/logo.svg"}
+                width={275}
+                height={275}
+                alt="me"
+                className="rounded-md absolute bottom-0 left-0 lg:left-40 shadow-lg"
+              />
             </div>
-            <div>
-              <h3 className="font-semibold text-3xl mb-2 mt-10 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
-                Background
-              </h3>
-              <p className="max-w-[600px]">
-                Specializing in Javascript and respective frameworks for
-                creating customized, unique & envious cross platform fullstack
-                web applications, Dev Commerce came to life two years ago as my
-                journey into the world of web development began
-              </p>
-              <p className="mt-3 max-w-[600px]">
-                Completing the year long Fullstack web development program at
-                Career Foundry and extensive self education, dedication and
-                diligence have brought me to a comfortable place in the tech
-                community.
-              </p>
-            </div>
-            <Button
-              text="Learn More"
-              click={"route"}
-              params={"/about"}
-              classes=""
-            />
           </div>
         </div>
+        <div className="lg:flex lg:flex-col justify-between items-start">
+          <div>
+            <h3 className="font-semibold text-3xl mb-2 mt-10 lg:mt-0 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+              Background
+            </h3>
+            <p className="max-w-[600px]">
+              Specializing in Javascript and respective frameworks for creating
+              customized, unique & envious cross platform fullstack web
+              applications, Dev Commerce came to life two years ago as my
+              journey into the world of web development began
+            </p>
+            <p className="mt-3 max-w-[600px]">
+              Completing the year long Fullstack web development program at
+              Career Foundry and extensive self education, dedication and
+              diligence have brought me to a comfortable place in the tech
+              community.
+            </p>
+          </div>
+          <Button
+            text="Learn More"
+            click={"route"}
+            params={"/about"}
+            classes=""
+          />
+        </div>
       </div>
-      <div>
+      <div className="my-40">
         <h2 className="font-semibold text-5xl mb-2">
           <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
             Connect
