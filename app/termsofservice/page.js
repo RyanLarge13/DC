@@ -1,6 +1,6 @@
 const page = () => {
   return (
-    <section className="px-3">
+    <section className="px-3 lg:px-40">
       <h1 className="text-4xl mb-5">Terms of Service</h1>
       <p className="mb-3">
         These Terms of Service ("Agreement") govern your use of the [App Name]
@@ -122,7 +122,9 @@ const page = () => {
         modified terms.
       </h3>
 
-      <h2 className="text-2xl mb-2 mt-5">8. Governing Law and Dispute Resolution</h2>
+      <h2 className="text-2xl mb-2 mt-5">
+        8. Governing Law and Dispute Resolution
+      </h2>
 
       <h3 className="text-lg mt-2">
         8.1 This Agreement shall be governed by and construed in accordance with

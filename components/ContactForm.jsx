@@ -9,7 +9,7 @@ const ContactForm = () => {
   const [message, setMessage] = useState("");
 
   return (
-    <form className="my-5 lg:w-[50%]">
+    <form className="my-5">
       <input
         className="border-none outline-none rounded-md shadow-md bg-white bg-opacity-10 backdrop-blur-sm p-3 w-full"
         placeholder="Name"

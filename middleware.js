@@ -7,6 +7,8 @@ export default authMiddleware({
     "/privacypolicy",
     "/products",
     "/services",
+    "/about",
+    "/contact",
   ],
 });
 

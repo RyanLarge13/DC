@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 const page = () => {
   return (
-    <section className="px-3">
+    <section className="px-3 lg:px-60">
       <h1 className="text-7xl mt-5">
         Hi There!{" "}
         <span className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">

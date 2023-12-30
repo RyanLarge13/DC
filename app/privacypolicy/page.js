@@ -1,11 +1,11 @@
 const page = () => {
   return (
-    <section className="px-3">
+    <section className="px-3 lg:px-40">
       <h1 className="text-3xl mb-5">Privacy Policy</h1>
       <p className="mb-5">
         This Privacy Policy describes how we collect, use, and handle your
-        personal information when you use our mobile application Dev Commerce. By
-        using our app, you consent to the practices described in this policy.
+        personal information when you use our mobile application Dev Commerce.
+        By using our app, you consent to the practices described in this policy.
       </p>
       <h2 className="text-xl mb-5">1. Information We Collect</h2>
       <h3 className="text-lg mb-5">1.1 User Provided Information</h3>

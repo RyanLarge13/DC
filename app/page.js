@@ -1,5 +1,3 @@
-import adCards from "@/constants/adCards";
-import services from "@/constants/services";
 import Image from "next/image";
 import Button from "@/components/Button";
 import ContactForm from "@/components/ContactForm";
