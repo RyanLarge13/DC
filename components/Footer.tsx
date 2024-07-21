@@ -5,7 +5,7 @@ import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col items-center justify-center py-20 md:px-40 lg:px-80">
+    <footer className="flex flex-col items-center justify-center px-5 py-20 md:px-40 lg:px-80">
       <Image
         src={Logo}
         alt="logo"
@@ -13,7 +13,7 @@ const Footer = () => {
         height={50}
         className="object-contain"
       />
-      <ul className="mt-10 grid grid-cols-2 place-items-center gap-x-10 gap-y-5 md:flex md:items-center md:justify-center md:gap-x-10">
+      <ul className="mt-10 grid grid-cols-2 place-items-center gap-x-10 gap-y-5 md:items-center md:justify-center md:gap-x-5 lg:flex">
         <li>About</li>
         <li>Features</li>
         <li>Pricing</li>

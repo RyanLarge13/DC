@@ -4,10 +4,10 @@ const Sec2 = () => {
   return (
     <section className="flex flex-col items-center justify-center bg-gradient-to-r from-fuchsia-500 to-cyan-500 py-20 text-center">
       <p className="font-bold">Do you need a top notch developer?</p>
-      <h2 className="my-10 text-4xl font-bold">
+      <h2 className="my-10 px-5 text-4xl font-bold">
         Then you are in the right place!
       </h2>
-      <p className="max-w-[500px]">
+      <p className="max-w-[500px] px-5">
         Dev Commerce helps entrepreneurs build and launch new products and
         assists growing companies and laymen by connecting them to the software
         world and web

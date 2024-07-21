@@ -5,7 +5,7 @@ import CheckMark from "../public/assets/check-mark.svg";
 
 const Sec3 = () => {
   return (
-    <section className="flex h-screen flex-col items-center justify-between gap-x-40 md:flex-row">
+    <section className="flex min-h-screen flex-col items-center justify-between gap-x-40 xl:flex-row">
       <div className="flex-1">
         <Image
           src={Sec3Img}

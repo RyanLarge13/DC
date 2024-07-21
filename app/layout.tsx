@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className="bg-black text-white">
         <div
           aria-hidden="true"
-          className="pointer-events-none bottom-0 left-0 z-10 hidden md:fixed"
+          className="pointer-events-none fixed bottom-0 left-0 z-10"
         >
           <Image
             src={BgGradient}
@@ -32,7 +32,7 @@ export default function RootLayout({
         </div>
         <div
           aria-hidden="true"
-          className="pointer-events-none right-0 top-0 z-10 hidden md:fixed"
+          className="pointer-events-none fixed right-0 top-0 z-10"
         >
           <Image
             src={BgGradient}

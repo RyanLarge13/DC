@@ -13,7 +13,7 @@ const Sec8 = () => {
     <section className="flex min-h-screen flex-col items-center justify-start py-20">
       <Image src={Tools} alt="tools logo" width={300} height={150} />
       <p className="mb-5 mt-20">How do we work so fast?</p>
-      <h2 className="mb-3 px-2 text-center text-4xl font-bold leading-[1.5em] md:px-0">
+      <h2 className="mb-3 px-5 text-center text-4xl font-bold leading-[1.5em]">
         Our Process, Integrity and Experience
       </h2>
       <p className="mt-3 max-w-[500px] px-5 text-center md:px-0">
@@ -23,7 +23,7 @@ const Sec8 = () => {
         because of our expertise and our deep commitment to our customers'
         success
       </p>
-      <div className="mt-20 grid grid-cols-1 gap-10 px-5 md:grid-cols-3 md:px-0">
+      <div className="mt-20 grid grid-cols-1 gap-10 px-5 md:px-0 lg:grid-cols-2 xl:grid-cols-3">
         <div className="flex flex-col items-center justify-between rounded-md p-5 text-center shadow-lg shadow-slate-950">
           <Image src={One} alt="one" width={15} height={15} className="mb-10" />
           <div>

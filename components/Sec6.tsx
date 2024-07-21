@@ -20,7 +20,7 @@ const Sec6 = () => {
           complete your dreams in a record pace
         </p>
       </div>
-      <div className="mb-20 grid grid-cols-1 gap-x-5 px-10 md:mb-0 md:grid-cols-3 md:px-0">
+      <div className="mb-20 grid grid-cols-1 gap-x-5 px-10 md:mb-0 lg:grid-cols-2 lg:px-0 xl:grid-cols-3">
         <div className="flex flex-col items-start justify-between rounded-md bg-black p-5 shadow-lg shadow-slate-950">
           <Image
             src={ThumbsUp}
@@ -47,7 +47,7 @@ const Sec6 = () => {
             <p>Find the best pricing for any need</p>
           </div>
         </div>
-        <div className="flex h-80 flex-col items-start justify-between rounded-md bg-black p-5 shadow-lg shadow-slate-950">
+        <div className="flex flex-col items-start justify-between rounded-md bg-black p-5 shadow-lg shadow-slate-950">
           <Image
             src={VerControl}
             alt="thumbs up"

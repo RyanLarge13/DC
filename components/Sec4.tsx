@@ -10,12 +10,12 @@ import { MdMore } from "react-icons/md";
 
 const Sec4 = () => {
   return (
-    <section className="flex min-h-screen flex-col-reverse items-center justify-center gap-x-20 md:flex-row">
-      <div className="mt-20 flex-1 px-10 md:mt-0 md:px-0">
-        <h2 className="text-4xl font-bold leading-[1.5em]">
+    <section className="flex min-h-screen flex-col-reverse items-center justify-center gap-x-20 xl:flex-row">
+      <div className="flex-1 px-10 md:px-0">
+        <h2 className="mt-5 max-w-[600px] text-4xl font-bold leading-[1.5em]">
           Searching For A Helping Hand?
         </h2>
-        <p>
+        <p className="max-w-[500px]">
           We can lend you help by providing you with the development tools,
           experience and trust to take care of your projects and send them sky
           rocketing to the finish line
@@ -55,9 +55,7 @@ const Sec4 = () => {
         <Image
           src={Sec4Img}
           alt="phone"
-          width={1000}
-          height={900}
-          className="mt-20 h-80 w-80 object-contain md:mt-0 md:h-[900px] md:w-[1000px]"
+          className="h-80 w-80 object-contain lg:h-[900px] lg:w-[1000px]"
         />
       </div>
     </section>
