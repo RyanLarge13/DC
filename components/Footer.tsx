@@ -29,10 +29,21 @@ const Footer = () => {
           © 2021 Dev Commerce. All rights reserved
         </p>
         <div className="flex items-center justify-center gap-x-5">
-          <FaInstagram />
-          <FaFacebook />
-          <FaTwitter />
-          <FaYoutube />
+          <a target="_blank" href="https://instagram.com/dc_devcommerce">
+            <FaInstagram />
+          </a>
+          <a
+            target="_blank"
+            href="https://www.facebook.com/profile.php?id=100091095757070"
+          >
+            <FaFacebook />
+          </a>
+          <a target="_blank" href="https://twitter.com/ryan_large13">
+            <FaTwitter />
+          </a>
+          <a href="https://youtube.com/RyanLarge13">
+            <FaYoutube />
+          </a>
         </div>
       </div>
     </footer>

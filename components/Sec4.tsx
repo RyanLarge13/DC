@@ -10,9 +10,9 @@ import { MdMore } from "react-icons/md";
 
 const Sec4 = () => {
   return (
-    <section className="flex min-h-screen flex-col-reverse items-center justify-center gap-x-20 xl:flex-row">
+    <section className="flex min-h-screen flex-col-reverse items-center justify-center gap-x-20 py-20 xl:flex-row xl:py-0">
       <div className="flex-1 px-10 md:px-0">
-        <h2 className="mt-5 max-w-[600px] text-4xl font-bold leading-[1.5em]">
+        <h2 className="mt-10 max-w-[600px] text-4xl font-bold leading-[1.5em] xl:mt-5">
           Searching For A Helping Hand?
         </h2>
         <p className="max-w-[500px]">
