@@ -14,7 +14,9 @@ const Footer = () => {
         className="object-contain"
       />
       <ul className="mt-10 grid grid-cols-2 place-items-center gap-x-10 gap-y-5 md:items-center md:justify-center md:gap-x-5 lg:flex">
-        <li>About</li>
+        <li>
+          <a href="/about">About</a>
+        </li>
         <li>Features</li>
         <li>Pricing</li>
         <li>Careers</li>
