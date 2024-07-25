@@ -13,3 +13,21 @@ body {
   font-family: "Poppins", "sans-serif";
   font-weight: 500;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.styled-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: #500724;
+}
+
+.styled-scrollbar::-webkit-scrollbar-track {
+  width: 5px;
+  background-color: #030712;
+}

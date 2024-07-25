@@ -14,7 +14,7 @@ const Sec6 = () => {
             Dev Commerce
           </span>
         </h2>
-        <p>
+        <p className="px-5 xl:px-0">
           You wont just have a solid developer working with you or your team,
           you will also have all of the recourses and tools available to
           complete your dreams in a record pace

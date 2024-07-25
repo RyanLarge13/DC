@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-black text-white">
+      <body className="styled-scrollbar bg-black text-white">
         <div
           aria-hidden="true"
           className="pointer-events-none fixed bottom-0 left-0 z-10"

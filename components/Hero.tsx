@@ -9,7 +9,7 @@ const Hero = () => {
         <h2 className="max-w-[600px] px-5 text-4xl font-bold leading-[1.5em]">
           Welcome to Dev Commerce Software
         </h2>
-        <p className="mt-8 max-w-[600px] px-5">
+        <p className="mt-8 max-w-[600px] px-10 xl:px-5">
           My name is Ryan Large, I am an seasoned professional software engineer
           ready to help you build your tech empire!!
         </p>
