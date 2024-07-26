@@ -20,14 +20,17 @@ body {
 
 .styled-scrollbar::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 .styled-scrollbar::-webkit-scrollbar-thumb {
   width: 5px;
+  height: 5px;
   background-color: #500724;
 }
 
 .styled-scrollbar::-webkit-scrollbar-track {
   width: 5px;
+  height: 5px;
   background-color: #030712;
 }
