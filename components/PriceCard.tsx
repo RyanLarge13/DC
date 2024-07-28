@@ -30,17 +30,17 @@ const PriceCard = ({
         {tag}
       </p>
       <p className="mb-5 mt-2 text-4xl font-bold">${price}</p>
-      <div className="flex flex-col items-center justify-center gap-y-3">
+      <div className="">
         {benefits.map((benefit: string) => (
-          <div className="flex items-center justify-between gap-x-2">
+          <div className="my-3 flex items-start justify-start gap-x-2 text-left">
             <Image src={Check} alt="check mark" className="w-5" />
-            <p>{benefit}</p>
+            <p className="text-sm">{benefit}</p>
           </div>
         ))}
       </div>
       <hr className="my-10 w-full border-t border-t-slate-500" />
       <div>
-        <p className="px-5">{desc}</p>
+        <p className="px-5 text-sm">{desc}</p>
         <button className="mt-10 w-full rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3 text-white duration-500 hover:from-cyan-500 hover:to-fuchsia-500">
           {btnTxt}
         </button>

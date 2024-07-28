@@ -6,8 +6,8 @@ import Footer from "@/components/Footer";
 
 const Sec2 = () => {
   return (
-    <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-80">
-      <p className="mb-10 text-xl">Make Your Stance</p>
+    <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-60">
+      <p className="mb-20 text-xl">Make Your Stance</p>
       <div className="no-scrollbar grid grid-cols-1 gap-y-5 xl:grid-cols-3 xl:gap-x-5">
         <PriceCard
           title="Free Portfolio"
@@ -58,8 +58,8 @@ const Sec2 = () => {
 
 const Sec3 = () => {
   return (
-    <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-80">
-      <p className="mb-10 text-xl">Mobile Apps</p>
+    <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-60">
+      <p className="mb-20 text-xl">Mobile Apps</p>
       <div className="no-scrollbar grid grid-cols-1 gap-y-5 xl:grid-cols-3 xl:gap-x-5">
         <PriceCard
           title="Android App"
@@ -110,8 +110,8 @@ const Sec3 = () => {
 
 const Sec4 = () => {
   return (
-    <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-80">
-      <p className="mb-10 text-xl">Desktop Apps</p>
+    <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-60">
+      <p className="mb-20 text-xl">Desktop Apps</p>
       <div className="no-scrollbar grid grid-cols-1 gap-y-5 xl:grid-cols-3 xl:gap-x-5">
         <PriceCard
           title="Microsoft"
@@ -162,8 +162,8 @@ const Sec4 = () => {
 
 const Sec5 = () => {
   return (
-    <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-80">
-      <p className="mb-10 text-xl">Specials</p>
+    <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-60">
+      <p className="mb-20 text-xl">Specials</p>
       <div className="no-scrollbar grid grid-cols-1 gap-y-5 xl:grid-cols-3 xl:gap-x-5">
         <PriceCard
           title="PWA"
@@ -215,8 +215,8 @@ const Sec5 = () => {
 const Pricing = () => {
   return (
     <main>
-      <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-80 xl:flex xl:items-center xl:justify-between xl:gap-x-10 xl:text-left">
-        <div className="flex-1 xl:px-20">
+      <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-60 xl:flex xl:items-center xl:justify-between xl:gap-x-10 xl:text-left">
+        <div className="max-w-[600px] flex-1">
           <h2 className="mt-10 px-5 text-4xl font-bold">Pricing & Plans</h2>
           <Image
             src={Hr}
@@ -230,7 +230,7 @@ const Pricing = () => {
             actual building process begins!
           </p>
         </div>
-        <div className="flex-1">
+        <div className="max-w-[600px] flex-1">
           <h3 className="mt-20 px-5 text-2xl font-bold xl:mt-0 xl:pl-0">
             <span className="bg-gradient-to-tr from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
               No

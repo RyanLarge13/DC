@@ -11,8 +11,8 @@ import Footer from "@/components/Footer";
 const About = () => {
   const Sec2 = () => {
     return (
-      <section className="flex min-h-screen flex-col items-center justify-center px-10 py-20 text-center md:px-40 lg:px-80 xl:flex-row xl:gap-x-20">
-        <div>
+      <section className="flex min-h-screen flex-col items-center justify-center px-10 py-20 text-center md:px-40 lg:px-60 xl:flex-row xl:gap-x-20">
+        <div className="max-w-[800px]">
           <p>About Us</p>
           <h2 className="my-10 px-5 text-4xl font-bold">
             Our Company Overview
@@ -52,7 +52,7 @@ const About = () => {
         <Image
           src={WebSvg}
           alt="web-svg"
-          className="mt-20 w-full object-contain xl:max-w-[400px] xl:flex-1"
+          className="mt-20 w-full object-contain md:max-w-[800px] xl:max-w-[600px] xl:flex-1"
         />
       </section>
     );
@@ -60,7 +60,7 @@ const About = () => {
 
   const Sec3 = () => {
     return (
-      <section className="relative bg-gradient-to-r from-fuchsia-500 to-cyan-500 px-10 py-20 text-center md:px-40 lg:px-80">
+      <section className="relative bg-gradient-to-r from-fuchsia-500 to-cyan-500 px-10 py-20 text-center md:px-40 lg:px-60">
         <p>Features & Benefits</p>
         <h2 className="my-10 px-5 text-4xl font-bold">
           What You Will Get Out of Dev Commerce
@@ -69,19 +69,19 @@ const About = () => {
           Browse Services
         </button>
         <div className="mt-10 grid grid-cols-1 place-items-center gap-y-5">
-          <div className="flex w-full flex-col items-center justify-between rounded-md bg-black p-5 text-center shadow-lg shadow-slate-950">
+          <div className="flex w-full max-w-[600px] flex-col items-center justify-between rounded-md bg-black p-5 text-center shadow-lg shadow-slate-950">
             <h3 className="mb-5 self-center text-3xl font-bold">
               <IoIosSpeedometer />
             </h3>
             <p>Fast & Efficient Development</p>
           </div>
-          <div className="flex w-full flex-col items-center justify-between rounded-md bg-black p-5 text-center shadow-lg shadow-slate-950">
+          <div className="flex w-full max-w-[600px] flex-col items-center justify-between rounded-md bg-black p-5 text-center shadow-lg shadow-slate-950">
             <h3 className="mb-5 self-center text-3xl font-bold">
               <FaThumbsUp />
             </h3>
             <p>High Quality Software</p>
           </div>
-          <div className="flex w-full flex-col items-center justify-between rounded-md bg-black p-5 text-center shadow-lg shadow-slate-950">
+          <div className="flex w-full max-w-[600px] flex-col items-center justify-between rounded-md bg-black p-5 text-center shadow-lg shadow-slate-950">
             <h3 className="mb-5 self-center text-3xl font-bold">
               <FaMoneyBill1Wave />
             </h3>
@@ -94,8 +94,8 @@ const About = () => {
 
   const Sec4 = () => {
     return (
-      <section className="flex min-h-screen flex-col items-center justify-center px-10 py-20 md:px-40 lg:px-80 xl:flex-row-reverse xl:gap-x-20">
-        <div>
+      <section className="flex min-h-screen flex-col items-center justify-center px-10 py-20 md:px-40 lg:px-60 xl:flex-row-reverse xl:gap-x-20">
+        <div className="max-w-[600px]">
           <p className="text-center">FAQ</p>
           <h2 className="my-10 px-5 text-center text-4xl font-bold">
             Frequently Asked Questions
@@ -149,7 +149,7 @@ const About = () => {
         <Image
           src={WebSvg2}
           alt="web svg"
-          className="mt-20 w-full object-contain xl:max-w-[350px]"
+          className="mt-20 w-full object-contain md:max-w-[800px] xl:max-w-[400px]"
         />
       </section>
     );
@@ -157,13 +157,13 @@ const About = () => {
 
   return (
     <main>
-      <section className="relative px-10 py-20 text-center md:px-40 lg:px-80">
+      <section className="relative px-10 py-20 text-center md:px-40 lg:px-60">
         <div className="absolute inset-0 z-[-1] bg-gradient-to-r from-fuchsia-500 to-cyan-500"></div>
         <div className="flex flex-col items-center justify-center">
           <h2 className="my-10 px-5 text-4xl font-bold">
             Who Are We And What Do We Do?
           </h2>
-          <p>
+          <p className="max-w-[600px]">
             Dev Commerce is a small Software business built from the ground up.
             What makes this company so special is the heart and dedication put
             into its creation. We saw the vision of a world where building
