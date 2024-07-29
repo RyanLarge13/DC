@@ -13,13 +13,116 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model services {
+model Service {
   id String @unique @default(uuid())
+  serviceId String
   type String 
   tags String[]
   title String
   shortDesc String
   desc String
   icon String
-  styles String
+  styles String?
+  price Int
+  benefits String
+  longBenefits String
+  longDesc String
+  ratings BigInt
+  specialOffer Boolean
+  instructions Json
+  images String[]
+  featured Boolean
+  reviews Review[]
+  testimonials Testimonial[]
+  pendingQuotes PendingQuote[]
+  relatedServices Service?    @relation("relatedServices", fields: [serviceId], references: [id])
+  related Service[]   @relation("relatedServices")
 }
+
+model Review {
+  id         String  @unique @default(uuid())
+  serviceId  String
+  userId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  previousReview String?
+  currentReview String
+  generalRating Int @default(5)
+  communicationRating Int @default(5)
+  understandingNeedsRating Int @default(5)
+  technincalExpertiseRating Int @default(5)
+  projectManagmentRating Int @default(5)
+  supportAndSatisfactionRating Int @default(5)
+  generalComment String?
+  communicationComment String?
+  understandingNeedsComment String?
+  technincalExpertiseComment String?
+  projectManagmentComment String?
+  supportAndSatisfactionComment String?
+  service    Service @relation(fields: [serviceId], references: [id])
+  from User @relation(fields: [userId], references: [id])
+}
+
+model Testimonial {
+  id String @unique @default(uuid())
+  userId String
+  serviceId String
+  rating Int @default(5)
+  title String
+  desc String
+  from User @relation(fields: [userId], references: [id])
+  service Service @relation(fields: [serviceId], references: [id])
+}
+
+model PendingQuote {
+  id String @unique @default(uuid())
+  userId String
+  serviceId String
+  business Boolean @default(false)
+  oldMessageFromUser String?
+  messageFromUser String
+  dueDate DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  from User @relation(fields: [userId], references: [id])
+  service Service @relation(fields: [serviceId], references: [id])
+}
+
+model CompleteQuote {
+  id String @unique @default(uuid())
+}
+
+model Project {
+  id String @unique @default(uuid())
+  userId String
+  user User @relation(fields: [userId], references: [id])
+  type String
+  developmentSourceCodeLink String?
+  progress Int @default(0)
+  messages String[]
+}
+
+model CompleteProjects {
+  id String @unique @default(uuid())
+  userId String
+  user User @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id String @unique @default(uuid())
+  subscriber Boolean @default(false)
+  admin Boolean @default(false)
+  freePortfolio Boolean @default(false)
+  username String
+  email String
+  password String
+  avatar String?
+  phoneNumber String?
+  birthday DateTime?
+  reviews Review[]
+  testimonials Testimonial[]
+  pendingQuotes PendingQuote[]
+  currentProjects Project[]
+  pastProjects CompleteProjects[]
+}
+
