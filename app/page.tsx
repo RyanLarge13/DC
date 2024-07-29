@@ -34,9 +34,12 @@ const Hero = () => {
           My name is Ryan Large, I am an seasoned professional software engineer
           ready to help you build your tech empire!!
         </p>
-        <button className="ml-5 mt-10 rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3 text-white">
+        <a
+          href="/services"
+          className="ml-5 mt-10 rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3 text-white"
+        >
           Services
-        </button>
+        </a>
       </div>
       <div className="flex-1">
         <Image
@@ -63,9 +66,12 @@ const Sec2 = () => {
         assists growing companies and laymen by connecting them to the software
         world and web
       </p>
-      <button className="to-cyan-500px-5 mt-10 rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3">
+      <a
+        href="/services"
+        className="to-cyan-500px-5 mt-10 rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3"
+      >
         View Our Services
-      </button>
+      </a>
     </section>
   );
 };
