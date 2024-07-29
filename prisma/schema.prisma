@@ -63,6 +63,10 @@ model Review {
   from User @relation(fields: [userId], references: [id])
 }
 
+model AdminReview {
+  id String @unique @default(uuid())
+}
+
 model Testimonial {
   id String @unique @default(uuid())
   userId String
@@ -92,14 +96,55 @@ model CompleteQuote {
   id String @unique @default(uuid())
 }
 
+model Message {
+  id String @unique @default(uuid())
+  userId String
+  projectId String
+  sentAt DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Todo {
+  id String @unique @default(uuid())
+  projectId String
+  completeId String?
+  text String
+  complete Boolean
+  comments String[]
+  dueDate DateTime @default(now())
+  admin Boolean @default(true)
+  completedStep CompleteSteps? @relation(fields: [completeId], references: [id])
+  project Project @relation(fields: [projectId], references: [id])
+}
+
+model CompleteSteps {
+  id String @unique @default(uuid())
+  projectId String
+  todoId String
+  images String[]
+  title String
+  description String
+  dateCompleted DateTime @default(now())
+  completedTodos Todo[]
+  project Project @relation(fields: [projectId], references: [id])
+  approvedByUser Boolean
+  approvedByAdmin Boolean
+}
+
 model Project {
   id String @unique @default(uuid())
   userId String
-  user User @relation(fields: [userId], references: [id])
   type String
   developmentSourceCodeLink String?
+  developmentDeploymentLink String?
   progress Int @default(0)
-  messages String[]
+  stepProgress Int @default(0)
+  stage String @default("Initial")
+  todos Todo[]
+  completedSteps CompleteSteps[]
+  messages Message[]
+  user User @relation(fields: [userId], references: [id])
 }
 
 model CompleteProjects {
@@ -124,5 +169,15 @@ model User {
   pendingQuotes PendingQuote[]
   currentProjects Project[]
   pastProjects CompleteProjects[]
+  messages Message[]
 }
 
+model Admin {
+  id String @unique @default(uuid())
+  username String
+  email String
+  password String
+  avatar String
+  phoneNumber String
+  
+}
