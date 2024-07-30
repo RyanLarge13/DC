@@ -222,6 +222,7 @@ model Pay {
 
 model Admin {
   id String @id @unique @default(uuid())
+  teamId String
   username String
   email String
   secondaryEmail String
