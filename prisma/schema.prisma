@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Service {
-  id String @unique @default(uuid())
+  id String @id @unique @default(uuid())
   serviceId String
   type String 
   tags String[]
@@ -29,6 +29,8 @@ model Service {
   longDesc String
   ratings BigInt
   specialOffer Boolean
+  subscription Boolean @default(false)
+  hourlyRate Int?
   instructions Json
   images String[]
   featured Boolean
@@ -43,6 +45,7 @@ model Review {
   id         String  @unique @default(uuid())
   serviceId  String
   userId String
+  managerId String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   previousReview String?
@@ -59,16 +62,13 @@ model Review {
   technincalExpertiseComment String?
   projectManagmentComment String?
   supportAndSatisfactionComment String?
-  service    Service @relation(fields: [serviceId], references: [id])
+  service Service? @relation(fields: [serviceId], references: [id])
   from User @relation(fields: [userId], references: [id])
-}
-
-model AdminReview {
-  id String @unique @default(uuid())
+  to Admin? @relation(fields: [managerId], references: [id])
 }
 
 model Testimonial {
-  id String @unique @default(uuid())
+  id String @id @unique @default(uuid())
   userId String
   serviceId String
   rating Int @default(5)
@@ -79,8 +79,9 @@ model Testimonial {
 }
 
 model PendingQuote {
-  id String @unique @default(uuid())
+  id String @id @unique @default(uuid())
   userId String
+  managerId String
   serviceId String
   business Boolean @default(false)
   oldMessageFromUser String?
@@ -89,15 +90,20 @@ model PendingQuote {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   from User @relation(fields: [userId], references: [id])
+  to Admin @relation(fields: [managerId], references: [id])
   service Service @relation(fields: [serviceId], references: [id])
 }
 
 model CompleteQuote {
-  id String @unique @default(uuid())
+  id String @id @unique @default(uuid())
+  userId String
+  managerId String 
+  user User @relation(fields: [userId], references: [id])
+  manager Admin @relation(fields: [managerId], references: [id])
 }
 
 model Message {
-  id String @unique @default(uuid())
+  id String @id @unique @default(uuid())
   userId String
   projectId String
   sentAt DateTime @default(now())
@@ -106,55 +112,83 @@ model Message {
 }
 
 model Todo {
-  id String @unique @default(uuid())
+  id String @id @unique @default(uuid())
   projectId String
   completeId String?
+  currentId String?
   text String
   complete Boolean
   comments String[]
   dueDate DateTime @default(now())
   admin Boolean @default(true)
-  completedStep CompleteSteps? @relation(fields: [completeId], references: [id])
+  currentStage CurrentStage? @relation(fields: [currentId], references: [id])
+  completedStage CompletedStage? @relation(fields: [completeId], references: [id])
   project Project @relation(fields: [projectId], references: [id])
 }
 
-model CompleteSteps {
-  id String @unique @default(uuid())
+model CompletedStage {
+  id String @id @unique @default(uuid())
   projectId String
-  todoId String
   images String[]
   title String
   description String
   dateCompleted DateTime @default(now())
-  completedTodos Todo[]
-  project Project @relation(fields: [projectId], references: [id])
   approvedByUser Boolean
   approvedByAdmin Boolean
+  completedTodos Todo[]
+  project Project @relation(fields: [projectId], references: [id])
+}
+
+model CurrentStage {
+  id String @id @unique @default(uuid())
+  projectId String @unique
+  title String
+  description String
+  stageProgress Int @default(0)
+  estimatedCompletionDate DateTime
+  todos Todo[]
+  project Project @relation(fields: [projectId], references: [id])
 }
 
 model Project {
-  id String @unique @default(uuid())
+  id String @id @unique @default(uuid())
   userId String
+  leadId String
   type String
   developmentSourceCodeLink String?
   developmentDeploymentLink String?
   progress Int @default(0)
-  stepProgress Int @default(0)
-  stage String @default("Initial")
+  onTime Boolean @default(true)
+  complete Boolean
+  createdAt DateTime @default(now())
+  currentStage CurrentStage?
   todos Todo[]
-  completedSteps CompleteSteps[]
+  completedStages CompletedStage[]
   messages Message[]
+  managers Admin[]
+  completeProjectReference CompleteProject?
+  admin Admin @relation(name: "lead", fields: [leadId], references: [id])
   user User @relation(fields: [userId], references: [id])
 }
 
-model CompleteProjects {
-  id String @unique @default(uuid())
+model CompleteProject {
+  id String @id @unique @default(uuid())
   userId String
+  managerid String
+  projectId String @unique
+  binaryFile Bytes?
+  webLink String?
+  downloadLink String
+  moneySaved Int @default(0)
+  duration String
+  createdAt DateTime @default(now())
+  projectReference Project @relation(fields: [projectId], references: [id])
+  manager Admin @relation(fields: [managerid], references: [id])
   user User @relation(fields: [userId], references: [id])
 }
 
 model User {
-  id String @unique @default(uuid())
+  id String @id @unique @default(uuid())
   subscriber Boolean @default(false)
   admin Boolean @default(false)
   freePortfolio Boolean @default(false)
@@ -162,22 +196,47 @@ model User {
   email String
   password String
   avatar String?
-  phoneNumber String?
+  phoneNumber String
   birthday DateTime?
+  emergencyContact Json
+  moneySaved Int @default(0)
+  moneySpent Int @default(0)
   reviews Review[]
   testimonials Testimonial[]
   pendingQuotes PendingQuote[]
+  completedQuotes CompleteQuote[]
   currentProjects Project[]
-  pastProjects CompleteProjects[]
+  pastProjects CompleteProject[]
   messages Message[]
 }
 
+model Pay {
+  id String @id @unique @default(uuid())
+  hourlyWage Int @default(0)
+  managerId String @unique
+  reviewerId String
+  hoursWorked Int @default(0)
+  manager Admin @relation(name: "owner", fields: [managerId], references: [id])
+  reviewer Admin @relation(name: "reviewer", fields: [reviewerId], references: [id])
+}
+
 model Admin {
-  id String @unique @default(uuid())
+  id String @id @unique @default(uuid())
   username String
   email String
+  secondaryEmail String
   password String
   avatar String
   phoneNumber String
-  
+  emergencyContact Json
+  overallRating Int @default(100)
+  wageType String
+  weeklyPay Pay? @relation(name: "owner")
+  reviewer Pay[] @relation(name: "reviewer")
+  leadOnProjects Project[] @relation(name: "lead")
+  quotesToComplete PendingQuote[]
+  quotesComplete CompleteQuote[]
+  projectsToComplete Project[]
+  projectsComplete CompleteProject[]
+  reviews Review[]
 }
