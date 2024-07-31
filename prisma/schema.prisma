@@ -16,14 +16,15 @@ datasource db {
 model Service {
   id String @id @unique @default(uuid())
   serviceId String
-  type String 
+  serviceTypeId String
+  typeId String
   tags String[]
   title String
   shortDesc String
   desc String
   icon String
   styles String?
-  price Int
+  price Float
   benefits String
   longBenefits String
   longDesc String
@@ -34,11 +35,35 @@ model Service {
   instructions Json
   images String[]
   featured Boolean
+  type ServiceType @relation(fields: [serviceTypeId], references: [id])
   reviews Review[]
   testimonials Testimonial[]
   pendingQuotes PendingQuote[]
+  projects Project[] @relation(name: "serviceReference")
   relatedServices Service?    @relation("relatedServices", fields: [serviceId], references: [id])
   related Service[]   @relation("relatedServices")
+}
+
+model ServiceType {
+  id String @id @unique @default(uuid())
+  title String 
+  shortDesc String
+  services Service[]
+  priceCard PriceCard?
+}
+
+model PriceCard {
+  id String @id @unique @default(uuid())
+  serviceTypeId String @unique
+  startingAtPrice Float
+  title String
+  tag String
+  benefits String[]
+  desc String
+  btnTxt String
+  styles String
+  isMostPopular Boolean
+  serviceType ServiceType @relation(fields: [serviceTypeId], references: [id])
 }
 
 model Review {
@@ -154,6 +179,7 @@ model Project {
   id String @id @unique @default(uuid())
   userId String
   leadId String
+  serviceReferenceId String
   type String
   developmentSourceCodeLink String?
   developmentDeploymentLink String?
@@ -167,6 +193,7 @@ model Project {
   messages Message[]
   managers Admin[]
   completeProjectReference CompleteProject?
+  serviceReference Service @relation(name: "serviceReference", fields: [serviceReferenceId], references: [id])
   admin Admin @relation(name: "lead", fields: [leadId], references: [id])
   user User @relation(fields: [userId], references: [id])
 }
@@ -187,6 +214,39 @@ model CompleteProject {
   user User @relation(fields: [userId], references: [id])
 }
 
+model Notification {
+  id String @id @unique @default(uuid())
+  userId String
+  adminId String
+  title String
+  desc String
+  url String?
+  createdAt DateTime @default(now())
+  sent Boolean
+  delivered Boolean
+  read Boolean
+  user User @relation(fields: [userId], references: [id])
+  admin Admin @relation(fields: [adminId], references: [id])
+}
+
+model Recite {
+  id String @id @unique @default(uuid())
+}
+model Invoice {
+  id String @id @unique @default(uuid())
+}
+
+model BlogPost {
+  id String @id @unique @default(uuid())
+  adminId String
+  inReview Boolean @default(true)
+  html String
+  headerImg String
+  preference String
+  createdAt DateTime @default(now())
+  admin Admin @relation(fields: [adminId], references: [id])
+}
+
 model User {
   id String @id @unique @default(uuid())
   subscriber Boolean @default(false)
@@ -198,6 +258,10 @@ model User {
   avatar String?
   phoneNumber String
   birthday DateTime?
+  isAuthenticatedPhone Boolean @default(false)
+  isAuthenticatedEmail Boolean @default(false)
+  listedIps String[]
+  settings Json
   emergencyContact Json
   moneySaved Int @default(0)
   moneySpent Int @default(0)
@@ -208,6 +272,7 @@ model User {
   currentProjects Project[]
   pastProjects CompleteProject[]
   messages Message[]
+  notifications Notification[]
 }
 
 model Pay {
@@ -216,6 +281,7 @@ model Pay {
   managerId String @unique
   reviewerId String
   hoursWorked Int @default(0)
+  approved Boolean
   manager Admin @relation(name: "owner", fields: [managerId], references: [id])
   reviewer Admin @relation(name: "reviewer", fields: [reviewerId], references: [id])
 }
@@ -229,6 +295,10 @@ model Admin {
   password String
   avatar String
   phoneNumber String
+  isAuthenticatedPhone Boolean @default(false)
+  isAuthenticatedEmail Boolean @default(false)
+  listedIps String[]
+  settings Json
   emergencyContact Json
   overallRating Int @default(100)
   wageType String
@@ -240,4 +310,6 @@ model Admin {
   projectsToComplete Project[]
   projectsComplete CompleteProject[]
   reviews Review[]
+  notifications Notification[]
+  blogPosts BlogPost[]
 }
