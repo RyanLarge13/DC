@@ -142,6 +142,7 @@ model Todo {
   completeId String?
   currentId String?
   text String
+  price Float
   complete Boolean
   comments String[]
   dueDate DateTime @default(now())
@@ -161,6 +162,8 @@ model CompletedStage {
   approvedByUser Boolean
   approvedByAdmin Boolean
   completedTodos Todo[]
+  receipt Receipt?
+  invoice Invoice?
   project Project @relation(fields: [projectId], references: [id])
 }
 
@@ -229,11 +232,32 @@ model Notification {
   admin Admin @relation(fields: [adminId], references: [id])
 }
 
-model Recite {
+model Receipt {
   id String @id @unique @default(uuid())
+  userId String
+  completedStageId String @unique
+  reciteNumber String @unique @default(uuid())
+  transactionDate DateTime @default(now())
+  totalAmount Float
+  taxableAmount Float
+  amountPaid Float
+  paymentMethod String
+  transactionNumber String
+  completedStage CompletedStage @relation(fields: [completedStageId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
 model Invoice {
   id String @id @unique @default(uuid())
+  userId String
+  completedStageId String @unique
+  invoiceNumber String @unique @default(uuid())
+  dateIssued DateTime @default(now())
+  dueDate DateTime
+  subTotal Float
+  taxableAmount Float
+  totalAmountDue Float
+  completedStage CompletedStage @relation(fields: [completedStageId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
 
 model BlogPost {
@@ -242,7 +266,8 @@ model BlogPost {
   inReview Boolean @default(true)
   html String
   headerImg String
-  preference String
+  desc String
+  category String[]
   createdAt DateTime @default(now())
   admin Admin @relation(fields: [adminId], references: [id])
 }
@@ -273,6 +298,8 @@ model User {
   pastProjects CompleteProject[]
   messages Message[]
   notifications Notification[]
+  receipts Receipt[]
+  invoices Invoice[]
 }
 
 model Pay {
@@ -302,9 +329,6 @@ model Admin {
   emergencyContact Json
   overallRating Int @default(100)
   wageType String
-  weeklyPay Pay? @relation(name: "owner")
-  reviewer Pay[] @relation(name: "reviewer")
-  leadOnProjects Project[] @relation(name: "lead")
   quotesToComplete PendingQuote[]
   quotesComplete CompleteQuote[]
   projectsToComplete Project[]
@@ -312,4 +336,7 @@ model Admin {
   reviews Review[]
   notifications Notification[]
   blogPosts BlogPost[]
+  weeklyPay Pay? @relation(name: "owner")
+  reviewer Pay[] @relation(name: "reviewer")
+  leadOnProjects Project[] @relation(name: "lead")
 }
