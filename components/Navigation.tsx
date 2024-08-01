@@ -32,7 +32,7 @@ const Navigation = (): JSX.Element => {
           </a>
         </li>
         <li>
-          <a target="_blank" href="https://ryans-blog-roan.vercel.app">
+          <a href="/blog">
             <FaBlog />
           </a>
         </li>
@@ -42,7 +42,9 @@ const Navigation = (): JSX.Element => {
           </a>
         </li>
         <li>
-          <MdMore />
+          <a href="/more">
+            <MdMore />
+          </a>
         </li>
       </ul>
     </nav>

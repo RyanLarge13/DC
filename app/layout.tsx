@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import "./globals.css";
+import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import Image from "next/image";
 import BgGradient from "../public/assets/bg-gradient.svg";
@@ -7,7 +7,7 @@ import BgGradient from "../public/assets/bg-gradient.svg";
 export const metadata: Metadata = {
   title: "Dev Commerce",
   description: "Create the software you dream of!!",
-  icons: ["/assets/favicon.ico"],
+  icons: ["/assets/logo.svg"],
 };
 
 export default function RootLayout({
