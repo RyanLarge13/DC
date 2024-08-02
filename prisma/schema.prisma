@@ -10,10 +10,9 @@ datasource db {
 // Review finsihed for service
 model Service {
   id String @id @unique @default(uuid())
-  serviceId String? @unique
-  serviceTypeId String @unique
-  typeId String @unique
-  priceId String @unique
+  serviceId String?
+  serviceTypeId String
+  typeId String
   title String
   shortDesc String
   desc String 
@@ -25,11 +24,11 @@ model Service {
   benefits String[]
   longBenefits String[]
   instructions Json
+  basePrice Float
   hourlyRate Float?
   specialOffer Boolean @default(false)
   subscription Boolean @default(false)
   featured Boolean @default(false)
-  price Price @relation(fields: [priceId], references: [id])
   reviews Review[]
   testimonials Testimonial[]
   pendingQuotes PendingQuote[]
@@ -39,24 +38,17 @@ model Service {
   relatedServices Service? @relation("relatedServices", fields: [serviceId], references: [id])
 }
 
-// Do I want this????
-model Price {
-  id String @id @unique @default(uuid())
-  services Service?
-  basePrice Float
-}
-
 model JobHistory {
   id String @id @unique @default(uuid())
   portfolioId String
-  jobTitle String
-  responsibilities String[]
-  startedAt DateTime
-  stillWorking Boolean
-  endedAt DateTime
   companyName String
-  location String
+  jobTitle String
+  location String?
+  responsibilities String[]
   specialAccomplishments String[]
+  stillWorking Boolean @default(false)
+  startedAt DateTime 
+  endedAt DateTime
   portfolio FreePortfolio @relation(fields: [portfolioId], references: [id])
 }
 
@@ -71,30 +63,30 @@ model SpecialtyTags {
 model PastPorfolioProjects {
   id String @id @unique @default(uuid())
   portfolioId String
+  description String
   headerImg String
   title String
-  description String
   link String
-  favorite Boolean
+  favorite Boolean @default(false)
   portfolio FreePortfolio @relation(fields: [portfolioId], references: [id])
 }
 
 model FreePortfolio {
  id String @id @unique @default(uuid())
- avatarUrl String?
- createdAt DateTime @default(now())
- updatedAt DateTime @default(now())
  template String
  name String
- currentTitle String?
- about String?
- constactInfo Json?
- socialsMedia String[]
- resumeLink String?
  logo String?
+ about String?
+ avatarUrl String?
+ resumeLink String?
+ currentTitle String?
+ socialMedias String[]
+ constactInfo Json?
+ createdAt DateTime @default(now())
+ updatedAt DateTime @default(now())
+ tags SpecialtyTags[]
  pastJobExperiences JobHistory[]
  pastProjects PastPorfolioProjects[]
- tags SpecialtyTags[]
 }
 
 model ServiceType {
@@ -108,50 +100,50 @@ model ServiceType {
 model PriceCard {
   id String @id @unique @default(uuid())
   serviceTypeId String @unique
-  startingAtPrice Float
-  title String
   tag String
-  benefits String[]
   desc String
-  btnTxt String
+  title String
   styles String
-  isMostPopular Boolean
+  btnTxt String @default("Let's Go!")
+  benefits String[]
+  startingAtPrice Float
+  isMostPopular Boolean @default(false)
   serviceType ServiceType @relation(fields: [serviceTypeId], references: [id])
 }
 
 model Review {
-  id         String  @unique @default(uuid())
-  serviceId  String
-  userId String
-  managerId String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  previousReview String?
+  id String  @unique @default(uuid())
+  userId String 
+  serviceId String 
+  managerId String 
   currentReview String
-  generalRating Int @default(5)
-  communicationRating Int @default(5)
-  understandingNeedsRating Int @default(5)
-  technincalExpertiseRating Int @default(5)
-  projectManagmentRating Int @default(5)
-  supportAndSatisfactionRating Int @default(5)
+  previousReview String?
   generalComment String?
   communicationComment String?
+  projectManagmentComment String?
   understandingNeedsComment String?
   technincalExpertiseComment String?
-  projectManagmentComment String?
   supportAndSatisfactionComment String?
-  service Service? @relation(fields: [serviceId], references: [id])
+  generalRating Int @default(5)
+  communicationRating Int @default(5)
+  projectManagmentRating Int @default(5)
+  understandingNeedsRating Int @default(5)
+  technincalExpertiseRating Int @default(5)
+  supportAndSatisfactionRating Int @default(5)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
   from User @relation(fields: [userId], references: [id])
   to Admin? @relation(fields: [managerId], references: [id])
+  service Service? @relation(fields: [serviceId], references: [id])
 }
 
 model Testimonial {
   id String @id @unique @default(uuid())
+  desc String
+  title String
   userId String
   serviceId String
   rating Int @default(5)
-  title String
-  desc String
   from User @relation(fields: [userId], references: [id])
   service Service @relation(fields: [serviceId], references: [id])
 }
@@ -161,17 +153,18 @@ model PendingQuote {
   userId String
   managerId String
   serviceId String
-  business Boolean @default(false)
-  oldMessageFromUser String?
   messageFromUser String
-  dueDate DateTime?
+  oldMessagesFromUser String[]
+  business Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+  dueDate DateTime
   from User @relation(fields: [userId], references: [id])
   to Admin @relation(fields: [managerId], references: [id])
   service Service @relation(fields: [serviceId], references: [id])
 }
 
+// Complete this table!
 model CompleteQuote {
   id String @id @unique @default(uuid())
   userId String
@@ -180,13 +173,16 @@ model CompleteQuote {
   manager Admin @relation(fields: [managerId], references: [id])
 }
 
+// Finish this table!!!
 model Message {
   id String @id @unique @default(uuid())
   userId String
   projectId String
+  text String
+  read Boolean @default(false)
   sentAt DateTime @default(now())
-  project Project @relation(fields: [projectId], references: [id])
   user User @relation(fields: [userId], references: [id])
+  project Project @relation(fields: [projectId], references: [id])
 }
 
 model Todo {
@@ -195,28 +191,28 @@ model Todo {
   completeId String?
   currentId String?
   text String
+  comments String[]
   price Float
   complete Boolean
-  comments String[]
-  dueDate DateTime @default(now())
   admin Boolean @default(true)
+  dueDate DateTime @default(now())
+  project Project @relation(fields: [projectId], references: [id])
   currentStage CurrentStage? @relation(fields: [currentId], references: [id])
   completedStage CompletedStage? @relation(fields: [completeId], references: [id])
-  project Project @relation(fields: [projectId], references: [id])
 }
 
 model CompletedStage {
   id String @id @unique @default(uuid())
-  projectId String
-  images String[]
   title String
+  projectId String
   description String
+  images String[]
+  approvedByUser Boolean @default(false)
+  approvedByAdmin Boolean @default(false)
   dateCompleted DateTime @default(now())
-  approvedByUser Boolean
-  approvedByAdmin Boolean
-  completedTodos Todo[]
   receipt Receipt?
   invoice Invoice?
+  completedTodos Todo[]
   project Project @relation(fields: [projectId], references: [id])
 }
 
@@ -240,47 +236,46 @@ model Project {
   developmentSourceCodeLink String?
   developmentDeploymentLink String?
   progress Int @default(0)
-  onTime Boolean @default(true)
   complete Boolean
+  onTime Boolean @default(true)
   createdAt DateTime @default(now())
   currentStage CurrentStage?
-  todos Todo[]
-  completedStages CompletedStage[]
-  messages Message[]
-  managers Admin[]
   completeProjectReference CompleteProject?
-  serviceReference Service @relation(name: "serviceReference", fields: [serviceReferenceId], references: [id])
-  admin Admin @relation(name: "lead", fields: [leadId], references: [id])
+  todos Todo[]
+  managers Admin[]
+  messages Message[]
+  completedStages CompletedStage[]
   user User @relation(fields: [userId], references: [id])
+  admin Admin @relation(name: "lead", fields: [leadId], references: [id])
+  serviceReference Service @relation(name: "serviceReference", fields: [serviceReferenceId], references: [id])
 }
 
 model CompleteProject {
   id String @id @unique @default(uuid())
+  projectId String @unique
   userId String
   managerid String
-  projectId String @unique
-  binaryFile Bytes?
-  webLink String?
-  downloadLink String
-  moneySaved Int @default(0)
   duration String
+  downloadLink String
+  webLink String?
+  binaryFile Bytes?
+  moneySaved Int @default(0)
   createdAt DateTime @default(now())
-  projectReference Project @relation(fields: [projectId], references: [id])
-  manager Admin @relation(fields: [managerid], references: [id])
   user User @relation(fields: [userId], references: [id])
+  manager Admin @relation(fields: [managerid], references: [id])
+  projectReference Project @relation(fields: [projectId], references: [id])
 }
 
 model Notification {
   id String @id @unique @default(uuid())
   userId String
   adminId String
-  title String
   desc String
+  title String
   url String?
-  createdAt DateTime @default(now())
-  sent Boolean
   delivered Boolean
-  read Boolean
+  read Boolean @default(false)
+  createdAt DateTime @default(now())
   user User @relation(fields: [userId], references: [id])
   admin Admin @relation(fields: [adminId], references: [id])
 }
@@ -289,108 +284,110 @@ model Receipt {
   id String @id @unique @default(uuid())
   userId String
   completedStageId String @unique
+  paymentMethod String
+  transactionNumber String @default(uuid())
   reciteNumber String @unique @default(uuid())
-  transactionDate DateTime @default(now())
+  amountPaid Float
   totalAmount Float
   taxableAmount Float
-  amountPaid Float
-  paymentMethod String
-  transactionNumber String
-  completedStage CompletedStage @relation(fields: [completedStageId], references: [id])
+  transactionDate DateTime @default(now())
   user User @relation(fields: [userId], references: [id])
+  completedStage CompletedStage @relation(fields: [completedStageId], references: [id])
 }
 model Invoice {
   id String @id @unique @default(uuid())
   userId String
   completedStageId String @unique
   invoiceNumber String @unique @default(uuid())
-  dateIssued DateTime @default(now())
-  dueDate DateTime
   subTotal Float
   taxableAmount Float
   totalAmountDue Float
-  completedStage CompletedStage @relation(fields: [completedStageId], references: [id])
+  dueDate DateTime
+  dateIssued DateTime @default(now())
   user User @relation(fields: [userId], references: [id])
+  completedStage CompletedStage @relation(fields: [completedStageId], references: [id])
 }
 
 model BlogPost {
   id String @id @unique @default(uuid())
   adminId String
-  inReview Boolean @default(true)
   html String
-  headerImg String
   desc String
+  headerImg String
   category String[]
+  inReview Boolean @default(true)
   createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
   admin Admin @relation(fields: [adminId], references: [id])
 }
 
 model User {
   id String @id @unique @default(uuid())
-  subscriber Boolean @default(false)
-  admin Boolean @default(false)
-  freePortfolio Boolean @default(false)
-  freePortfolioUrl String?
-  username String
   email String
+  username String
   password String
-  avatar String?
   phoneNumber String
-  birthday DateTime?
-  isAuthenticatedPhone Boolean @default(false)
-  isAuthenticatedEmail Boolean @default(false)
+  avatar String?
+  freePortfolioUrl String?
   listedIps String[]
   settings Json
   emergencyContact Json
+  authPassCode Int
   moneySaved Int @default(0)
   moneySpent Int @default(0)
+  admin Boolean @default(false)
+  subscriber Boolean @default(false)
+  freePortfolio Boolean @default(false)
+  isAuthenticatedPhone Boolean @default(false)
+  isAuthenticatedEmail Boolean @default(false)
+  authPassCodeExpiresAt DateTime @default(now())
+  birthday DateTime?
   reviews Review[]
-  testimonials Testimonial[]
-  pendingQuotes PendingQuote[]
-  completedQuotes CompleteQuote[]
-  currentProjects Project[]
-  pastProjects CompleteProject[]
   messages Message[]
-  notifications Notification[]
   receipts Receipt[]
   invoices Invoice[]
+  currentProjects Project[]
+  testimonials Testimonial[]
+  pendingQuotes PendingQuote[]
+  notifications Notification[]
+  pastProjects CompleteProject[]
+  completedQuotes CompleteQuote[]
 }
 
 model Pay {
   id String @id @unique @default(uuid())
-  hourlyWage Int @default(0)
   managerId String @unique
   reviewerId String
+  hourlyWage Int @default(0)
   hoursWorked Int @default(0)
-  approved Boolean
+  approved Boolean @default(false)
   manager Admin @relation(name: "owner", fields: [managerId], references: [id])
   reviewer Admin @relation(name: "reviewer", fields: [reviewerId], references: [id])
 }
 
 model Admin {
   id String @id @unique @default(uuid())
-  teamId String
-  username String
   email String
-  secondaryEmail String
-  password String
   avatar String
+  wageType String
+  username String
+  password String
   phoneNumber String
-  isAuthenticatedPhone Boolean @default(false)
-  isAuthenticatedEmail Boolean @default(false)
+  secondaryEmail String
   listedIps String[]
   settings Json
   emergencyContact Json
   overallRating Int @default(100)
-  wageType String
-  quotesToComplete PendingQuote[]
-  quotesComplete CompleteQuote[]
-  projectsToComplete Project[]
-  projectsComplete CompleteProject[]
+  isAuthenticatedPhone Boolean @default(false)
+  isAuthenticatedEmail Boolean @default(false)
   reviews Review[]
-  notifications Notification[]
   blogPosts BlogPost[]
-  weeklyPay Pay? @relation(name: "owner")
+  notifications Notification[]
+  projectsToComplete Project[]
+  quotesComplete CompleteQuote[]
+  quotesToComplete PendingQuote[]
+  projectsComplete CompleteProject[]
   reviewer Pay[] @relation(name: "reviewer")
   leadOnProjects Project[] @relation(name: "lead")
+  weeklyPay Pay? @relation(name: "owner")
 }
