@@ -32,6 +32,7 @@ model Service {
   reviews Review[]
   testimonials Testimonial[]
   pendingQuotes PendingQuote[]
+  completedQuotes CompleteQuote[]
   related Service[] @relation("relatedServices")
   projects Project[] @relation(name: "serviceReference")
   type ServiceType @relation(fields: [serviceTypeId], references: [id])
@@ -164,16 +165,21 @@ model PendingQuote {
   service Service @relation(fields: [serviceId], references: [id])
 }
 
-// Complete this table!
 model CompleteQuote {
   id String @id @unique @default(uuid())
   userId String
   managerId String 
+  serviceId String
+  messageFromUser String
+  oldMessagesFromUser String[]
+  business Boolean @default(false)
+  updatedAt DateTime @default(now())
+  dateCompleted DateTime @default(now())
   user User @relation(fields: [userId], references: [id])
   manager Admin @relation(fields: [managerId], references: [id])
+  service Service @relation(fields: [serviceId], references: [id])
 }
 
-// Finish this table!!!
 model Message {
   id String @id @unique @default(uuid())
   userId String
