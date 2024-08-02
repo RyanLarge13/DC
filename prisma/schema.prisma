@@ -7,35 +7,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Review finsihed for service
 model Service {
   id String @id @unique @default(uuid())
-  serviceId String @unique
+  serviceId String? @unique
   serviceTypeId String @unique
   typeId String @unique
-  tags String[]
+  priceId String @unique
   title String
   shortDesc String
-  desc String @db.VarChar(500)
+  desc String 
   icon String
-  styles String? @db.VarChar(100)
-  price Float
+  longDesc String 
+  styles String? 
+  tags String[]
+  images String[]
   benefits String[]
   longBenefits String[]
-  longDesc String @db.VarChar(1000)
-  ratings Int[]
-  specialOffer Boolean
-  subscription Boolean @default(false)
-  hourlyRate Int?
   instructions Json
-  images String[]
-  featured Boolean
-  type ServiceType @relation(fields: [serviceTypeId], references: [id])
+  hourlyRate Float?
+  specialOffer Boolean @default(false)
+  subscription Boolean @default(false)
+  featured Boolean @default(false)
+  price Price @relation(fields: [priceId], references: [id])
   reviews Review[]
   testimonials Testimonial[]
   pendingQuotes PendingQuote[]
+  related Service[] @relation("relatedServices")
   projects Project[] @relation(name: "serviceReference")
-  relatedServices Service?    @relation("relatedServices", fields: [serviceId], references: [id])
-  related Service[]   @relation("relatedServices")
+  type ServiceType @relation(fields: [serviceTypeId], references: [id])
+  relatedServices Service? @relation("relatedServices", fields: [serviceId], references: [id])
+}
+
+// Do I want this????
+model Price {
+  id String @id @unique @default(uuid())
+  services Service?
+  basePrice Float
 }
 
 model JobHistory {
