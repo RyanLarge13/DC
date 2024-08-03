@@ -12,7 +12,6 @@ model Service {
   id String @id @unique @default(uuid())
   serviceId String?
   serviceTypeId String
-  typeId String
   title String
   shortDesc String
   desc String 
@@ -319,8 +318,10 @@ model BlogPost {
   adminId String
   html String
   desc String
+  title String
   headerImg String
   category String[]
+  featured Boolean @default(false)
   inReview Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())

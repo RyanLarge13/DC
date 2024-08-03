@@ -57,7 +57,7 @@ const Hero = () => {
 const Sec2 = () => {
   return (
     <section className="flex flex-col items-center justify-center bg-gradient-to-r from-fuchsia-500 to-cyan-500 py-20 text-center">
-      <p className="font-bold">Do you need a top notch developer?</p>
+      <p className="px-10 font-bold">Do you need a top notch developer?</p>
       <h2 className="my-10 px-10 text-4xl font-bold xl:px-0">
         Then you are in the right place!
       </h2>
