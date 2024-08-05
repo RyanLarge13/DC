@@ -91,7 +91,7 @@ model FreePortfolio {
 
 model ServiceType {
   id String @id @unique @default(uuid())
-  title String 
+  title String @unique
   shortDesc String
   services Service[]
   priceCard PriceCard?

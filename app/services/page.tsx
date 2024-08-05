@@ -15,7 +15,16 @@ import {
   FaTools,
 } from "react-icons/fa";
 import { FaDesktop, FaPerson, FaWebAwesome, FaWebflow } from "react-icons/fa6";
+import { PrismaClient } from "@prisma/client";
 import ServiceCard from "@/components/ServiceCard";
+
+const prisma = new PrismaClient();
+
+const getCategories = async () => {
+  "use server";
+  const categories = await prisma.serviceType.findMany();
+  return categories;
+};
 
 const Sec2 = () => {
   return (
@@ -68,7 +77,8 @@ const Sec2 = () => {
   );
 };
 
-const Services = () => {
+const Services = async () => {
+  const categories = await getCategories();
   return (
     <main>
       <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-80">
@@ -79,14 +89,17 @@ const Services = () => {
           first product now!
         </p>
         <div className="mt-20 grid grid-cols-2 gap-5">
-          <CategoryCard title="Web" icon={<CgWebsite />} />
+          {categories.map((cat) => (
+            <CategoryCard title={cat.title} icon={null} />
+          ))}
+          {/* <CategoryCard title="Web" icon={<CgWebsite />} />
           <CategoryCard title="Mobile" icon={<FaMobileAlt />} />
           <CategoryCard title="Desktop" icon={<FaDesktop />} />
           <CategoryCard title="Game" icon={<FaGamepad />} />
           <CategoryCard title="Terminal" icon={<FaTerminal />} />
           <CategoryCard title="Server" icon={<FaServer />} />
           <CategoryCard title="DataBase" icon={<FaDatabase />} />
-          <CategoryCard title="Maintenance" icon={<FaTools />} />
+          <CategoryCard title="Maintenance" icon={<FaTools />} /> */}
         </div>
         <div className="no-scrollbar mt-40 flex items-start justify-start gap-x-5 overflow-x-auto overflow-y-hidden px-5">
           <div className="flex h-40 min-w-40 items-center justify-center rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 p-3 text-center">
