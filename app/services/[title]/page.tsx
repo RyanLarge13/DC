@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react'
 
-const page = () => {
-  return <section className="md:px-40 xl:px-60"></section>;
-};
+const ServiceByTitle = () => {
+  return (
+    <div>ServiceByTitle</div>
+  )
+}
 
-export default page;
+export default ServiceByTitle

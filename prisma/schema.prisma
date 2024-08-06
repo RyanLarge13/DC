@@ -18,7 +18,6 @@ model Service {
   icon String
   longDesc String 
   styles String? 
-  tags String[]
   images String[]
   benefits String[]
   longBenefits String[]
@@ -28,6 +27,7 @@ model Service {
   specialOffer Boolean @default(false)
   subscription Boolean @default(false)
   featured Boolean @default(false)
+  tags Tags[]
   reviews Review[]
   testimonials Testimonial[]
   pendingQuotes PendingQuote[]
@@ -36,6 +36,13 @@ model Service {
   projects Project[] @relation(name: "serviceReference")
   type ServiceType @relation(fields: [serviceTypeId], references: [id])
   relatedServices Service? @relation("relatedServices", fields: [serviceId], references: [id])
+}
+
+model Tags {
+  id String @id @unique @default(uuid())
+  title String
+  shortDesc String
+  services Service[]
 }
 
 model JobHistory {

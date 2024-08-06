@@ -26,7 +26,7 @@ body {
 .styled-scrollbar::-webkit-scrollbar-thumb {
   width: 5px;
   height: 5px;
-  background-color: #500724;
+  background-color: #ec4899;
 }
 
 .styled-scrollbar::-webkit-scrollbar-track {
