@@ -1,28 +1,29 @@
 import React from "react";
-import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
 import NoProj from "@/public/assets/no-past-proj.svg";
 import ServiceCard from "@/components/ServiceCard";
+import { PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
 
-const getServices = async (title: string) => {
+const getServicesByTagTitle = async (title: string) => {
   "use server";
-  const servicesAndType = await prisma.serviceType.findUnique({
+  const tagAndServices = await prisma.tags.findUnique({
     where: { title: title },
     include: { services: true },
   });
-  return servicesAndType;
+  return tagAndServices;
 };
 
-const CategoryService = async ({ params }: { params: { name: string } }) => {
-  const title = decodeURIComponent(params.name);
-  const servicesAndType = await getServices(title);
+const TagService = async ({ params }: { params: { title: string } }) => {
+  const title = decodeURIComponent(params.title);
+  const tagAndServices = await getServicesByTagTitle(title);
 
   return (
     <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-80">
-      {servicesAndType ? (
+      {tagAndServices ? (
         <div>
-          {servicesAndType.services.length < 1 ? (
+          {tagAndServices.services.length < 1 ? (
             <div className="flex flex-col items-center justify-center">
               <Image
                 src={NoProj}
@@ -30,7 +31,7 @@ const CategoryService = async ({ params }: { params: { name: string } }) => {
                 className="mt-20 object-contain"
               />
               <p className="mt-5 px-10 text-xs text-slate-300">
-                We are sorry, we cannot find any services under{" "}
+                We are sorry, we cannot find any services under the tag{" "}
                 <span className="text-orange-500">{title}</span>. Please try
                 again later
               </p>
@@ -43,7 +44,7 @@ const CategoryService = async ({ params }: { params: { name: string } }) => {
             </div>
           ) : (
             <div>
-              {servicesAndType.services.map((service) => (
+              {tagAndServices.services.map((service) => (
                 <ServiceCard service={service} />
               ))}
             </div>
@@ -57,9 +58,9 @@ const CategoryService = async ({ params }: { params: { name: string } }) => {
             className="mt-20 object-contain"
           />
           <p className="mt-5 px-10 text-xs text-slate-300">
-            We are sorry, it seems as though we no longer support services under{" "}
-            <span className="text-orange-500">{title}</span>. Please contact the
-            developer if this issue persists
+            We are sorry, it seems as though we no longer support services under
+            the tag <span className="text-orange-500">{title}</span>. Please
+            contact the developer if this issue persists
           </p>
           <a
             href="/services"
@@ -73,4 +74,4 @@ const CategoryService = async ({ params }: { params: { name: string } }) => {
   );
 };
 
-export default CategoryService;
+export default TagService;

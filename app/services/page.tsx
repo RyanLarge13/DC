@@ -5,8 +5,8 @@ import CategoryCard from "@/components/CategoryCard";
 import NoProj from "@/public/assets/no-past-proj.svg";
 import { PrismaClient } from "@prisma/client";
 import ServiceSection from "@/components/ServiceSection";
-import { ServiceType, TagType } from "@/types";
-import Tag from "@/components/Tag";
+import TagCard from "@/components/TagCard";
+import Loader from "@/components/Loader";
 
 const prisma = new PrismaClient();
 
@@ -24,7 +24,28 @@ const getServices = async () => {
 };
 
 const Sec2 = async () => {
-  const services: ServiceType[] = await getServices();
+  const categoriesAndTags = await getCategories();
+
+  const { categories, tags } = categoriesAndTags;
+
+  return (
+    <>
+      <div className="mt-20 grid grid-cols-2 gap-5">
+        {categories.map((cat) => (
+          <CategoryCard key={cat.id} category={cat} />
+        ))}
+      </div>
+      <div className="no-scrollbar mt-40 flex items-start justify-start gap-x-5 overflow-x-auto overflow-y-hidden px-5">
+        {tags.map((tag) => (
+          <TagCard key={tag.id} tag={tag} />
+        ))}
+      </div>
+    </>
+  );
+};
+
+const Sec3 = async () => {
+  const services = await getServices();
 
   return (
     <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-80">
@@ -55,11 +76,7 @@ const Sec2 = async () => {
   );
 };
 
-const Services = async () => {
-  const categoriesAndTags = await getCategories();
-
-  const { categories, tags } = categoriesAndTags;
-
+const Services = () => {
   return (
     <main>
       <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-80">
@@ -69,23 +86,12 @@ const Services = async () => {
           Start reviewing what Dev Commerce has to offer and begin building your
           first product now!
         </p>
-        <Suspense>
-          <div className="mt-20 grid grid-cols-2 gap-5">
-            {categories.map((cat) => (
-              <CategoryCard title={cat.title} icon={null} />
-            ))}
-          </div>
+        <Suspense fallback={<Loader />}>
+          <Sec2 />
         </Suspense>
-        <div className="no-scrollbar mt-40 flex items-start justify-start gap-x-5 overflow-x-auto overflow-y-hidden px-5">
-          <Suspense>
-            {tags.map((tag: TagType) => (
-              <Tag tag={tag} />
-            ))}
-          </Suspense>
-        </div>
       </section>
-      <Suspense>
-        <Sec2 />
+      <Suspense fallback={<Loader />}>
+        <Sec3 />
       </Suspense>
     </main>
   );

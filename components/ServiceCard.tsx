@@ -1,8 +1,8 @@
-import { ServiceType } from "@/types";
 import iconMap from "@/constants/iconMap";
+import { Service } from "@prisma/client";
 import React from "react";
 
-const ServiceCard = ({ service }: { service: ServiceType }) => {
+const ServiceCard = ({ service }: { service: Service }) => {
   const { title, styles, shortDesc, icon, desc } = service;
 
   const IconNode = iconMap[icon] || null;
