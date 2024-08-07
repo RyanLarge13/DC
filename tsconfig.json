@@ -2,8 +2,8 @@
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "skipLibCheck": false, // Set to false to enforce type checking on all libraries
-    "strict": true, // Enables all strict type-checking options
+    "skipLibCheck": false, 
+    "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -20,10 +20,10 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "baseUrl": ".", // Helps resolve paths based on the base directory
+    "baseUrl": ".",
     "typeRoots": [
       "./node_modules/@types",
-      "./types" // Custom type definitions directory
+      "./types"
     ]
   },
   "include": [
