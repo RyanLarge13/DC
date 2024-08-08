@@ -1,7 +1,6 @@
 import React from "react";
-import Image from "next/image";
-import NoProj from "@/public/assets/no-past-proj.svg";
 import { PrismaClient } from "@prisma/client";
+import CannotFind from "@/components/CannotFind";
 const prisma = new PrismaClient();
 
 const getPosts = async (pageNumber: number) => {
@@ -23,14 +22,14 @@ const Blog = async () => {
         <div className="flex h-full flex-col items-center justify-center">
           <h2 className="px-10">Interested in what Dev Commerce is up to?</h2>
           <h3 className="mt-5 px-5 text-4xl font-bold">Follow Along Here</h3>
-          <Image
-            src={NoProj}
-            alt="no projects to show"
-            className="mt-20 object-contain"
+          <CannotFind
+            Text={
+              <p className="px-10 text-xs">
+                We could not find any blog posts to show at the moment
+              </p>
+            }
+            link={{ href: "/", txt: "Refresh Page" }}
           />
-          <p className="px-10 text-xs">
-            We could not find any blog posts to show at the moment
-          </p>
         </div>
       ) : (
         <div></div>

@@ -1,12 +1,12 @@
 import React, { Suspense } from "react";
-import Hr from "@/public/assets/hr.svg";
-import Image from "next/image";
-import CategoryCard from "@/components/CategoryCard";
-import NoProj from "@/public/assets/no-past-proj.svg";
 import { PrismaClient } from "@prisma/client";
+import Image from "next/image";
+import Hr from "@/public/assets/hr.svg";
+import CategoryCard from "@/components/CategoryCard";
 import ServiceSection from "@/components/ServiceSection";
 import TagCard from "@/components/TagCard";
 import Loader from "@/components/Loader";
+import CannotFind from "@/components/CannotFind";
 
 const prisma = new PrismaClient();
 
@@ -52,21 +52,15 @@ const Sec3 = async () => {
       <div className="no-scrollbar grid grid-cols-1 overflow-x-auto overflow-y-hidden py-5">
         {services.length < 1 ? (
           <>
-            <Image
-              src={NoProj}
-              alt="no projects to show"
-              className="mt-20 object-contain"
+            <CannotFind
+              Text={
+                <p className="mt-5 px-10 text-xs text-slate-300">
+                  We are terribly sorry, but we seem to be having issues with
+                  retrieving our services. Please try to refresh the page
+                </p>
+              }
+              link={{ href: "/", txt: "Refresh Page" }}
             />
-            <p className="mt-5 px-10 text-xs text-slate-300">
-              We are terribly sorry, but we seem to be having issues with
-              retrieving our services. Please try to refresh the page
-            </p>
-            <a
-              href="/"
-              className="to-cyan-500px-5 mt-10 rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3"
-            >
-              Refresh Page
-            </a>
           </>
         ) : (
           <ServiceSection services={services} />
