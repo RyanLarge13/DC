@@ -27,8 +27,22 @@ const ServiceComponent = ({ service }: { service: Service }) => {
 
   return (
     <section className="flex flex-col items-center justify-between py-20 md:px-40 lg:px-80 xl:flex-row">
-      <div className="mb-3">
+      <div className="mb-40">
         <Icon />
+      </div>
+      <div className="mb-40">
+        {service.images.map((img, index) => (
+          <div className="relative h-40 w-40 rotate-45 overflow-hidden shadow-lg shadow-slate-950">
+            <img
+              key={index}
+              src={img}
+              alt={`${service.title} ${index}`}
+              width={40}
+              height={40}
+              className="absolute h-full w-full object-cover"
+            />
+          </div>
+        ))}
       </div>
       <p className="rounded-md bg-orange-500 px-3 py-2 text-xs shadow-md">
         {service.type.title}
@@ -43,12 +57,12 @@ const ServiceComponent = ({ service }: { service: Service }) => {
           </div>
         ))}
       </div>
-      <h2 className="mb-1 px-10 text-xl">{service.shortDesc}</h2>
+      <h2 className="mb-3 px-10 text-xl">{service.shortDesc}</h2>
       <p className="px-10 text-sm text-slate-300">{service.desc}</p>
       <div className="mt-20 px-5 text-left text-xs">
         {formattedLongDesc.map((txt: string, index: number) => (
           <React.Fragment key={index}>
-            <p>{txt}</p>
+            <p className="my-[-5px]">{txt}</p>
             <br />
           </React.Fragment>
         ))}
@@ -57,20 +71,36 @@ const ServiceComponent = ({ service }: { service: Service }) => {
         <p>Starting At</p>
         <p className="text-2xl font-bold">${service.basePrice.toFixed(2)}</p>
       </div>
-      <div>
-        {service.benefits.map((benefit: string) => (
-          <div className="my-3 flex items-start justify-start gap-x-2 text-left">
+      <div className="mt-20">
+        {service.benefits.map((benefit, index) => (
+          <div
+            key={index}
+            className="my-3 flex items-start justify-start gap-x-2 text-left"
+          >
             <Image src={Check} alt="check mark" className="w-5" />
             <p className="text-sm">{benefit}</p>
           </div>
         ))}
+      </div>
+      <div className="mt-20 self-start px-10 text-left">
+        <h3 className="mb-3 text-xl font-semibold">
+          Included Features With Your New{" "}
+          <span className="text-cyan-500">{service.title}</span>
+        </h3>
+        <ul className="list-disc">
+          {service.includes.map((inc, index) => (
+            <li key={index} className="my-1 font-semibold">
+              {inc}
+            </li>
+          ))}
+        </ul>
       </div>
       <div className="mt-20 px-10">
         <h3>Related Services</h3>
         {service.related.length > 0 ? (
           <div>
             {service.related.map((relation) => (
-              <div key={relation.id}></div>
+              <div key={relation.id}>related</div>
             ))}
           </div>
         ) : (
@@ -83,6 +113,46 @@ const ServiceComponent = ({ service }: { service: Service }) => {
             link={{
               href: `/services/category/${service.type.title}`,
               txt: `Try Other ${service.type.title} Services`,
+            }}
+          />
+        )}
+      </div>
+      <div className="mt-40 px-10">
+        <h3>Reviews</h3>
+        {service.reviews.length > 0 ? (
+          <div>
+            {service.reviews.map((review) => (
+              <div key={review.id}>review</div>
+            ))}
+          </div>
+        ) : (
+          <CannotFind
+            Text={<p className="pt-3">No Reviews Yet For This Service</p>}
+            link={{
+              href: `/`,
+              txt: `Create A Review`,
+            }}
+          />
+        )}
+      </div>
+      <div className="mt-40 px-10">
+        <h3>Testimonials</h3>
+        {service.testimonials.length > 0 ? (
+          <div>
+            {service.testimonials.map((testimonial) => (
+              <div key={testimonial.id}>Testimonial</div>
+            ))}
+          </div>
+        ) : (
+          <CannotFind
+            Text={
+              <p className="pt-3">
+                No Testimonials Have Been Made For This Service Yet
+              </p>
+            }
+            link={{
+              href: `/`,
+              txt: `Be The First!`,
             }}
           />
         )}

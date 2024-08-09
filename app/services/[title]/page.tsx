@@ -15,6 +15,7 @@ const getService = async (title: string) => {
       type: true,
       testimonials: true,
       reviews: true,
+      instructions: true,
     },
   });
   return service;
