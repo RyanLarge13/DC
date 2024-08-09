@@ -34,6 +34,18 @@ const ServiceSection = ({ services }: { services: Service[] }) => {
   useEffect(() => {
     if (!sorted) {
       setServicesToRender(services);
+      setAlpha(true);
+      setPrice(true);
+      setFeatured(true);
+    }
+    if (sorted) {
+      if (servicesToRender.length > 1) {
+        const copy = [...servicesToRender];
+        copy.sort((a, b) => a.title.localeCompare(b.title));
+        copy.sort((a, b) => b.basePrice - a.basePrice);
+        copy.sort((a, b) => (a === b ? 0 : b ? 1 : -1));
+        setServicesToRender(copy);
+      }
     }
   }, [sorted]);
 
@@ -43,12 +55,13 @@ const ServiceSection = ({ services }: { services: Service[] }) => {
         setServicesToRender(services);
       } else {
         const toRender = services.filter((service) =>
-          service.title.includes(searchText),
+          service.title.toLowerCase().includes(searchText.toLowerCase()),
         );
         setServicesToRender(toRender);
       }
     } else {
       setServicesToRender(services);
+      setSearchText("");
     }
   }, [searchText, search]);
 
@@ -69,10 +82,10 @@ const ServiceSection = ({ services }: { services: Service[] }) => {
     if (servicesToRender.length > 1) {
       let copy = [...servicesToRender];
       if (sorted && price) {
-        copy.sort((a, b) => b.basePrice - a.basePrice);
+        copy.sort((a, b) => a.basePrice - b.basePrice);
       }
       if (sorted && !price) {
-        copy.sort((a, b) => a.basePrice - b.basePrice);
+        copy.sort((a, b) => b.basePrice - a.basePrice);
       }
       setServicesToRender(copy);
     }

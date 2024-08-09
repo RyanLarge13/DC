@@ -1,13 +1,22 @@
 import React, { Suspense } from "react";
 import { PrismaClient } from "@prisma/client";
 import CannotFind from "@/components/CannotFind";
-import Service from "@/components/Service";
+import ServiceComponent from "@/components/ServiceComponent";
 import Loader from "@/components/Loader";
 const prisma = new PrismaClient();
 
 const getService = async (title: string) => {
   "use server";
-  const service = await prisma.service.findUnique({ where: { title: title } });
+  const service = await prisma.service.findUnique({
+    where: { title: title },
+    include: {
+      related: true,
+      tags: true,
+      type: true,
+      testimonials: true,
+      reviews: true,
+    },
+  });
   return service;
 };
 
@@ -15,7 +24,7 @@ const Sec2 = async ({ title }: { title: string }) => {
   const service = await getService(title);
 
   return service ? (
-    <Service service={service} />
+    <ServiceComponent service={service} />
   ) : (
     <div>
       <CannotFind

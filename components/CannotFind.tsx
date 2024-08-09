@@ -19,7 +19,7 @@ const CannotFind = ({
       {Text}
       <a
         href={link.href}
-        className="to-cyan-500px-5 mt-10 rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3"
+        className="to-cyan-500px-5 mt-10 block rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3"
       >
         {link.txt}
       </a>

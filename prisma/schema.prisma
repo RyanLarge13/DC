@@ -20,8 +20,7 @@ model Service {
   styles String? 
   images String[]
   benefits String[]
-  longBenefits String[]
-  instructions Json
+  includes String[]
   basePrice Float
   hourlyRate Float?
   specialOffer Boolean @default(false)
@@ -30,12 +29,22 @@ model Service {
   tags Tags[]
   reviews Review[]
   testimonials Testimonial[]
+  instructions Instruction[]
   pendingQuotes PendingQuote[]
   completedQuotes CompleteQuote[]
   related Service[] @relation("relatedServices")
   projects Project[] @relation(name: "serviceReference")
   type ServiceType @relation(fields: [serviceTypeId], references: [id])
   relatedServices Service? @relation("relatedServices", fields: [serviceId], references: [id])
+}
+
+model Instruction {
+  id String @id @unique @default(uuid())
+  serviceId String @unique
+  desc String
+  title String 
+  step Int
+  service Service @relation(fields: [serviceId], references: [id])
 }
 
 model Tags {
