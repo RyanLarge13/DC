@@ -44,17 +44,21 @@ const ServiceComponent = ({ service }: { service: Service }) => {
           </div>
         ))}
       </div>
-      <p className="rounded-md bg-orange-500 px-3 py-2 text-xs shadow-md">
+      <a
+        href={`/services/category/${service.type.title}`}
+        className="block rounded-md bg-orange-500 px-3 py-2 text-xs shadow-md"
+      >
         {service.type.title}
-      </p>
+      </a>
       <div className="mb-10 mt-3 flex flex-wrap">
         {service.tags.map((tag) => (
-          <div
+          <a
             key={tag.id}
-            className="rounded-sm bg-fuchsia-500 px-2 py-1 text-xs"
+            href={`/services/tag/${tag.title}`}
+            className="block rounded-sm bg-fuchsia-500 px-2 py-1 text-xs"
           >
             {tag.title}
-          </div>
+          </a>
         ))}
       </div>
       <h2 className="mb-3 px-10 text-xl">{service.shortDesc}</h2>
@@ -70,6 +74,10 @@ const ServiceComponent = ({ service }: { service: Service }) => {
       <div className="mt-20">
         <p>Starting At</p>
         <p className="text-2xl font-bold">${service.basePrice.toFixed(2)}</p>
+        <p className="mt-3">Hourly Rate Option</p>
+        <p className="text-2xl font-bold">
+          ${service.hourlyRate?.toFixed(2)} / h
+        </p>
       </div>
       <div className="mt-20">
         {service.benefits.map((benefit, index) => (
@@ -94,6 +102,22 @@ const ServiceComponent = ({ service }: { service: Service }) => {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="mt-20 self-start px-10 text-left">
+        <h3 className="mb-3 text-xl font-semibold">
+          Best Use Cases For{" "}
+          <span className="text-fuchsia-500">{service.title}</span>
+        </h3>
+        <div className="list-disc">
+          {service.useCases.map((useCase, index) => (
+            <div
+              key={index}
+              className="my-3 rounded-sm bg-gradient-to-tr from-fuchsia-500 to-cyan-500 p-3 text-center font-semibold"
+            >
+              {useCase}
+            </div>
+          ))}
+        </div>
       </div>
       <div className="mt-20 px-10">
         <h3>Related Services</h3>

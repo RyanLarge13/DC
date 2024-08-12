@@ -21,6 +21,7 @@ model Service {
   images String[]
   benefits String[]
   includes String[]
+  useCases String[]
   basePrice Float
   hourlyRate Float?
   specialOffer Boolean @default(false)

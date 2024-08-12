@@ -3,17 +3,16 @@ const prisma = new PrismaClient();
 
 const addIncludes = async () => {
   const added = await prisma.service.update({
-    where: { title: "Free Portfolio" },
+    where: { title: "PWA (Progressive Web Application)" },
     data: {
       includes: [
-        "Free personalized logo with your first and last initials",
-        "Free domain name",
-        "Free template",
-        "Emailing system for potential site visitors",
-        "Spam detection and blocking capabilities in your email system",
-        "A Hero, About Me, Previous Work, Contact, Projects, and Social Section",
-        "SEO optimization, so the internet can find your portfolio by your name or information",
-        "Manage, update or delete your portfolio at any time",
+        "Device responsiveness, make sure your application layout adjusts to all screen sizes",
+        "Installable on any device through any browser with PWA support (Chrome, Firefox, Safari)",
+        "offline mode comes first. Your app will come with built in offline fist functionality",
+        "Notification system. Your users will be able to get native notifications on the devices they install your application on",
+        "Sign in, Sign up, Settings, Menu, Home pages included in base price",
+        "1 in app monetization technique integrated into your app for free",
+        "Pick from various options to bundle and deploy your pwa as an official mobile application to and app store",
       ],
     },
   });

@@ -3,13 +3,14 @@ const prisma = new PrismaClient();
 
 const addBenefits = async () => {
   const added = await prisma.service.update({
-    where: { title: "Free Portfolio" },
+    where: { title: "PWA (Progressive Web Application)" },
     data: {
       benefits: [
-        "30+ Free Templates",
-        "Free Domain",
-        "Fun Customization",
-        "Free Forever",
+        "Installable on any device",
+        "Options for deploying to app stores",
+        "Free deployment to the PWA store",
+        "In-app monetization",
+        "Layout adjusts to all screen sizes",
       ],
     },
   });

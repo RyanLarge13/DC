@@ -19,7 +19,10 @@ const getCategories = async () => {
 
 const getServices = async () => {
   "use server";
-  const services = await prisma.service.findMany({ include: { tags: true } });
+  const services = await prisma.service.findMany({
+    include: { tags: true },
+    orderBy: [{ title: "asc" }, { basePrice: "asc" }, { featured: "asc" }],
+  });
   return services;
 };
 
