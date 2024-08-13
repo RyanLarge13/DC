@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineProduct } from "react-icons/ai";
 import { FaBlog, FaNetworkWired } from "react-icons/fa";
 import { IoPricetag } from "react-icons/io5";
-import { MdArticle, MdMore } from "react-icons/md";
+import { MdArticle, MdMore, MdSearch } from "react-icons/md";
 import Image from "next/image";
 import Logo from "../public/assets/logo.svg";
 
@@ -14,6 +14,11 @@ const Navigation = (): JSX.Element => {
         <li>
           <a href="/">
             <Image src={Logo} alt="logo" className="h-5 w-5 object-contain" />
+          </a>
+        </li>
+        <li>
+          <a href="/search">
+            <MdSearch />
           </a>
         </li>
         <li>

@@ -1,7 +1,7 @@
 "use client";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import ServiceCard from "./ServiceCard";
-import { Service } from "@prisma/client";
+import { Service as ServiceInterface, ServiceType, Tags } from "@prisma/client";
 import {
   FaSortAlphaDown,
   FaSortAlphaUp,
@@ -10,6 +10,12 @@ import {
 } from "react-icons/fa";
 import Switch from "./Switch";
 import { FaStarHalfStroke } from "react-icons/fa6";
+import CannotFind from "./CannotFind";
+
+interface Service extends ServiceInterface {
+  tags: Tags[];
+  type: ServiceType;
+}
 
 const ServiceSection = ({ services }: { services: Service[] }) => {
   const [servicesToRender, setServicesToRender]: [
@@ -18,6 +24,8 @@ const ServiceSection = ({ services }: { services: Service[] }) => {
   ] = useState(services);
   const [sorted, setSorted]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState(false);
+  const [filter, setFilter] = useState("");
+  const [filterTag, setFilterTag] = useState("");
   const [search, setSearch]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState(false);
   const [alpha, setAlpha]: [boolean, Dispatch<SetStateAction<boolean>>] =
@@ -48,6 +56,33 @@ const ServiceSection = ({ services }: { services: Service[] }) => {
       }
     }
   }, [sorted]);
+
+  useEffect(() => {
+    const copy = [...services];
+    if (!filter) {
+      setServicesToRender(copy);
+      return;
+    }
+    const filtered = copy.filter(
+      (service) =>
+        service.type.title.toLocaleLowerCase() === filter.toLocaleLowerCase(),
+    );
+    setServicesToRender(filtered);
+  }, [filter]);
+
+  useEffect(() => {
+    const copy = [...services];
+    if (!filterTag) {
+      setServicesToRender(copy);
+      return;
+    }
+    const filtered = copy.filter((service) =>
+      service.tags.some(
+        (tag) => tag.title.toLowerCase() === filterTag.toLowerCase(),
+      ),
+    );
+    setServicesToRender(filtered);
+  }, [filterTag]);
 
   useEffect(() => {
     if (search) {
@@ -140,9 +175,146 @@ const ServiceSection = ({ services }: { services: Service[] }) => {
           {featured ? <FaSortAmountDown /> : <FaSortAmountUp />}
         </button>
       </div>
-      {servicesToRender.map((service: Service) => (
-        <ServiceCard key={service.id} service={service} />
-      ))}
+      <div
+        className={` ${sorted ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"} mt-2 flex flex-wrap items-center justify-start gap-3 duration-300`}
+      >
+        <button
+          onClick={() => setFilter((prev) => (prev === "db" ? "" : "db"))}
+          className={`rounded-sm ${filter === "db" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+        >
+          DB
+        </button>
+        <button
+          onClick={() =>
+            setFilter((prev) => (prev === "desktop" ? "" : "desktop"))
+          }
+          className={`rounded-sm ${filter === "desktop" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Desktop
+        </button>
+        <button
+          onClick={() => setFilter((prev) => (prev === "game" ? "" : "game"))}
+          className={`rounded-sm ${filter === "game" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Game
+        </button>
+        <button
+          onClick={() =>
+            setFilter((prev) => (prev === "maintenance" ? "" : "maintenance"))
+          }
+          className={`rounded-sm ${filter === "maintenance" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Maintenance
+        </button>
+        <button
+          onClick={() =>
+            setFilter((prev) =>
+              prev === "Mobile Applications" ? "" : "Mobile Applications",
+            )
+          }
+          className={`rounded-sm ${filter === "Mobile Applications" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Mobile
+        </button>
+        <button
+          onClick={() =>
+            setFilter((prev) => (prev === "server" ? "" : "server"))
+          }
+          className={`rounded-sm ${filter === "server" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Server
+        </button>
+        <button
+          onClick={() =>
+            setFilter((prev) => (prev === "terminal" ? "" : "terminal"))
+          }
+          className={`rounded-sm ${filter === "terminal" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Terminal
+        </button>
+        <button
+          onClick={() =>
+            setFilter((prev) =>
+              prev === "Web Development" ? "" : "Web Development",
+            )
+          }
+          className={`rounded-sm ${filter === "Web Development" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+        >
+          web
+        </button>
+      </div>
+      <div
+        className={` ${sorted ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"} mt-3 flex flex-wrap items-center justify-start gap-3 duration-300`}
+      >
+        <button
+          onClick={() =>
+            setFilterTag((prev) =>
+              prev === "Most Popular" ? "" : "Most Popular",
+            )
+          }
+          className={`rounded-sm ${filterTag === "Most Popular" ? "bg-fuchsia-500" : "bg-cyan-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Most Popular
+        </button>
+        <button
+          onClick={() =>
+            setFilterTag((prev) => (prev === "Best Value" ? "" : "Best Value"))
+          }
+          className={`rounded-sm ${filterTag === "Best Value" ? "bg-fuchsia-500" : "bg-cyan-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Best Value
+        </button>
+        <button
+          onClick={() =>
+            setFilterTag((prev) =>
+              prev === "Lowest Price" ? "" : "Lowest Price",
+            )
+          }
+          className={`rounded-sm ${filterTag === "Lowest Price" ? "bg-fuchsia-500" : "bg-cyan-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Lowest Price
+        </button>
+        <button
+          onClick={() =>
+            setFilterTag((prev) =>
+              prev === "Highest Rated" ? "" : "Highest Rated",
+            )
+          }
+          className={`rounded-sm ${filterTag === "Highest Rated" ? "bg-fuchsia-500" : "bg-cyan-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Highest Rated
+        </button>
+        <button
+          onClick={() =>
+            setFilterTag((prev) =>
+              prev === "Special Offers" ? "" : "Special Offers",
+            )
+          }
+          className={`rounded-sm ${filterTag === "Special Offers" ? "bg-fuchsia-500" : "bg-cyan-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Special Offers
+        </button>
+        <button
+          onClick={() =>
+            setFilterTag((prev) =>
+              prev === "Subscriptions" ? "" : "Subscriptions",
+            )
+          }
+          className={`rounded-sm ${filterTag === "Subscriptions" ? "bg-fuchsia-500" : "bg-cyan-500"} px-3 py-2 text-xs duration-300`}
+        >
+          Subscriptions
+        </button>
+      </div>
+      {servicesToRender.length < 1 ? (
+        <CannotFind
+          Text={<p className="text-sm">No Services</p>}
+          link={{ href: "/services", txt: "Refresh" }}
+        />
+      ) : (
+        servicesToRender.map((service: Service) => (
+          <ServiceCard key={service.id} service={service} />
+        ))
+      )}
     </div>
   );
 };
