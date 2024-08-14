@@ -19,6 +19,7 @@ const Search = async () => {
         >
           <input
             type="text"
+            autoFocus={true}
             autoComplete="off"
             name="search"
             placeholder="Type Your Search"
