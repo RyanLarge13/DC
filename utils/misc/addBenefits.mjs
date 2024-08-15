@@ -6,9 +6,9 @@ const addBenefits = async () => {
     where: { title: "PWA (Progressive Web Application)" },
     data: {
       benefits: [
-        "Installable on any device",
-        "Options for deploying to app stores",
-        "Free deployment to the PWA store",
+        "SEO Optimized",
+        "Deploy with a custom domain 1 year on us",
+        "Robust & secure email and contact system",
         "In-app monetization",
         "Layout adjusts to all screen sizes",
       ],
