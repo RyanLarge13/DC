@@ -179,22 +179,34 @@ const ServiceSection = ({ services }: { services: Service[] }) => {
         className={` ${sorted ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"} mt-2 flex flex-wrap items-center justify-start gap-3 duration-300`}
       >
         <button
-          onClick={() => setFilter((prev) => (prev === "db" ? "" : "db"))}
-          className={`rounded-sm ${filter === "db" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+          onClick={() =>
+            setFilter((prev) =>
+              prev === "database design & development"
+                ? ""
+                : "database design & development",
+            )
+          }
+          className={`rounded-sm ${filter === "database design & development" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
         >
           DB
         </button>
         <button
           onClick={() =>
-            setFilter((prev) => (prev === "desktop" ? "" : "desktop"))
+            setFilter((prev) =>
+              prev === "desktop applications" ? "" : "desktop applications",
+            )
           }
-          className={`rounded-sm ${filter === "desktop" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+          className={`rounded-sm ${filter === "desktop applications" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
         >
           Desktop
         </button>
         <button
-          onClick={() => setFilter((prev) => (prev === "game" ? "" : "game"))}
-          className={`rounded-sm ${filter === "game" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+          onClick={() =>
+            setFilter((prev) =>
+              prev === "game development" ? "" : "game development",
+            )
+          }
+          className={`rounded-sm ${filter === "game development" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
         >
           Game
         </button>
@@ -218,17 +230,23 @@ const ServiceSection = ({ services }: { services: Service[] }) => {
         </button>
         <button
           onClick={() =>
-            setFilter((prev) => (prev === "server" ? "" : "server"))
+            setFilter((prev) =>
+              prev === "server development" ? "" : "server development",
+            )
           }
-          className={`rounded-sm ${filter === "server" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+          className={`rounded-sm ${filter === "server development" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
         >
           Server
         </button>
         <button
           onClick={() =>
-            setFilter((prev) => (prev === "terminal" ? "" : "terminal"))
+            setFilter((prev) =>
+              prev === "terminal based applications"
+                ? ""
+                : "terminal based applications",
+            )
           }
-          className={`rounded-sm ${filter === "terminal" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
+          className={`rounded-sm ${filter === "terminal based applications" ? "bg-fuchsia-500" : "bg-orange-500"} px-3 py-2 text-xs duration-300`}
         >
           Terminal
         </button>

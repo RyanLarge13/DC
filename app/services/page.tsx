@@ -33,7 +33,7 @@ const Sec2 = async () => {
 
   return (
     <>
-      <div className="mt-20 grid grid-cols-2 gap-5">
+      <div className="mt-20 grid auto-rows-fr grid-cols-2 gap-5">
         {categories.map((cat) => (
           <CategoryCard key={cat.id} category={cat} />
         ))}
