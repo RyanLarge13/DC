@@ -329,9 +329,11 @@ const ServiceSection = ({ services }: { services: Service[] }) => {
           link={{ href: "/services", txt: "Refresh" }}
         />
       ) : (
-        servicesToRender.map((service: Service) => (
-          <ServiceCard key={service.id} service={service} />
-        ))
+        <div className="grid grid-cols-1 gap-x-5 lg:grid-cols-2 xl:grid-cols-3">
+          {servicesToRender.map((service: Service) => (
+            <ServiceCard key={service.id} service={service} />
+          ))}
+        </div>
       )}
     </div>
   );

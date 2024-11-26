@@ -26,7 +26,7 @@ const ServiceComponent = ({ service }: { service: Service }) => {
   const Icon = iconMap[service.icon];
 
   return (
-    <section className="flex flex-col items-center justify-between py-20 md:px-40 lg:px-80 xl:flex-row">
+    <section className="flex flex-col items-center justify-between py-20 md:px-40 lg:px-80">
       <div className="mb-40">
         <Icon />
       </div>

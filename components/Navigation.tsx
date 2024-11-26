@@ -8,7 +8,7 @@ import Logo from "../public/assets/logo.svg";
 
 const Navigation = (): JSX.Element => {
   return (
-    <nav className="fixed left-0 top-20 z-40 rounded-r-lg bg-black bg-opacity-10 px-2 py-3 shadow-md backdrop-blur-sm">
+    <nav className="fixed left-0 top-[50%] z-40 translate-y-[-50%] rounded-r-lg bg-black bg-opacity-10 px-2 py-3 shadow-md backdrop-blur-sm">
       {/* <Image src={Logo} alt="logo" className="" width={30} height={30} /> */}
       <ul className="flex flex-col items-center justify-end gap-y-10 text-lg">
         <li>

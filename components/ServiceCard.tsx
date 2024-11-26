@@ -16,7 +16,7 @@ const ServiceCard = ({ service }: { service: Service }) => {
       <p className="mb-5 mt-2 text-center text-xl font-bold">{shortDesc}</p>
       <p className="text-4xl">{IconNode ? <IconNode /> : <FaCode />}</p>
       <hr className="mb-10 mt-8 w-full border-t border-t-slate-500" />
-      <div>
+      <div className="w-full">
         <p className="px-5 text-center">{desc}</p>
         <a
           href={`/services/${service.title}`}
