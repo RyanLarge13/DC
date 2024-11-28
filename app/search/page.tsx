@@ -11,10 +11,10 @@ const Search = async () => {
 
   return (
     <main>
-      <section className="min-h-screen px-10 py-20 md:px-40 lg:px-80">
+      <section className="min-h-screen py-20 md:px-40 lg:px-80">
         <form
           action={submitSearch}
-          className="mt-10 flex items-center justify-between gap-x-3"
+          className="mt-10 flex items-center justify-between gap-x-3 px-8"
         >
           <input
             type="text"
