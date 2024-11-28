@@ -11,8 +11,7 @@ const Search = async () => {
 
   return (
     <main>
-      <section className="min-h-screen px-10 py-20 text-center md:px-40 lg:px-80">
-        <h2 className="mt-10 px-5 text-4xl font-bold">Search</h2>
+      <section className="min-h-screen px-10 py-20 md:px-40 lg:px-80">
         <form
           action={submitSearch}
           className="mt-10 flex items-center justify-between gap-x-3"
@@ -29,20 +28,23 @@ const Search = async () => {
             <FaSearch />
           </button>
         </form>
-        <div className="mt-20 px-10 text-left">
-          <p className="mb-3 text-center text-xl font-semibold">
-            Search anything here on Dev Commerce. For example, you can search
-            for
-          </p>
-          <ul className="mb-5 flex list-disc flex-col items-start justify-start gap-y-3 text-orange-400">
-            <li>Dev Commerce Website Pages</li>
-            <li>Services</li>
-            <li>Blog Posts</li>
-            <li>And More!...</li>
-          </ul>
-          <p className="text-center text-sm text-slate-400">
-            Simply type in your search and be on your way
-          </p>
+        <div className="px-20">
+          <h2 className="mt-20 text-center text-4xl font-bold">Search</h2>
+          <div className="mt-10 text-center">
+            <p className="mb-3 text-xl font-semibold">
+              Search anything here on Dev Commerce.
+              <br /> For example, you can search for
+            </p>
+            <ul className="my-20 flex list-disc flex-col items-center justify-center gap-y-3 text-orange-400">
+              <li>Dev Commerce Website Pages</li>
+              <li>Services</li>
+              <li>Blog Posts</li>
+              <li>And More!</li>
+            </ul>
+            <p className="text-sm text-slate-400">
+              Simply type in your search and be on your way
+            </p>
+          </div>
         </div>
       </section>
     </main>
