@@ -36,7 +36,7 @@ const Hero = () => {
         </p>
         <a
           href="/services"
-          className="ml-5 mt-10 rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3 text-white"
+          className="ml-5 mt-10 rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3 text-center text-white"
         >
           Services
         </a>
