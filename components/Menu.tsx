@@ -10,7 +10,7 @@ const Menu = () => {
       </a>
       <a
         href="/sign-in"
-        className="rounded-sm bg-gradient-to-tr from-purple-500 to-orange-500 px-5 py-2 text-sm font-semibold"
+        className="block rounded-sm bg-gradient-to-tr from-purple-500 to-orange-500 px-5 py-2 text-sm font-semibold"
       >
         Sign In
       </a>
