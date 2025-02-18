@@ -1,10 +1,14 @@
 import "./globals.css";
-import type { Metadata } from "next";
-import Navigation from "@/components/Navigation";
-import Image from "next/image";
-import BgGradient from "../public/assets/bg-gradient.svg";
-import Menu from "@/components/Menu";
 
+import Image from "next/image";
+
+import Menu from "@/components/Menu";
+import Navigation from "@/components/Navigation";
+import Notifications from "@/components/Notifications";
+
+import BgGradient from "../public/assets/bg-gradient.svg";
+
+import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Dev Commerce",
   description: "Create the software you dream of!!",
@@ -19,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="styled-scrollbar bg-black text-white">
+        <Notifications />
         <Menu />
         <div
           aria-hidden="true"
