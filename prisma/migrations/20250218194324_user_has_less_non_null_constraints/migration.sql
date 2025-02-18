@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "settings" DROP NOT NULL,
+ALTER COLUMN "emergencyContact" DROP NOT NULL,
+ALTER COLUMN "authPassCode" DROP NOT NULL;

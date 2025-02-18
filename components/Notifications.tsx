@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 
 const Notifications = () => {
   const searchParams = useSearchParams();
@@ -37,11 +37,13 @@ const Notifications = () => {
   }, [searchParams]);
 
   return (
-    <div
-      className={`fixed left-5 top-5 z-[1000] max-w-[400px] rounded-md bg-gradient-to-tr ${error ? "from-red-500" : "from-green-500"} ${show ? "pointer-events-auto opacity-90" : "pointer-events-none opacity-0"} to-black p-5 text-sm shadow-md shadow-[#333] outline outline-1 outline-slate-300 backdrop-blur-sm duration-200 ease-in-out`}
-    >
-      <p>{message}</p>
-    </div>
+    <Suspense fallback={null}>
+      <div
+        className={`fixed left-5 top-5 z-[1000] max-w-[400px] rounded-md bg-gradient-to-tr ${error ? "from-red-500" : "from-green-500"} ${show ? "pointer-events-auto opacity-90" : "pointer-events-none opacity-0"} to-black p-5 text-sm shadow-md shadow-[#333] outline outline-1 outline-slate-300 backdrop-blur-sm duration-200 ease-in-out`}
+      >
+        <p>{message}</p>
+      </div>
+    </Suspense>
   );
 };
 

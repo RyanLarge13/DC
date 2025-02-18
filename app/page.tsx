@@ -1,27 +1,28 @@
 import Image from "next/image";
-import HeroImg from "@/public/assets/heroImg.svg";
-import CheckMark from "@/public/assets/check-mark.svg";
-import Sec3Img from "@/public/assets/sec3Img.svg";
-import Sec4Img from "@/public/assets/sec4Img.svg";
-import Money from "@/public/assets/money.svg";
-import ThumbsUp from "@/public/assets/thumbs-up.svg";
-import VerControl from "@/public/assets/version-control.svg";
-import Tools from "@/public/assets/tools.svg";
-import One from "@/public/assets/one.svg";
-import Two from "@/public/assets/two.svg";
-import Three from "@/public/assets/three.svg";
-import Four from "@/public/assets/four.svg";
-import Five from "@/public/assets/five.svg";
-import Six from "@/public/assets/six.svg";
-import Hearts from "@/public/assets/hearts.svg";
-import MessageMe from "@/public/assets/message-me.svg";
-import Footer from "@/components/Footer";
-import { MdMore } from "react-icons/md";
 import { BiLogoPostgresql } from "react-icons/bi";
-import { SiUnrealengine } from "react-icons/si";
-import { TbBrandReactNative } from "react-icons/tb";
 import { FaNodeJs, FaReact } from "react-icons/fa";
 import { IoLogoElectron } from "react-icons/io5";
+import { MdMore } from "react-icons/md";
+import { SiUnrealengine } from "react-icons/si";
+import { TbBrandReactNative } from "react-icons/tb";
+
+import Footer from "@/components/Footer";
+import CheckMark from "@/public/assets/check-mark.svg";
+import Five from "@/public/assets/five.svg";
+import Four from "@/public/assets/four.svg";
+import Hearts from "@/public/assets/hearts.svg";
+import HeroImg from "@/public/assets/heroImg.svg";
+import MessageMe from "@/public/assets/message-me.svg";
+import Money from "@/public/assets/money.svg";
+import One from "@/public/assets/one.svg";
+import Sec3Img from "@/public/assets/sec3Img.svg";
+import Sec4Img from "@/public/assets/sec4Img.svg";
+import Six from "@/public/assets/six.svg";
+import Three from "@/public/assets/three.svg";
+import ThumbsUp from "@/public/assets/thumbs-up.svg";
+import Tools from "@/public/assets/tools.svg";
+import Two from "@/public/assets/two.svg";
+import VerControl from "@/public/assets/version-control.svg";
 
 const Hero = () => {
   return (
@@ -421,7 +422,6 @@ const Sec10 = () => {
           <input
             name="email"
             id="email"
-            value=""
             placeholder="yourname@example.com"
             className="rounded-l-md bg-transparent p-3 text-center shadow-lg placeholder:text-white xl:text-left"
           />

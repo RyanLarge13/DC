@@ -4,14 +4,17 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 
+import PasswordInput from "@/components/PasswordInput";
 import SubmitBtn from "@/components/SubmitBtn";
 import CheckMark from "@/public/assets/check-mark.svg";
 import Logo from "@/public/assets/logo.svg";
-import { encodeNotificationURL } from "@/utils/helperFunctions";
-import { PrismaClient, User } from "@prisma/client";
+import {
+  encodeNotificationURL,
+  generate_RSA_JWT_Token,
+} from "@/utils/helperFunctions";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -21,38 +24,38 @@ const signInValidationSchema = z.object({
   password: z.string().min(8).max(1000).nonempty().trim(),
 });
 
-const generateJWT = (user: User): string => {
-  const userToEncode = {
-    username: user.username,
-    id: user.id,
-    email: user.email,
-    phoneNumber: user.phoneNumber,
-  };
+// const generateJWT = (user: User): string => {
+//   const userToEncode = {
+//     username: user.username,
+//     id: user.id,
+//     email: user.email,
+//     phoneNumber: user.phoneNumber,
+//   };
 
-  const JWT_SECRET = process.env.JWT_PRIVATE || "undefined";
+//   const JWT_SECRET = process.env.JWT_PRIVATE || "undefined";
 
-  if (JWT_SECRET === "undefined") {
-    redirect(
-      encodeNotificationURL(
-        "sign-in",
-        "error",
-        "Server Error. Please contact support immediately",
-      ),
-    );
-  }
+//   if (JWT_SECRET === "undefined") {
+//     redirect(
+//       encodeNotificationURL(
+//         "sign-in",
+//         "error",
+//         "Server Error. Please contact support immediately",
+//       ),
+//     );
+//   }
 
-  try {
-    const token = jwt.sign({ ...userToEncode, ranId: uuidv4() }, JWT_SECRET, {
-      algorithm: "RS256",
-      expiresIn: "2d",
-    });
-    return token;
-  } catch (err) {
-    throw new Error(
-      "There was an issue with tokenization. Make sure you are passing in proper RSA key pairs to the jwt.sign method",
-    );
-  }
-};
+//   try {
+//     const token = jwt.sign({ ...userToEncode, ranId: uuidv4() }, JWT_SECRET, {
+//       algorithm: "RS256",
+//       expiresIn: "2d",
+//     });
+//     return token;
+//   } catch (err) {
+//     throw new Error(
+//       "There was an issue with tokenization. Make sure you are passing in proper RSA key pairs to the jwt.sign method",
+//     );
+//   }
+// };
 
 const validateSignIn = async (
   password: string,
@@ -117,7 +120,9 @@ const SignIn = () => {
 
     validateSignIn(password, userExists?.password);
 
-    const token = generateJWT(userExists);
+    // const token = generateJWT(userExists);
+
+    const token = generate_RSA_JWT_Token(userExists);
 
     const securityType = process.env.MODE || "production";
 
@@ -191,13 +196,7 @@ const SignIn = () => {
               id="email"
               className="w-full rounded-md bg-slate-700 px-4 py-2 text-lg outline-none duration-500 focus:shadow-md focus:shadow-slate-700 focus:outline-none"
             />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              id="password"
-              className="w-full rounded-md bg-slate-700 px-4 py-2 text-lg outline-none duration-500 focus:shadow-md focus:shadow-slate-700 focus:outline-none"
-            />
+            <PasswordInput />
             <div className="flex items-center justify-start gap-x-3 self-start text-left">
               <input
                 type="checkbox"
