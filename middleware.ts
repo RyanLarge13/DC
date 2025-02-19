@@ -43,50 +43,54 @@ const verifyJWT = async (tokenCookie: RequestCookie) => {
     const user = await jwtVerify(tokenCookie.value, JWT_PUBLIC, {
       algorithms: ["RS256"],
     });
-    console.log(user);
-    return true;
+    return user;
   } catch (err) {
     console.log(`Failed to verify the JWT token. Error: ${err}`);
-    return false;
+    return null;
   }
 };
 
 export const middleware = async (req: NextRequest) => {
   const tokenCookie = req.cookies.get("auth-token");
+  const storedUser = req.cookies.get("user");
   const pathname = req.nextUrl.pathname;
 
-  if (pathname.startsWith("/profile")) {
-    if (!tokenCookie) {
-      return returnEarly(req);
-    }
-    const isVerified = await verifyJWT(tokenCookie);
+  let user = null;
 
-    if (isVerified) {
+  if (storedUser) {
+    return NextResponse.next();
+  }
+
+  if (tokenCookie) {
+    user = await verifyJWT(tokenCookie);
+  }
+
+  if (user) {
+    const res = NextResponse.next();
+    res.cookies.set("user", JSON.stringify(user.payload));
+    return res;
+  }
+
+  if (pathname.startsWith("/profile")) {
+    if (user) {
       return NextResponse.next();
     }
     return returnEarly(req);
   }
 
   if (pathname.startsWith("/sign-up") || pathname.startsWith("/sign-in")) {
-    if (!tokenCookie) {
-      return NextResponse.next();
-    }
-    const isVerified = await verifyJWT(tokenCookie);
-
-    if (isVerified) {
+    if (user) {
       const redirectUrl = new URL(
         encodeNotificationURL("/profile", "success", "Welcome Back!"),
         req.nextUrl.origin,
       );
       return NextResponse.redirect(redirectUrl);
+    } else {
+      return NextResponse.next();
     }
-    const redirectUrl = new URL(
-      encodeNotificationURL("/sign-in", "error", "Please login again"),
-      req.nextUrl.origin,
-    );
-    return NextResponse.redirect(redirectUrl);
   }
 
+  // return returnEarly(req);
   return NextResponse.next();
 };
 
