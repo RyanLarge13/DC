@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -24,39 +23,6 @@ const signInValidationSchema = z.object({
   password: z.string().min(8).max(1000).nonempty().trim(),
 });
 
-// const generateJWT = (user: User): string => {
-//   const userToEncode = {
-//     username: user.username,
-//     id: user.id,
-//     email: user.email,
-//     phoneNumber: user.phoneNumber,
-//   };
-
-//   const JWT_SECRET = process.env.JWT_PRIVATE || "undefined";
-
-//   if (JWT_SECRET === "undefined") {
-//     redirect(
-//       encodeNotificationURL(
-//         "sign-in",
-//         "error",
-//         "Server Error. Please contact support immediately",
-//       ),
-//     );
-//   }
-
-//   try {
-//     const token = jwt.sign({ ...userToEncode, ranId: uuidv4() }, JWT_SECRET, {
-//       algorithm: "RS256",
-//       expiresIn: "2d",
-//     });
-//     return token;
-//   } catch (err) {
-//     throw new Error(
-//       "There was an issue with tokenization. Make sure you are passing in proper RSA key pairs to the jwt.sign method",
-//     );
-//   }
-// };
-
 const validateSignIn = async (
   password: string,
   userPassword: string,
@@ -70,7 +36,7 @@ const validateSignIn = async (
   const passwordMatch = await bcrypt.compare(password, userPassword);
 
   if (!passwordMatch) {
-    redirect(
+    return redirect(
       encodeNotificationURL(
         "sign-in",
         "error",
@@ -94,8 +60,11 @@ const SignIn = () => {
     });
 
     if (!isDataValid.success) {
+      console.log(
+        "The password was incorrect and the code is not stopping the fucking bitch ass program",
+      );
       const issue = isDataValid.error.issues[0];
-      redirect(
+      return redirect(
         encodeNotificationURL(
           "sign-in",
           "error",
@@ -109,36 +78,36 @@ const SignIn = () => {
     });
 
     if (!userExists) {
-      redirect(
+      return redirect(
         encodeNotificationURL(
-          "sign-in",
+          "sign-up",
           "error",
           "Please create an account first before trying to sign in",
         ),
       );
     }
 
-    validateSignIn(password, userExists?.password);
+    await validateSignIn(password, userExists?.password);
 
     // const token = generateJWT(userExists);
 
-    const token = generate_RSA_JWT_Token(userExists);
+    const token = await generate_RSA_JWT_Token(userExists);
 
     const securityType = process.env.MODE || "production";
 
-    try {
-      cookies().set("auth-token", token, {
-        httpOnly: true,
-        secure: securityType === "production",
-        sameSite: "strict",
-        path: "/",
-        maxAge: 2 * 24 * 60 * 60,
-      });
-    } catch (err) {
-      throw new Error(`Error adding auth token to http cookies. Error: ${err}`);
-    }
+    console.log("About to set cookie");
 
-    redirect("/profile");
+    cookies().set("auth-token", token, {
+      httpOnly: true,
+      secure: securityType === "production",
+      sameSite: "strict",
+      path: "/",
+      maxAge: 2 * 24 * 60 * 60,
+    });
+
+    return redirect(
+      encodeNotificationURL("/profile", "success", `Welcome ${username}`),
+    );
   };
 
   return (

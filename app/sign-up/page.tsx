@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -25,10 +26,15 @@ const addUser = async (user: {
   phoneNumber: string;
   password: string;
 }): Promise<User> => {
-  const newUser = await prisma.user.create({ data: user });
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(user.password, salt);
+
+  const newUser = await prisma.user.create({
+    data: { ...user, password: hashedPassword },
+  });
 
   if (!newUser) {
-    redirect(
+    return redirect(
       encodeNotificationURL(
         "sign-up",
         "error",
@@ -58,7 +64,7 @@ const SignUp = () => {
 
     if (!isDataValid.success) {
       const issue = isDataValid.error.issues[0];
-      redirect(
+      return redirect(
         encodeNotificationURL(
           "sign-up",
           "error",
@@ -70,7 +76,7 @@ const SignUp = () => {
     await addUser({ username, email, phoneNumber, password });
     // await sendWelcomeEmail();
 
-    redirect(
+    return redirect(
       encodeNotificationURL(
         "sign-in",
         "success",

@@ -1,4 +1,5 @@
-import jwt from "jsonwebtoken";
+import fs from "fs";
+import { SignJWT } from "jose";
 import { redirect } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 
@@ -18,7 +19,26 @@ export const encodeNotificationURL = (
   return urlStr;
 };
 
-export const generate_RSA_JWT_Token = (user: User): string => {
+const importPKCS8 = async (pemKey: string) => {
+  return await crypto.subtle.importKey(
+    "pkcs8",
+    decodePEM(pemKey),
+    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+    true,
+    ["sign"],
+  );
+};
+
+const decodePEM = (pem: string) => {
+  const base64 = pem
+    .replace(/-----BEGIN PRIVATE KEY-----/, "")
+    .replace(/-----END PRIVATE KEY-----/, "")
+    .replace(/\n/g, "");
+  const binary = atob(base64);
+  return new Uint8Array([...binary].map((char) => char.charCodeAt(0)));
+};
+
+export const generate_RSA_JWT_Token = async (user: User): Promise<string> => {
   // Validate user please and throw error if its messed up
   const userToEncode = {
     username: user.username,
@@ -27,9 +47,9 @@ export const generate_RSA_JWT_Token = (user: User): string => {
     phoneNumber: user.phoneNumber,
   };
 
-  const JWT_SECRET = process.env.JWT_PRIVATE || "undefined";
+  const JWT_PRIVATE = fs.readFileSync("private.pem", "utf8") || "undefined";
 
-  if (JWT_SECRET === "undefined") {
+  if (JWT_PRIVATE === "undefined") {
     redirect(
       encodeNotificationURL(
         "sign-in",
@@ -39,15 +59,16 @@ export const generate_RSA_JWT_Token = (user: User): string => {
     );
   }
 
+  const privateKey = await importPKCS8(JWT_PRIVATE);
+
   try {
-    const token = jwt.sign({ ...userToEncode, ranId: uuidv4() }, JWT_SECRET, {
-      algorithm: "RS256",
-      expiresIn: "2d",
-    });
-    return token;
+    return await new SignJWT({ ...userToEncode, ranId: uuidv4() })
+      .setProtectedHeader({ alg: "RS256" })
+      .setExpirationTime("2d")
+      .sign(privateKey);
   } catch (err) {
     throw new Error(
-      "There was an issue with tokenization. Make sure you are passing in proper RSA key pairs to the jwt.sign method",
+      `There was an issue with tokenization. Make sure you are passing in proper RSA key pairs to the jwt.sign method. Must read from .pem file not env. ${err}`,
     );
   }
 };
