@@ -1,6 +1,4 @@
-import fs from "fs";
-import { SignJWT } from "jose";
-import { redirect } from "next/navigation";
+import { importPKCS8, SignJWT } from "jose";
 import { v4 as uuidv4 } from "uuid";
 
 import { User } from "@prisma/client";
@@ -19,25 +17,6 @@ export const encodeNotificationURL = (
   return urlStr;
 };
 
-const importPKCS8 = async (pemKey: string) => {
-  return await crypto.subtle.importKey(
-    "pkcs8",
-    decodePEM(pemKey),
-    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
-    true,
-    ["sign"],
-  );
-};
-
-const decodePEM = (pem: string) => {
-  const base64 = pem
-    .replace(/-----BEGIN PRIVATE KEY-----/, "")
-    .replace(/-----END PRIVATE KEY-----/, "")
-    .replace(/\n/g, "");
-  const binary = atob(base64);
-  return new Uint8Array([...binary].map((char) => char.charCodeAt(0)));
-};
-
 export const generate_RSA_JWT_Token = async (user: User): Promise<string> => {
   // Validate user please and throw error if its messed up
   const userToEncode = {
@@ -50,16 +29,12 @@ export const generate_RSA_JWT_Token = async (user: User): Promise<string> => {
   const JWT_PRIVATE = process.env.NEXT_PUBLIC_JWT_PRIVATE_KEY || "undefined";
 
   if (JWT_PRIVATE === "undefined") {
-    redirect(
-      encodeNotificationURL(
-        "sign-in",
-        "error",
-        "Server Error. Please contact support immediately",
-      ),
+    throw new Error(
+      "JWT_PRIVATE is undefined. Either missing from .env or .pem file",
     );
   }
 
-  const privateKey = await importPKCS8(JWT_PRIVATE);
+  const privateKey = await importPKCS8(JWT_PRIVATE, "RS256");
 
   try {
     return await new SignJWT({ ...userToEncode, ranId: uuidv4() })

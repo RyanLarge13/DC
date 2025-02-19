@@ -26,6 +26,22 @@ const addUser = async (user: {
   phoneNumber: string;
   password: string;
 }): Promise<User> => {
+  const userAlreadyExists = await prisma.user.findUnique({
+    where: {
+      email: user.email,
+    },
+  });
+
+  if (userAlreadyExists) {
+    return redirect(
+      encodeNotificationURL(
+        "sign-in",
+        "error",
+        "A user with that email already exists. Please login or create a new account",
+      ),
+    );
+  }
+
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(user.password, salt);
 

@@ -1,4 +1,4 @@
-import { jwtVerify } from "jose";
+import { importSPKI, jwtVerify } from "jose";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -22,20 +22,28 @@ const returnEarly = (req: NextRequest) => {
   }
 };
 
-const verifyJWT = (tokenCookie: RequestCookie) => {
-  // const JWT_PUBLIC = process.env.NEXT_PUBLIC_JWT_PUBLIC_KEY || "undefined";
-  const JWT_PUBLIC = new TextEncoder().encode("public.pem");
+const verifyJWT = async (tokenCookie: RequestCookie) => {
+  const KEY = process.env.NEXT_PUBLIC_JWT_PUBLIC_KEY || "undefined";
 
-  if (!JWT_PUBLIC) {
+  if (!KEY) {
+    throw new Error("JWT KEY missing from env. Please add it immediately");
+  }
+
+  let JWT_PUBLIC;
+  try {
+    JWT_PUBLIC = await importSPKI(KEY, "RS256");
+  } catch (err) {
+    console.log(err);
     throw new Error(
-      "JWT public key missing from env. Please add it immediately",
+      "JWT public key failed to generate. Please add it immediately",
     );
   }
 
   try {
-    jwtVerify(tokenCookie.value, JWT_PUBLIC, {
+    const user = await jwtVerify(tokenCookie.value, JWT_PUBLIC, {
       algorithms: ["RS256"],
     });
+    console.log(user);
     return true;
   } catch (err) {
     console.log(`Failed to verify the JWT token. Error: ${err}`);
@@ -43,17 +51,15 @@ const verifyJWT = (tokenCookie: RequestCookie) => {
   }
 };
 
-export const middleware = (req: NextRequest) => {
+export const middleware = async (req: NextRequest) => {
   const tokenCookie = req.cookies.get("auth-token");
   const pathname = req.nextUrl.pathname;
-
-  console.log("Middleware is called");
 
   if (pathname.startsWith("/profile")) {
     if (!tokenCookie) {
       return returnEarly(req);
     }
-    const isVerified = verifyJWT(tokenCookie);
+    const isVerified = await verifyJWT(tokenCookie);
 
     if (isVerified) {
       return NextResponse.next();
@@ -62,11 +68,10 @@ export const middleware = (req: NextRequest) => {
   }
 
   if (pathname.startsWith("/sign-up") || pathname.startsWith("/sign-in")) {
-    console.log("Pathname startwith /sign up or in");
     if (!tokenCookie) {
       return NextResponse.next();
     }
-    const isVerified = verifyJWT(tokenCookie);
+    const isVerified = await verifyJWT(tokenCookie);
 
     if (isVerified) {
       const redirectUrl = new URL(
@@ -75,7 +80,11 @@ export const middleware = (req: NextRequest) => {
       );
       return NextResponse.redirect(redirectUrl);
     }
-    return NextResponse.next();
+    const redirectUrl = new URL(
+      encodeNotificationURL("/sign-in", "error", "Please login again"),
+      req.nextUrl.origin,
+    );
+    return NextResponse.redirect(redirectUrl);
   }
 
   return NextResponse.next();
