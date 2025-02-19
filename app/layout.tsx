@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import Image from "next/image";
+import { Suspense } from "react";
 
 import Menu from "@/components/Menu";
 import Navigation from "@/components/Navigation";
@@ -23,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="styled-scrollbar bg-black text-white">
-        <Notifications />
+        <Suspense fallback={null}>
+          <Notifications />
+        </Suspense>
         <Menu />
         <div
           aria-hidden="true"

@@ -47,7 +47,7 @@ export const generate_RSA_JWT_Token = async (user: User): Promise<string> => {
     phoneNumber: user.phoneNumber,
   };
 
-  const JWT_PRIVATE = fs.readFileSync("private.pem", "utf8") || "undefined";
+  const JWT_PRIVATE = process.env.NEXT_PUBLIC_JWT_PRIVATE_KEY || "undefined";
 
   if (JWT_PRIVATE === "undefined") {
     redirect(
