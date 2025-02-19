@@ -13,11 +13,13 @@ const Menu = () => {
     const cookieStore = cookies();
     const storedUser = cookieStore.get("user");
     if (!storedUser) {
-      return;
+      user = null;
+    } else {
+      user = JSON.parse(storedUser?.value);
     }
-    user = JSON.parse(storedUser?.value);
   } catch (err) {
     console.log("Error parsing cookie user in Menu");
+    user = null;
   }
 
   return (

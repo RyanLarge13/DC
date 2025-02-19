@@ -1,12 +1,13 @@
-import React from "react";
 import Image from "next/image";
-import Logo from "@/public/assets/logo.svg";
-import WebSvg from "@/public/assets/WebSvg.svg";
-import WebSvg2 from "@/public/assets/web.svg";
-import { IoIosSpeedometer } from "react-icons/io";
+import React from "react";
 import { FaMinus, FaThumbsUp } from "react-icons/fa";
 import { FaMoneyBill1Wave, FaPlus } from "react-icons/fa6";
+import { IoIosSpeedometer } from "react-icons/io";
+
 import Footer from "@/components/Footer";
+import Logo from "@/public/assets/logo.svg";
+import WebSvg2 from "@/public/assets/web.svg";
+import WebSvg from "@/public/assets/WebSvg.svg";
 
 const About = () => {
   const Sec2 = () => {
@@ -65,9 +66,12 @@ const About = () => {
         <h2 className="my-10 px-5 text-4xl font-bold">
           What You Will Get Out of Dev Commerce
         </h2>
-        <button className="mt-5 rounded-sm px-10 py-3 text-white outline outline-offset-[-4px] outline-orange-500">
+        <a
+          href="/services"
+          className="mt-5 rounded-sm px-10 py-3 text-white outline outline-offset-[-4px] outline-orange-500"
+        >
           Browse Services
-        </button>
+        </a>
         <div className="mt-10 grid grid-cols-1 place-items-center gap-y-5">
           <div className="flex w-full max-w-[600px] flex-col items-center justify-between rounded-md bg-black p-5 text-center shadow-lg shadow-slate-950">
             <h3 className="mb-5 self-center text-3xl font-bold">
@@ -173,12 +177,18 @@ const About = () => {
             tech
           </p>
           <div>
-            <button className="mt-10 w-full rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3 text-white">
+            <a
+              href="/services"
+              className="mt-10 block w-full rounded-sm bg-gradient-to-tr from-orange-500 to-fuchsia-500 px-10 py-3 text-white"
+            >
               Services
-            </button>
-            <button className="mt-5 w-full rounded-sm px-10 py-3 text-white outline outline-offset-[-4px] outline-orange-500">
+            </a>
+            <a
+              href="/contact"
+              className="mt-5 block w-full rounded-sm px-10 py-3 text-white outline outline-offset-[-4px] outline-orange-500"
+            >
               Contact Us
-            </button>
+            </a>
           </div>
         </div>
         <Image
