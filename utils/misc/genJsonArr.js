@@ -9,7 +9,7 @@ const instructions = [
     step: 2,
     title: "Choose a template",
     description:
-      "You will be prompted to pick from a veriety of templates all completely free! Pick your favorite and push continue",
+      "You will be prompted to pick from a variety of templates all completely free! Pick your favorite and push continue",
   },
   {
     step: 3,
