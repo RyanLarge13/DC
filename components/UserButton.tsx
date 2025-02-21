@@ -17,26 +17,31 @@ const UserButton = ({ user }: { user: { username: string } }) => {
       </button>
       {showMenu ? (
         <>
-          <Backdrop click={() => setShowMenu(false)} />
-          <div className="fixed right-5 top-5 z-[998] flex flex-col rounded-md bg-black shadow-lg shadow-slate-700">
+          <div className="fixed right-5 top-5 z-[998] flex flex-col overflow-hidden rounded-md bg-black bg-opacity-80 shadow-lg shadow-slate-700 backdrop-blur-sm">
             <a
               href="/profile"
-              className="border-b border-b-orange-500 bg-transparent px-5 py-3 duration-200 hover:bg-[#111]"
+              className="hover:bg-gradient-t-tr bg-transparent px-5 py-3 text-center duration-200 hover:bg-gradient-to-tr hover:from-orange-500 hover:to-pink-500"
             >
               Profile
             </a>
             <a
               href="/profile"
-              className="border-b border-b-orange-500 bg-transparent px-5 py-3 duration-200 hover:bg-[#111]"
+              className="hover:bg-gradient-t-tr bg-transparent px-5 py-3 text-center duration-200 hover:bg-gradient-to-tr hover:from-orange-500 hover:to-pink-500"
             >
               Manage Account
             </a>
             <a
               href="/profile"
-              className="border-b border-b-orange-500 bg-transparent px-5 py-3 duration-200 hover:bg-[#111]"
+              className="hover:bg-gradient-t-tr bg-transparent px-5 py-3 text-center duration-200 hover:bg-gradient-to-tr hover:from-orange-500 hover:to-pink-500"
             >
               Logout
             </a>
+            <button
+              onClick={() => setShowMenu(false)}
+              className="hover:bg-gradient-t-tr bg-transparent px-5 py-3 duration-200 hover:bg-gradient-to-tr hover:from-orange-500 hover:to-pink-500"
+            >
+              Close
+            </button>
           </div>
         </>
       ) : null}
